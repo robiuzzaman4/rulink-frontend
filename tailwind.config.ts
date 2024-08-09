@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-satoshi)"],
+        serif: ["var(--font-playfair)"],
+      },
       colors: {
         // rulink colors
         "rulink-primary": "#0d9488",
