@@ -19,7 +19,7 @@ const Navlink = ({ href, label }: Link) => {
     <Link
       href={href}
       className={cn("text-sm font-normal text-muted-foreground", {
-        "text-foreground": isActive,
+        "text-foreground font-medium": isActive,
       })}
     >
       {label}

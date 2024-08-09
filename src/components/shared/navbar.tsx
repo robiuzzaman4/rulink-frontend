@@ -8,6 +8,10 @@ import { ArrowRight } from "lucide-react";
 
 const links = [
   {
+    label: "Home",
+    href: "/",
+  },
+  {
     label: "Pricing",
     href: "/pricing",
   },
@@ -19,7 +23,7 @@ const links = [
 
 const Navbar = () => {
   return (
-    <nav className="w-full fixed top-0 bg-background/40 backdrop-blur-xl border-b border-b-border">
+    <nav className="w-full fixed top-0 bg-background/40 backdrop-blur-xl border-b border-b-border z-20">
       <Container className="flex items-center justify-between py-4">
         {/* lgoo */}
         <Link href="/" className="flex items-center gap-1">
