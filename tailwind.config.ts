@@ -24,8 +24,8 @@ const config = {
       },
       colors: {
         // rulink colors
-        "rulink-primary": "#1D6E47",
-        "rulink-primary-dark": "#041B11",
+        "rulink-primary": "#0d9488",
+        "rulink-primary-dark": "#042f2e",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

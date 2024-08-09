@@ -3,7 +3,6 @@ import { Playfair_Display } from "next/font/google";
 import Satoshi from "next/font/local";
 import "./globals.css";
 
-
 const plafair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
@@ -36,8 +35,8 @@ const satoshi = Satoshi({
 });
 
 export const metadata: Metadata = {
-  title: "Next app",
-  description: "Next app",
+  title: "Rulink",
+  description: "Build your own site in minutes.",
 };
 
 export default function RootLayout({
