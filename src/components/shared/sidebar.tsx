@@ -26,7 +26,7 @@ const Sidebar = () => {
       <div className="w-full px-6 pb-4 flex items-center justify-between">
         <span className="flex items-center gap-2">
           <p className="text-sm text-muted-foreground">
-            Click to view your user account
+            Click to see your user account
           </p>
           <MoveRight size={14} className="text-sm text-muted-foreground" />
         </span>

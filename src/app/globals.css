@@ -67,3 +67,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* hide clerk brand */
+.cl-internal-1dauvpw {
+  display: none;
+}
+.cl-internal-1hp5nqm {
+  display: none;
+}
