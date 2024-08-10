@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Playfair_Display } from "next/font/google";
+import { Playfair_Display, Inter } from "next/font/google";
 import Satoshi from "next/font/local";
 import "./globals.css";
+import { ClerkProvider } from "@clerk/nextjs";
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 const plafair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
@@ -45,10 +50,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${satoshi.variable} ${plafair.variable} font-sans`}>
-        {children}
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${satoshi.variable} ${plafair.variable} ${inter.variable} font-sans`}
+        >
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -4,7 +4,7 @@ import React, { ReactNode } from "react";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="w-full flex-1 items-start lg:grid lg:grid-cols-[300px_minmax(0,1fr)] xl:grid-cols-[380px_minmax(0,1fr)]">
+    <div className="w-full flex-1 items-start lg:grid lg:grid-cols-[300px_minmax(0,1fr)] xl:grid-cols-[340px_minmax(0,1fr)]">
       <Sidebar />
       <div className="">
         <DashboardNavbar />

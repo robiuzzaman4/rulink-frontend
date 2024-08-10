@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -17,8 +18,13 @@ const Sidebar = () => {
           width={720}
           className="h-6 w-6"
         />
-        <p className="font-bold text-base">Rulink</p>
+        <p className="font-bold text-base font-satoshi">Rulink</p>
       </Link>
+
+      {/* user button */}
+      <div className="px-6 py-4 w-full bg-secondary mt-4">
+        <UserButton />
+      </div>
     </div>
   );
 };

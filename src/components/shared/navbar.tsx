@@ -34,11 +34,11 @@ const Navbar = () => {
             width={720}
             className="h-6 w-6"
           />
-          <p className="font-bold text-base">Rulink</p>
+          <p className="font-bold text-base font-satoshi">Rulink</p>
         </Link>
 
-        <div className="flex items-center gap-4">
-          <div className="hidden lg:flex items-center gap-4">
+        <div className="flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-6">
             {links.map((link, i) => (
               <Navlink key={i} label={link.label} href={link.href} />
             ))}

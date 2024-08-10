@@ -19,7 +19,8 @@ const config = {
     },
     extend: {
       fontFamily: {
-        sans: ["var(--font-satoshi)"],
+        sans: ["var(--font-inter)"],
+        satoshi: ["var(--font-satoshi)"],
         serif: ["var(--font-playfair)"],
       },
       colors: {

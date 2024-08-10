@@ -7,15 +7,13 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "../ui/breadcrumb";
 import Link from "next/link";
 
 const DashboardNavbar = () => {
   const pathname = usePathname();
-  const exectPathname = pathname && pathname?.split("/")?.[2];
-  console.log("exectPathname", exectPathname, pathname);
+  const exactPathname = pathname && pathname?.split("/")?.[2];
 
   return (
     <nav className="w-full fixed top-0 bg-background border-b border-b-border z-20 py-[18px]">
@@ -24,14 +22,19 @@ const DashboardNavbar = () => {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
-                <Link href={pathname}>Dashboard</Link>
+                <Link href="/dashboard">Dashboard</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage className="capitalize font-medium text-rulink-primary">
-                {exectPathname && exectPathname}
-              </BreadcrumbPage>
+              <BreadcrumbLink asChild>
+                <Link
+                  href={pathname}
+                  className="capitalize font-medium text-rulink-primary hover:text-rulink-primary"
+                >
+                  {exactPathname && exactPathname}
+                </Link>
+              </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

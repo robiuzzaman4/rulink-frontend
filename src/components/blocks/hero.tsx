@@ -11,11 +11,11 @@ const Hero = () => {
       <Container className="grid lg:grid-cols-2 gap-8 md:gap-16">
         {/* left side */}
         <div className="w-full max-w-sm md:max-w-md lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col gap-4 md:gap-8">
-          <h1 className="text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-bold">
+          <h1 className="font-satoshi text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-bold">
             Generate your website in minutes.
           </h1>
           <span className="grid gap-1">
-            <p className="text-center lg:text-start font-medium text-lg md:text-xl">
+            <p className="font-satoshi text-center lg:text-start font-medium text-lg md:text-xl">
               Streamline your digital identity.
             </p>
             <p className="text-center lg:text-start text-muted-foreground">
@@ -35,6 +35,14 @@ const Hero = () => {
               <Link href="/pricing">See Pricing</Link>
             </Button>
           </div>
+          <Button
+            variant="outline"
+            asChild
+            size="lg"
+            className="hover:underline transition-all duration-300"
+          >
+            <Link href="/dashboard">Dashboard</Link>
+          </Button>
         </div>
         {/* right side */}
         <div className="grid place-items-center w-full max-w-sm md:max-w-md lg:max-w-full mx-auto h-full relative">

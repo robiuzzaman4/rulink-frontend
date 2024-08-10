@@ -5,7 +5,7 @@ import React from "react";
 const DashboardPage = () => {
   const pathname = usePathname();
   const router = useRouter();
-  if (pathname === "dashboard") {
+  if (pathname === "/dashboard") {
     router.replace("/dashboard/overview");
   }
 
