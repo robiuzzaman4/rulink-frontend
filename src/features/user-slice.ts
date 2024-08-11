@@ -12,15 +12,15 @@ const userApi = apiSlice.injectEndpoints({
 
     // === get user by email ===
     getUserByEmail: builder.query({
-      query: (email) => ({
+      query: ({email}) => ({
         url: `/users/${email}`,
         method: "GET",
       }),
     }),
 
-    // === check available username ====
+    // === check available username ===
     checkUsernameAvailability: builder.query({
-      query: (username) => ({
+      query: ({username}) => ({
         url: `/users/check-username/${username}`,
         method: "GET",
       }),
