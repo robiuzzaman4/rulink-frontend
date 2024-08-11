@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Container from "./container";
 import Image from "next/image";
@@ -5,6 +7,7 @@ import Link from "next/link";
 import Navlink from "./navlink";
 import { Button } from "../ui/button";
 import { ArrowRight } from "lucide-react";
+import { useUser } from "@clerk/nextjs";
 
 const links = [
   {
@@ -22,6 +25,8 @@ const links = [
 ];
 
 const Navbar = () => {
+  const { user, isLoaded } = useUser();
+
   return (
     <nav className="w-full fixed top-0 bg-background/40 backdrop-blur-xl border-b border-b-border z-20">
       <Container className="flex items-center justify-between py-4">
@@ -40,15 +45,29 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           <div className="hidden lg:flex items-center gap-6">
             {links.map((link, i) => (
-              <Navlink key={i} label={link.label} href={link.href} />
+              <Navlink
+                key={i}
+                label={link.label}
+                href={link.href}
+                user={isLoaded && user}
+              />
             ))}
           </div>
-          <Button asChild>
-            <Link href="/sign-up" className="flex items-center gap-1">
-              <span>Get Started</span>
-              <ArrowRight size={16} />
-            </Link>
-          </Button>
+          {isLoaded && user ? (
+            <Button asChild>
+              <Link href="/dashboard" className="flex items-center gap-1">
+                <span>Dashboard</span>
+                <ArrowRight size={16} />
+              </Link>
+            </Button>
+          ) : (
+            <Button asChild>
+              <Link href="/sign-up" className="flex items-center gap-1">
+                <span>Get Started</span>
+                <ArrowRight size={16} />
+              </Link>
+            </Button>
+          )}
         </div>
       </Container>
     </nav>

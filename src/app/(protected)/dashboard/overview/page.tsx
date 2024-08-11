@@ -1,18 +1,10 @@
-"use client";
-import { useUser } from "@clerk/nextjs";
 import React from "react";
+import ClaimedUsernameProcess from "@/components/blocks/claimed-username-process";
 
 const OverviewPage = () => {
-  const { user } = useUser();
-
   return (
     <div className="py-20 px-4 lg:px-6">
-      <h3 className="text-base font-medium text-muted-foreground">
-        Email: {user?.emailAddresses?.[0]?.emailAddress}
-      </h3>
-      <h3 className="text-base font-medium text-muted-foreground">
-        UserId: {user?.id}
-      </h3>
+      <ClaimedUsernameProcess />
     </div>
   );
 };

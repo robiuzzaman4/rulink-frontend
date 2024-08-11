@@ -8,9 +8,10 @@ import React from "react";
 interface Link {
   href: string;
   label: string;
+  user?: any;
 }
 
-const Navlink = ({ href, label }: Link) => {
+const Navlink = ({ href, label, user }: Link) => {
   // find active link
   const pathname = usePathname();
   const isActive = pathname === href;
@@ -20,6 +21,7 @@ const Navlink = ({ href, label }: Link) => {
       href={href}
       className={cn("text-sm font-normal text-muted-foreground", {
         "text-foreground font-medium": isActive,
+        hidden: user && href === "/sign-in",
       })}
     >
       {label}
