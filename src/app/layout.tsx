@@ -3,6 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import Satoshi from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import StoreProvider from "@/provider/store-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -51,13 +52,15 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body
-          className={`${satoshi.variable} ${plafair.variable} ${inter.variable} font-sans`}
-        >
-          {children}
-        </body>
-      </html>
+      <StoreProvider>
+        <html lang="en">
+          <body
+            className={`${satoshi.variable} ${plafair.variable} ${inter.variable} font-sans`}
+          >
+            {children}
+          </body>
+        </html>
+      </StoreProvider>
     </ClerkProvider>
   );
 }
