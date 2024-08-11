@@ -75,3 +75,8 @@
 .cl-internal-1hp5nqm {
   display: none;
 }
+
+/* decrease user button popover width */
+.cl-internal-wd8woj {
+  width: 20rem;
+}
