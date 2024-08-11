@@ -1,5 +1,5 @@
 import React from "react";
-import ClaimedUsernameProcess from "@/components/blocks/claimed-username-process";
+import ClaimedUsernameProcess from "@/components/pages/overview/claimed-username-process";
 
 const OverviewPage = () => {
   return (

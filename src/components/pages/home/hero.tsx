@@ -1,8 +1,8 @@
 import React from "react";
-import Container from "../shared/container";
-import ShineButton from "./shine-button";
+import Container from "@/components/shared/container";
+import ShineButton from "@/components/pages/home/shine-button";
 import Link from "next/link";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 const Hero = () => {
