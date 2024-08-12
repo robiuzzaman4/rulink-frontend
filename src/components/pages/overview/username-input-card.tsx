@@ -93,7 +93,7 @@ const UsernameInputCard = ({
           size="lg"
           onClick={handleClaimUsername}
           className="w-full"
-          disabled={isUsernameLoading || !isAvailableUsername}
+          disabled={isUsernameLoading || !isAvailableUsername || !username}
         >
           Complete
         </Button>

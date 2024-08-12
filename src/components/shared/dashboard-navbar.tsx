@@ -30,7 +30,7 @@ const DashboardNavbar = () => {
               <BreadcrumbLink asChild>
                 <Link
                   href={pathname}
-                  className="capitalize font-medium text-orange-500 hover:text-orange-500"
+                  className="capitalize font-medium text-foreground hover:text-foreground"
                 >
                   {exactPathname && exactPathname}
                 </Link>
