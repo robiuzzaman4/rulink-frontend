@@ -1,13 +1,15 @@
-import { TransitionPanel } from "@/components/motion-primitives/transition-panel";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { MOTION_SLIDES_TRANSITION, MOTION_SLIDES_VARIANTS } from "@/constants";
-import { cn } from "@/lib/utils";
 import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
+import confetti from "canvas-confetti";
+import { cn } from "@/lib/utils";
+import { MOTION_SLIDES_TRANSITION, MOTION_SLIDES_VARIANTS } from "@/constants";
+import { TransitionPanel } from "@/components/motion-primitives/transition-panel";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import WelcomeCard from "@/components/pages/overview/welcome-card";
 import UsernameInputCard from "@/components/pages/overview/username-input-card";
-import UsernameClaimedSuccssCard from "./username-claimed-success-card";
-import confetti from "canvas-confetti";
+import UsernameClaimedSuccssCard from "@/components/pages/overview/username-claimed-success-card";
+import { useCheckUsernameAvailabilityQuery } from "@/features/user-slice";
+import useDebounce from "@/hooks/useDebounce";
 
 interface WelcomeModal {
   open: boolean;
@@ -16,9 +18,26 @@ interface WelcomeModal {
 }
 
 const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
+  // === animation states ===
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [ref] = useMeasure();
+
+  // === username input states ===
+  const [isAvailableUsername, setIsAvailableUsername] = useState(false);
+  const [username, setUsername] = useState("");
+  const debouncedUsername = useDebounce(username);
+
+  // === check username api hooks ===
+  const {
+    data: checkUsernameResponse,
+    isLoading: isUsernameLoading,
+    isFetching: isUsernameFetching,
+  } = useCheckUsernameAvailabilityQuery({
+    username: debouncedUsername,
+  });
+
+  console.log("data", checkUsernameResponse);
 
   // === handle next slide ===
   const handleNextSlide = () => {
@@ -34,9 +53,22 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
     confetti({
       particleCount: 200,
       spread: 140,
-      origin: { y: 0.6 }
+      origin: { y: 0.6 },
     });
   };
+
+  // === keep username on state ===
+  useEffect(() => {
+    if (checkUsernameResponse) {
+      if (checkUsernameResponse?.message === "Username is already taken") {
+        setIsAvailableUsername(false);
+      } else if (checkUsernameResponse?.message === "Username is available") {
+        setIsAvailableUsername(true);
+      } else {
+        setIsAvailableUsername(false);
+      }
+    }
+  }, [checkUsernameResponse, checkUsernameResponse?.message]);
 
   // === handle continue to dashboard ===
   const handleContinueToDashboard = () => {
@@ -52,7 +84,15 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
     },
     {
       label: "claim-username",
-      content: <UsernameInputCard handleClaimUsername={handleClaimUsername} />,
+      content: (
+        <UsernameInputCard
+          username={username}
+          setUsername={setUsername}
+          isAvailableUsername={isAvailableUsername}
+          isUsernameLoading={isUsernameLoading || isUsernameFetching}
+          handleClaimUsername={handleClaimUsername}
+        />
+      ),
     },
     {
       label: "success",
