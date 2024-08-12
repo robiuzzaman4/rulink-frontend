@@ -8,7 +8,7 @@ interface UsernameInputCardProps {
   handleClaimUsername: () => void;
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
-  isAvailableUsername: boolean;
+  isAvailableUsername: boolean | null;
   isUsernameLoading: boolean;
 }
 
@@ -74,11 +74,18 @@ const UsernameInputCard = ({
         {isUsernameLoading && (
           <p className="text-xs text-muted-foreground">Checking username...</p>
         )}
-        {username !== "" && isAvailableUsername ? (
-          <p className="text-xs text-green-500">Username is available</p>
-        ) : (
-          <p className="text-xs text-red-500">Username is already taken</p>
-        )}
+        {username !== "" &&
+          !isUsernameLoading &&
+          isAvailableUsername &&
+          isAvailableUsername !== null && (
+            <p className="text-xs text-green-500">Username is available</p>
+          )}
+        {username !== "" &&
+          !isUsernameLoading &&
+          !isAvailableUsername &&
+          isAvailableUsername !== null && (
+            <p className="text-xs text-red-500">Username is already taken</p>
+          )}
       </div>
       {/* bottom section */}
       <div className="h-fit mt-auto w-full">

@@ -24,7 +24,9 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
   const [ref] = useMeasure();
 
   // === username input states ===
-  const [isAvailableUsername, setIsAvailableUsername] = useState(false);
+  const [isAvailableUsername, setIsAvailableUsername] = useState<
+    null | boolean
+  >(null);
   const [username, setUsername] = useState("");
   const debouncedUsername = useDebounce(username);
 
@@ -65,7 +67,7 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
       } else if (checkUsernameResponse?.message === "Username is available") {
         setIsAvailableUsername(true);
       } else {
-        setIsAvailableUsername(false);
+        setIsAvailableUsername(null);
       }
     }
   }, [checkUsernameResponse, checkUsernameResponse?.message]);
