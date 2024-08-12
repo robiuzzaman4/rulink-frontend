@@ -27,7 +27,7 @@ const ClaimedUsernameProcess = () => {
 
   if (isLoading) {
     return (
-      <div className="text-xl font-medium text-center w-full h-[calc(100vh-160px)] grid place-items-center text-orange-500">
+      <div className="text-xl font-medium text-center w-full h-[calc(100vh-160px)] grid place-items-center text-foreground">
         <LoaderCircle size={24} className="animate-spin" />
       </div>
     );
