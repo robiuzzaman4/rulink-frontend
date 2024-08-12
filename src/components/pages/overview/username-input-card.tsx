@@ -5,10 +5,10 @@ import { Link } from "lucide-react";
 import React from "react";
 
 interface UsernameInputCardProps {
-  handleNextSlide: () => void;
+  handleClaimUsername: () => void;
 }
 
-const UsernameInputCard = ({ handleNextSlide }: UsernameInputCardProps) => {
+const UsernameInputCard = ({ handleClaimUsername }: UsernameInputCardProps) => {
   return (
     <div className="w-full h-full flex flex-col gap-6">
       {/* top section */}
@@ -48,7 +48,7 @@ const UsernameInputCard = ({ handleNextSlide }: UsernameInputCardProps) => {
       </div>
       {/* bottom section */}
       <div className="h-fit mt-auto w-full">
-        <Button size="lg" onClick={handleNextSlide} className="w-full">
+        <Button size="lg" onClick={handleClaimUsername} className="w-full">
           Complete
         </Button>
       </div>

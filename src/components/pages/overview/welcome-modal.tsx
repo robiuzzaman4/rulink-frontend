@@ -204,17 +204,15 @@
 // export default WelcomeModal;
 
 import { TransitionPanel } from "@/components/motion-primitives/transition-panel";
-import IconButton from "@/components/shared/icon-button";
-import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { MOTION_SLIDES_TRANSITION, MOTION_SLIDES_VARIANTS } from "@/constants";
 import { cn } from "@/lib/utils";
-import { Link } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import WelcomeCard from "@/components/pages/overview/welcome-card";
 import UsernameInputCard from "@/components/pages/overview/username-input-card";
 import UsernameClaimedSuccssCard from "./username-claimed-success-card";
+import confetti from "canvas-confetti";
 
 interface WelcomeModal {
   open: boolean;
@@ -234,6 +232,17 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
       : handleSetActiveIndex(activeIndex + 1);
   };
 
+  // === handle claim username ===
+  const handleClaimUsername = () => {
+    // handleNextSlide();
+
+    confetti({
+      particleCount: 200,
+      spread: 140,
+      origin: { y: 0.6 }
+    });
+  };
+
   // === handle continue to dashboard ===
   const handleContinueToDashboard = () => {
     setOpen(false);
@@ -247,8 +256,8 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
       content: <WelcomeCard handleNextSlide={handleNextSlide} />,
     },
     {
-      label: "take-username",
-      content: <UsernameInputCard handleNextSlide={handleNextSlide} />,
+      label: "claim-username",
+      content: <UsernameInputCard handleClaimUsername={handleClaimUsername} />,
     },
     {
       label: "success",
@@ -276,6 +285,7 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
         isHideCloseButton={true}
         className="overflow-hidden max-w-[400px] w-full"
       >
+        <DialogTitle className="sr-only">Claim your username</DialogTitle>
         <TransitionPanel
           activeIndex={activeIndex}
           variants={MOTION_SLIDES_VARIANTS}
