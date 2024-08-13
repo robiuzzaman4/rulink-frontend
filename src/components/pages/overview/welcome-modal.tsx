@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import confetti from "canvas-confetti";
@@ -8,16 +10,26 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import WelcomeCard from "@/components/pages/overview/welcome-card";
 import UsernameInputCard from "@/components/pages/overview/username-input-card";
 import UsernameClaimedSuccssCard from "@/components/pages/overview/username-claimed-success-card";
-import { useCheckUsernameAvailabilityQuery } from "@/features/user-slice";
+import {
+  useCheckUsernameAvailabilityQuery,
+  useCreateUserMutation,
+} from "@/features/user-slice";
 import useDebounce from "@/hooks/useDebounce";
+import { toast } from "sonner";
 
 interface WelcomeModal {
   open: boolean;
   setOpen: (value: boolean) => void;
   isClaimedUsername: boolean;
+  email: string;
 }
 
-const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
+const WelcomeModal = ({
+  open,
+  setOpen,
+  isClaimedUsername,
+  email,
+}: WelcomeModal) => {
   // === animation states ===
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -39,7 +51,9 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
     username: debouncedUsername,
   });
 
-  console.log("data", checkUsernameResponse);
+  // === create user api mutation hook ===
+  const [createUser, { isLoading: isCreateUserLoading }] =
+    useCreateUserMutation();
 
   // === handle next slide ===
   const handleNextSlide = () => {
@@ -49,14 +63,34 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
   };
 
   // === handle claim username ===
-  const handleClaimUsername = () => {
-    // handleNextSlide();
-
-    confetti({
-      particleCount: 200,
-      spread: 140,
-      origin: { y: 0.6 },
-    });
+  const handleClaimUsername = async () => {
+    const payload = {
+      email,
+      username: debouncedUsername,
+      // role: "USER",
+    };
+    try {
+      const res: any = await createUser({ payload });
+      console.log("res", res);
+      if (res?.data?.success) {
+        // generate confetti
+        confetti({
+          particleCount: 200,
+          spread: 140,
+          origin: { y: 0.6 },
+        });
+        // show toast
+        toast.success("Claimed username and profile created successfully!");
+        // go to next slide
+        // handleNextSlide();
+        // close modal
+        setOpen(false);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong. Please try again.");
+    }
   };
 
   // === keep username on state ===
@@ -93,17 +127,18 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
           isAvailableUsername={isAvailableUsername}
           isUsernameLoading={isUsernameLoading || isUsernameFetching}
           handleClaimUsername={handleClaimUsername}
+          isCreateUserLoading={isCreateUserLoading}
         />
       ),
     },
-    {
-      label: "success",
-      content: (
-        <UsernameClaimedSuccssCard
-          handleContinueToDashboard={handleContinueToDashboard}
-        />
-      ),
-    },
+    // {
+    //   label: "success",
+    //   content: (
+    //     <UsernameClaimedSuccssCard
+    //       handleContinueToDashboard={handleContinueToDashboard}
+    //     />
+    //   ),
+    // },
   ];
 
   // === handle active index ===
@@ -116,8 +151,16 @@ const WelcomeModal = ({ open, setOpen, isClaimedUsername }: WelcomeModal) => {
     if (activeIndex >= STEPS.length) setActiveIndex(STEPS.length - 1);
   }, [activeIndex, STEPS.length]);
 
+  console.log("isClaimedUsername", isClaimedUsername);
+
+  //  === handling open modal ===
+  const handleOnChangeModal = () => {
+    if (isClaimedUsername === false || isClaimedUsername === undefined) {
+      setOpen(true);
+    }
+  };
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOnChangeModal}>
       <DialogContent
         isHideCloseButton={true}
         className="overflow-hidden max-w-[400px] w-full"

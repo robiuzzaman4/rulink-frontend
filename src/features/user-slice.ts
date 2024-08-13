@@ -8,22 +8,34 @@ const userApi = apiSlice.injectEndpoints({
         url: `/users`,
         method: "GET",
       }),
+      providesTags: ["USERS"] as any,
     }),
 
     // === get user by email ===
     getUserByEmail: builder.query({
-      query: ({email}) => ({
+      query: ({ email }) => ({
         url: `/users/${email}`,
         method: "GET",
       }),
+      providesTags: ["SINGLE_USER"] as any,
     }),
 
     // === check available username ===
     checkUsernameAvailability: builder.query({
-      query: ({username}) => ({
+      query: ({ username }) => ({
         url: `/users/check-username/${username}`,
         method: "GET",
       }),
+    }),
+
+    // === create user ===
+    createUser: builder.mutation({
+      query: ({ payload }) => ({
+        url: `/users/create-new`,
+        method: "POST",
+        body: payload,
+      }),
+      invalidatesTags: ["USERS", "SINGLE_USER"] as any,
     }),
   }),
 });
@@ -32,4 +44,5 @@ export const {
   useGetAllUsersQuery,
   useGetUserByEmailQuery,
   useCheckUsernameAvailabilityQuery,
+  useCreateUserMutation,
 } = userApi;

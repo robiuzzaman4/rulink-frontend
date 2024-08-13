@@ -1,7 +1,7 @@
 import IconButton from "@/components/shared/icon-button";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Check, Link, Loader, LoaderCircle } from "lucide-react";
+import { Check, Link, Loader } from "lucide-react";
 import React from "react";
 
 interface UsernameInputCardProps {
@@ -10,6 +10,7 @@ interface UsernameInputCardProps {
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   isAvailableUsername: boolean | null;
   isUsernameLoading: boolean;
+  isCreateUserLoading: boolean;
 }
 
 const UsernameInputCard = ({
@@ -18,6 +19,7 @@ const UsernameInputCard = ({
   setUsername,
   isAvailableUsername,
   isUsernameLoading,
+  isCreateUserLoading,
 }: UsernameInputCardProps) => {
   return (
     <div className="w-full h-full flex flex-col gap-6">
@@ -30,7 +32,7 @@ const UsernameInputCard = ({
         </div>
         <div className="grid gap-1">
           <h2 className="text-xl font-medium text-center font-satoshi">
-            Chose your username
+            Choose your username
           </h2>
           <p className="text-center text-base text-muted-foreground font-satoshi">
             This will be your shareable rulink url.
@@ -52,7 +54,7 @@ const UsernameInputCard = ({
               onChange={(e) => setUsername(e.target.value)}
             />
             {isUsernameLoading && (
-              <LoaderCircle
+              <Loader
                 size={16}
                 className="absolute top-2.5 right-1 animate-spin text-muted-foreground"
               />
@@ -93,9 +95,18 @@ const UsernameInputCard = ({
           size="lg"
           onClick={handleClaimUsername}
           className="w-full"
-          disabled={isUsernameLoading || !isAvailableUsername || !username}
+          disabled={
+            isUsernameLoading ||
+            !isAvailableUsername ||
+            !username ||
+            isCreateUserLoading
+          }
         >
-          Complete
+          {isCreateUserLoading ? (
+            <Loader size={16} className="animate-spin" />
+          ) : (
+            <>Complete</>
+          )}
         </Button>
       </div>
     </div>

@@ -21,7 +21,7 @@ const UsernameClaimedSuccssCard = ({
         </div>
         <div className="grid gap-1">
           <h2 className="text-xl font-medium text-center font-satoshi">
-            welcome to the Dashboard
+            Welcome to the Dashboard
           </h2>
           <p className="text-center text-base text-muted-foreground font-satoshi">
             This will be your shareable rulink url.

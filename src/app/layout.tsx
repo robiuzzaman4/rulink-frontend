@@ -4,6 +4,7 @@ import Satoshi from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "@/provider/store-provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,6 +59,7 @@ export default function RootLayout({
             className={`${satoshi.variable} ${plafair.variable} ${inter.variable} font-sans`}
           >
             {children}
+            <Toaster position="top-center" />
           </body>
         </html>
       </StoreProvider>
