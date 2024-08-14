@@ -41,6 +41,7 @@ const ClaimedUsernameProcess = () => {
 
   return (
     <>
+    <h1 className="text-2xl font-medium text-muted-foreground">{userFromDb?.email}</h1>
       <WelcomeModal
         open={open}
         setOpen={setOpen}

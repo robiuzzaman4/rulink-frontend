@@ -69,7 +69,6 @@ const WelcomeModal = ({
     const payload = {
       email,
       username: debouncedUsername,
-      // role: "USER",
     };
     try {
       const res: any = await createUser({ payload });
@@ -129,7 +128,6 @@ const WelcomeModal = ({
           isUsernameLoading={isUsernameLoading || isUsernameFetching}
           handleClaimUsername={handleClaimUsername}
           isCreateUserLoading={isCreateUserLoading}
-          temp={handleNextSlide}
         />
       ),
     },
