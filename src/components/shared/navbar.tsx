@@ -61,7 +61,7 @@ const Navbar = () => {
               </Link>
             </Button>
           ) : (
-            <Button asChild>
+            <Button asChild size="sm">
               <Link href="/sign-up" className="flex items-center gap-1">
                 <span>Get Started</span>
                 <ArrowRight size={16} />

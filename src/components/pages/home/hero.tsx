@@ -8,7 +8,7 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <div className="min-h-screen w-full grid place-items-center pt-24 pb-16">
-      <Container className="grid lg:grid-cols-2 gap-8 md:gap-16">
+      <Container className="grid lg:grid-cols-2 gap-8 md:gap-16 py-16 sm:py-8 md:py-4">
         {/* left side */}
         <div className="w-full max-w-sm md:max-w-md lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col gap-4 md:gap-8">
           <h1 className="font-satoshi text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-medium">
