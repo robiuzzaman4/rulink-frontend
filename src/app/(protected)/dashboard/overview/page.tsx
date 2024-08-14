@@ -1,11 +1,13 @@
 import React from "react";
 import ClaimedUsernameProcess from "@/components/pages/overview/claimed-username-process";
 import GeneratedUrl from "@/components/pages/overview/generated-url";
+import Manage from "@/components/pages/overview/manage";
 
 const OverviewPage = () => {
   return (
     <div className="py-20">
       <GeneratedUrl />
+      <Manage/>
 
       {/* claim user name process */}
       <div className="px-4 lg:px-6">
