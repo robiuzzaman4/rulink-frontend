@@ -1,22 +1,16 @@
 "use client";
-import { useUser } from "@clerk/nextjs";
 import React, { useEffect, useState } from "react";
 import WelcomeModal from "@/components/pages/overview/welcome-modal";
-import { useGetUserByEmailQuery } from "@/features/user-slice";
 import { Loader } from "lucide-react";
+import useUserByEmail from "@/hooks/useUserByEmail";
 
 const ClaimedUsernameProcess = () => {
-  // === user from clerk ===
-  const { user } = useUser();
-  const email = user && user?.emailAddresses?.[0].emailAddress;
+  // === user info from database ===
+  const { clerk_email, isClaimedUsername, isLoading, refetch } =
+    useUserByEmail();
 
   // === welcome modal state ===
   const [open, setOpen] = useState(false);
-
-  // === get user by email api hook ===
-  const { data, isLoading, refetch } = useGetUserByEmailQuery({ email });
-  const userFromDb = data?.data;
-  const isClaimedUsername = userFromDb?.is_claimed_username;
 
   // === set modal state ===
   useEffect(() => {
@@ -31,7 +25,7 @@ const ClaimedUsernameProcess = () => {
   }, [isLoading, isClaimedUsername]);
 
   // === prevent rendering if user is exist and claimed username ===
-  if (userFromDb && isClaimedUsername === true) {
+  if (isClaimedUsername === true) {
     return null;
   }
 
@@ -50,7 +44,7 @@ const ClaimedUsernameProcess = () => {
         open={open}
         setOpen={setOpen}
         isClaimedUsername={isClaimedUsername}
-        email={email as string}
+        email={clerk_email as string}
         refetchUserByEmail={refetch}
       />
     </>

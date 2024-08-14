@@ -151,8 +151,6 @@ const WelcomeModal = ({
     if (activeIndex >= STEPS.length) setActiveIndex(STEPS.length - 1);
   }, [activeIndex, STEPS.length]);
 
-  console.log("isClaimedUsername", isClaimedUsername);
-
   //  === handling open modal ===
   const handleOnChangeModal = () => {
     if (isClaimedUsername === false || isClaimedUsername === undefined) {

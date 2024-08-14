@@ -23,7 +23,7 @@ const useUserByEmail = () => {
     // user info from database
     email: userFromDb?.email,
     username: userFromDb?.username,
-    is_claimed_username: userFromDb?.is_claimed_username,
+    isClaimedUsername: userFromDb?.is_claimed_username,
     role: userFromDb?.role,
     open_to_work: userFromDb?.open_to_work,
     skills: userFromDb?.skills,

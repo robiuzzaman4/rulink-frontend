@@ -8,18 +8,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 
-const links = [
-  {
-    label: "Overview",
-    href: "/dashboard/overview",
-    icon: <Box size={16} />,
-  },
-  {
-    label: "Settings",
-    href: "/dashboard/settings",
-    icon: <Settings size={16} />,
-  },
-];
+const links = {
+  overview: [
+    {
+      label: "Overview",
+      href: "/dashboard/overview",
+      icon: <Box size={16} />,
+    },
+    {
+      label: "Settings",
+      href: "/dashboard/settings",
+      icon: <Settings size={16} />,
+    },
+  ],
+};
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -40,13 +42,13 @@ const Sidebar = () => {
         <p className="font-bold text-base font-satoshi">Rulink</p>
       </Link>
 
-      {/* navlinks */}
+      {/* overview navlinks */}
       <div className="grid gap-2 p-6">
         <h5 className="text-sm font-semibold text-muted-foreground">
           Overview
         </h5>
         <div className="grid">
-          {links.map(({ label, href, icon }) => {
+          {links.overview.map(({ label, href, icon }) => {
             const isActive = pathname === href;
             return (
               <Link
