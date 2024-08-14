@@ -64,7 +64,7 @@ export default function RootLayout({
             <Toaster
               position="top-center"
               icons={{
-                success: <CheckCircledIcon className="text-teal-600 h-5 w-5" />,
+                success: <CheckCircledIcon className="text-rulink-primary h-5 w-5" />,
                 error: <CrossCircledIcon className="text-rose-600 h-5 w-5" />,
               }}
               className="text-sm font-sans"

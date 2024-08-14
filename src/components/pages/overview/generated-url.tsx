@@ -25,19 +25,19 @@ const GeneratedUrl = () => {
     return null;
   }
   return (
-    <div className="w-full border-b border-b-border px-4 lg:px-6 pb-6 flex flex-col gap-1">
+    <div className="w-full px-4 lg:px-6 pb-6 flex flex-col gap-1 sm:gap-2">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-medium font-satoshi">
         Your Website Url
       </h2>
       <span className="flex items-center gap-4">
-        <p className="text-sm sm:text-base font-medium text-teal-600">
+        <p className="text-sm sm:text-base text-rulink-primary">
           {generatedUrl}
         </p>
         <Button
           onClick={handleCopy}
           variant="outline"
           size="icon"
-          className="shrink-0"
+          className="shrink-0 text-rulink-primary hover:text-rulink-primary"
         >
           {copied ? <Check size={16} /> : <Copy size={16} />}
         </Button>
