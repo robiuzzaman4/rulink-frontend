@@ -6,7 +6,6 @@ import {
   Box,
   Earth,
   MoveRight,
-  Settings,
   Sparkle,
   UserPen,
 } from "lucide-react";

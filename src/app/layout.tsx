@@ -5,7 +5,6 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "@/provider/store-provider";
 import { Toaster } from "sonner";
-import { CircleCheck } from "lucide-react";
 import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
 
 const inter = Inter({

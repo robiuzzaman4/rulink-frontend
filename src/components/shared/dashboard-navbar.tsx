@@ -8,7 +8,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "../ui/breadcrumb";
+} from "@/components/ui/breadcrumb";
 import Link from "next/link";
 
 const DashboardNavbar = () => {

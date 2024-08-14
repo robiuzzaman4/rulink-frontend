@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import Container from "./container";
+import Container from "@/components/shared/container";
 import Image from "next/image";
 import Link from "next/link";
-import Navlink from "./navlink";
-import { Button } from "../ui/button";
+import Navlink from "@/components/shared/navlink";
+import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useUser } from "@clerk/nextjs";
 
