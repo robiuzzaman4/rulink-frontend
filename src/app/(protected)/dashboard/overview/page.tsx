@@ -3,9 +3,12 @@ import ClaimedUsernameProcess from "@/components/pages/overview/claimed-username
 
 const OverviewPage = () => {
   return (
-    <div className="py-20 px-4 lg:px-6">
+    <>
+      <div className="py-20 px-4 lg:px-6"></div>
+
+      {/* claim user name process */}
       <ClaimedUsernameProcess />
-    </div>
+    </>
   );
 };
 

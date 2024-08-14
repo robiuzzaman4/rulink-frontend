@@ -30,6 +30,11 @@ const ClaimedUsernameProcess = () => {
     }
   }, [isLoading, isClaimedUsername]);
 
+  // === prevent rendering if user is exist and claimed username ===
+  if (userFromDb && isClaimedUsername === true) {
+    return null;
+  }
+
   // === handling loading state ===
   if (isLoading) {
     return (
@@ -41,7 +46,6 @@ const ClaimedUsernameProcess = () => {
 
   return (
     <>
-    <h1 className="text-2xl font-medium text-muted-foreground">{userFromDb?.email}</h1>
       <WelcomeModal
         open={open}
         setOpen={setOpen}

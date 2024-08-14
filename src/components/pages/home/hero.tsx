@@ -35,14 +35,6 @@ const Hero = () => {
               <Link href="/pricing">See Pricing</Link>
             </Button>
           </div>
-          <Button
-            variant="outline"
-            asChild
-            size="lg"
-            className="hover:underline transition-all duration-300"
-          >
-            <Link href="/dashboard">Dashboard</Link>
-          </Button>
         </div>
         {/* right side */}
         <div className="grid place-items-center w-full max-w-sm md:max-w-md lg:max-w-full mx-auto h-full relative">
