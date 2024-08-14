@@ -11,6 +11,7 @@ interface UsernameInputCardProps {
   isAvailableUsername: boolean | null;
   isUsernameLoading: boolean;
   isCreateUserLoading: boolean;
+  temp: any;
 }
 
 const UsernameInputCard = ({
@@ -20,6 +21,7 @@ const UsernameInputCard = ({
   isAvailableUsername,
   isUsernameLoading,
   isCreateUserLoading,
+  temp,
 }: UsernameInputCardProps) => {
   return (
     <div className="w-full h-full flex flex-col gap-6">
@@ -107,6 +109,9 @@ const UsernameInputCard = ({
           ) : (
             <>Complete</>
           )}
+        </Button>
+        <Button size="lg" onClick={temp} className="w-full">
+          Complete
         </Button>
       </div>
     </div>

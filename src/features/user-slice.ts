@@ -35,7 +35,7 @@ const userApi = apiSlice.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["USERS", "SINGLE_USER"] as any,
+      // invalidatesTags: ["USERS", "SINGLE_USER"] as any,
     }),
   }),
 });

@@ -14,7 +14,7 @@ const ClaimedUsernameProcess = () => {
   const [open, setOpen] = useState(false);
 
   // === get user by email api hook ===
-  const { data, isLoading } = useGetUserByEmailQuery({ email });
+  const { data, isLoading, refetch } = useGetUserByEmailQuery({ email });
   const userFromDb = data?.data;
   const isClaimedUsername = userFromDb?.is_claimed_username;
 
@@ -46,6 +46,7 @@ const ClaimedUsernameProcess = () => {
         setOpen={setOpen}
         isClaimedUsername={isClaimedUsername}
         email={email as string}
+        refetchUserByEmail={refetch}
       />
     </>
   );

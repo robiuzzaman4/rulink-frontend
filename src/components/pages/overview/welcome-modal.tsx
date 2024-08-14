@@ -9,7 +9,7 @@ import { TransitionPanel } from "@/components/motion-primitives/transition-panel
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import WelcomeCard from "@/components/pages/overview/welcome-card";
 import UsernameInputCard from "@/components/pages/overview/username-input-card";
-import UsernameClaimedSuccssCard from "@/components/pages/overview/username-claimed-success-card";
+import UsernameSuccssCard from "@/components/pages/overview/username-success-card";
 import {
   useCheckUsernameAvailabilityQuery,
   useCreateUserMutation,
@@ -22,6 +22,7 @@ interface WelcomeModal {
   setOpen: (value: boolean) => void;
   isClaimedUsername: boolean;
   email: string;
+  refetchUserByEmail: () => void;
 }
 
 const WelcomeModal = ({
@@ -29,6 +30,7 @@ const WelcomeModal = ({
   setOpen,
   isClaimedUsername,
   email,
+  refetchUserByEmail,
 }: WelcomeModal) => {
   // === animation states ===
   const [activeIndex, setActiveIndex] = useState(0);
@@ -82,9 +84,7 @@ const WelcomeModal = ({
         // show toast
         toast.success("Claimed username and profile created successfully!");
         // go to next slide
-        // handleNextSlide();
-        // close modal
-        setOpen(false);
+        handleNextSlide();
       } else {
         toast.error("Something went wrong. Please try again.");
       }
@@ -109,7 +109,8 @@ const WelcomeModal = ({
   // === handle continue to dashboard ===
   const handleContinueToDashboard = () => {
     setOpen(false);
-    setActiveIndex(0);
+    // setActiveIndex(0);
+    refetchUserByEmail();
   };
 
   // === steps ===
@@ -128,17 +129,18 @@ const WelcomeModal = ({
           isUsernameLoading={isUsernameLoading || isUsernameFetching}
           handleClaimUsername={handleClaimUsername}
           isCreateUserLoading={isCreateUserLoading}
+          temp={handleNextSlide}
         />
       ),
     },
-    // {
-    //   label: "success",
-    //   content: (
-    //     <UsernameClaimedSuccssCard
-    //       handleContinueToDashboard={handleContinueToDashboard}
-    //     />
-    //   ),
-    // },
+    {
+      label: "success",
+      content: (
+        <UsernameSuccssCard
+          handleContinueToDashboard={handleContinueToDashboard}
+        />
+      ),
+    },
   ];
 
   // === handle active index ===
