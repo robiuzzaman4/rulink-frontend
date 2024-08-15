@@ -20,6 +20,7 @@ import { Plus, UserPen } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
+import { toast } from "sonner";
 
 const ManageProfileForm = () => {
   // === file sate and functions ===
@@ -35,7 +36,14 @@ const ManageProfileForm = () => {
 
   const handleImageUpload = (event: any) => {
     const file = event?.target?.files[0];
+
+    // File size limit of 3MB (3 * 1024 * 1024 bytes)
+    const MAX_FILE_SIZE = 3 * 1024 * 1024;
     if (file) {
+      if (file.size > MAX_FILE_SIZE) {
+        toast.error("File size exceeds the 3MB limit.");
+        return;
+      }
       setLocalImg({
         file: URL.createObjectURL(file),
         name: file.name,
@@ -136,7 +144,11 @@ const ManageProfileForm = () => {
                               {localImg?.name}
                             </span>
                             <span className="text-xs text-muted-foreground">
-                              {(localImg?.size / 1024).toFixed(2)} KB
+                              {localImg?.size < 1024 * 1024
+                                ? `${(localImg.size / 1024).toFixed(2)} KB`
+                                : `${(localImg.size / (1024 * 1024)).toFixed(
+                                    2
+                                  )} MB`}
                             </span>
                           </div>
                         ) : (
@@ -145,7 +157,7 @@ const ManageProfileForm = () => {
                               Click to upload
                             </span>
                             <span className="text-xs text-muted-foreground">
-                              Supported: .png, .jpg, and .jpeg
+                              Supported: .png, .jpg, and .jpeg (max: 3MB)
                             </span>
                           </div>
                         )}
@@ -202,7 +214,7 @@ const ManageProfileForm = () => {
               control={form.control}
               name="open_to_work"
               render={({ field }) => (
-                <FormItem className="flex items-center justify-between rounded-md border px-3 py-1 shadow-sm">
+                <FormItem className="w-full flex items-center justify-between rounded-md border px-3 py-1 shadow-sm">
                   <FormLabel>Open to work</FormLabel>
                   <div className="pb-1">
                     <FormControl>
