@@ -27,6 +27,7 @@ import useUserByEmail from "@/hooks/useUserByEmail";
 const ManageProfileForm = () => {
   // === get uesr infor from db ===
   const { img } = useUserByEmail();
+  const FILE_UPLOAD_API_KEY = process.env.NEXT_PUBLIC_FILE_UPLOAD_API_KEY;
 
   // === file sate and functions ===
   const [localImg, setLocalImg] = useState<{
@@ -49,6 +50,7 @@ const ManageProfileForm = () => {
     const file = event?.target?.files[0];
     const formData = new FormData();
     formData.append("image", file);
+    // console.log(file);
 
     const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
     if (file) {
@@ -82,7 +84,7 @@ const ManageProfileForm = () => {
       name: "",
       professional_title: "",
       bio: "",
-      img: img ? img : "",
+      img: img ? img?.url : "",
       open_to_work: true,
     },
   });
@@ -95,10 +97,15 @@ const ManageProfileForm = () => {
     try {
       const response: any = await uploadFile({
         file: localImg.file,
-        apikey: "2810f4715c7d7ba0a57a3cac50297180",
+        apikey: FILE_UPLOAD_API_KEY,
       });
       if (response?.data?.success) {
-        toast.success("Profile picture uploaded!");
+        toast.success(
+          "Profile picture uploaded.",
+          response?.data?.data?.display_url
+        );
+      } else {
+        toast.error("Failed to upload profile picture.");
       }
       console.log("response", response);
     } catch (error) {
@@ -175,15 +182,19 @@ const ManageProfileForm = () => {
                         className="flex items-center gap-4 w-full p-4"
                       >
                         <Avatar>
-                          {localImg?.url ? (
-                            <AvatarImage src={localImg?.url} />
-                          ) : (
+                          {img?.url && !localImg?.url && (
+                            <AvatarImage src={img?.url} />
+                          )}
+                          {localImg?.url && <AvatarImage src={localImg?.url} />}
+                          {!img?.url && !localImg?.url && (
                             <div className="h-full w-full grid place-items-center bg-secondary">
                               <Plus size={16} />
                             </div>
                           )}
                         </Avatar>
-                        {localImg?.name && localImg?.size ? (
+
+                        {/* show lcoal img */}
+                        {localImg?.url && localImg?.name && (
                           <div className="flex flex-col">
                             <span className="text-sm font-semibold">
                               {localImg?.name}
@@ -196,7 +207,26 @@ const ManageProfileForm = () => {
                                   )} MB`}
                             </span>
                           </div>
-                        ) : (
+                        )}
+
+                        {/* show db img */}
+                        {img && !localImg?.url && (
+                          <div className="flex flex-col">
+                            <span className="text-sm font-semibold">
+                              {img?.name}
+                            </span>
+                            <span className="text-xs text-muted-foreground">
+                              {img?.size < 1024 * 1024
+                                ? `${(img?.size / 1024).toFixed(2)} KB`
+                                : `${(img?.size / (1024 * 1024)).toFixed(
+                                    2
+                                  )} MB`}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* show click to upload button */}
+                        {!localImg?.url && !img?.url && (
                           <div className="flex flex-col">
                             <span className="text-sm font-medium">
                               Click to upload
