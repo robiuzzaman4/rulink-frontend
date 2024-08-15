@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,17 +16,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import IconButton from "@/components/shared/icon-button";
-import { Plus, UserPen } from "lucide-react";
+import { Loader, Plus, UserPen } from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
 import { useUploadFileMutation } from "@/features/file-upload-slice";
 import useUserByEmail from "@/hooks/useUserByEmail";
+import { useUpdateUserMutation } from "@/features/user-slice";
 
 const ManageProfileForm = () => {
   // === get uesr infor from db ===
-  const { img } = useUserByEmail();
+  const { img, id, name, bio, professional_title, open_to_work } =
+    useUserByEmail();
+
+  // === file upload api key ===
   const FILE_UPLOAD_API_KEY = process.env.NEXT_PUBLIC_FILE_UPLOAD_API_KEY;
 
   // === file sate and functions ===
@@ -46,15 +50,19 @@ const ManageProfileForm = () => {
   const [uploadFile, { isLoading: isUploadFileLoading }] =
     useUploadFileMutation();
 
+  // === update profile api mutation hook ===
+  const [updateProfile, { isLoading: isUpdateProfileLoading }] =
+    useUpdateUserMutation();
+
+  // === hanlde local img upload ===
   const handleImageUpload = (event: any) => {
     const file = event?.target?.files[0];
     const formData = new FormData();
     formData.append("image", file);
-    // console.log(file);
 
     const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
     if (file) {
-      if (file.size > MAX_FILE_SIZE) {
+      if (file?.size > MAX_FILE_SIZE) {
         toast.error("File size exceeds the 3MB limit.");
         return;
       }
@@ -81,18 +89,47 @@ const ManageProfileForm = () => {
   const form = useForm<z.infer<typeof ManageProfileSchema>>({
     resolver: zodResolver(ManageProfileSchema),
     defaultValues: {
-      name: "",
-      professional_title: "",
-      bio: "",
+      name: name ? name : "",
+      professional_title: professional_title ? professional_title : "",
+      bio: bio ? bio : "",
       img: img ? img?.url : "",
-      open_to_work: true,
+      open_to_work: open_to_work ? open_to_work : true,
     },
   });
 
+  // === reset form values to get default values from backend ===
+  const { reset } = form;
+  useEffect(() => {
+    if (id) {
+      reset({
+        name: name,
+        professional_title: professional_title,
+        bio: bio,
+        img: img?.url,
+        open_to_work: open_to_work,
+      });
+    }
+    console.log("render");
+  }, [name, professional_title, bio, img?.url, open_to_work, id, reset]);
+
   // === hanlde submit form ===
   const hanldeSubmit = async (data: z.infer<typeof ManageProfileSchema>) => {
-    console.log("data", data);
+    /**
+     * if local img is available then call api with upload file
+     * else call api without upload file
+     */
 
+    if (localImg?.file) {
+      await handleUpdateProfileWithNewImg(data);
+    } else {
+      await handleUpdateProfileWithoutNewImg(data);
+    }
+  };
+
+  // === handle update profile with new img ===
+  const handleUpdateProfileWithNewImg = async (
+    data: z.infer<typeof ManageProfileSchema>
+  ) => {
     // file upload api mutations
     try {
       const response: any = await uploadFile({
@@ -100,16 +137,69 @@ const ManageProfileForm = () => {
         apikey: FILE_UPLOAD_API_KEY,
       });
       if (response?.data?.success) {
-        toast.success(
-          "Profile picture uploaded.",
-          response?.data?.data?.display_url
-        );
+        // === make payload with new img ===
+        const payload = {
+          name: data.name,
+          professional_title: data.professional_title,
+          bio: data.bio,
+          img: {
+            url: response?.data?.data?.display_url,
+            name: localImg.name,
+            size: localImg.size,
+          },
+          open_to_work: data.open_to_work,
+        };
+
+        // update user profile api mutations
+        try {
+          const res: any = await updateProfile({
+            payload,
+            userId: id,
+          });
+          if (res?.data?.success) {
+            toast.success("Profile updated.");
+            handleRemoveLocalFile();
+          } else {
+            toast.error("Failed to update profile. Please try again.");
+          }
+          // console.log("update profile res", res);
+        } catch (error) {
+          console.log("UPDATE PROFILE ERROR", error);
+        }
       } else {
         toast.error("Failed to upload profile picture.");
       }
-      console.log("response", response);
     } catch (error) {
       console.log("FILE UPLOAD ERROR", error);
+    }
+  };
+
+  // === hanlde update profile without new img ===
+  const handleUpdateProfileWithoutNewImg = async (
+    data: z.infer<typeof ManageProfileSchema>
+  ) => {
+    // === make payload with new img ===
+    const payload = {
+      name: data.name,
+      professional_title: data.professional_title,
+      bio: data.bio,
+      open_to_work: data.open_to_work,
+    };
+
+    // update user profile api mutations
+    try {
+      const res: any = await updateProfile({
+        payload,
+        userId: id,
+      });
+      if (res?.data?.success) {
+        toast.success("Profile updated.");
+        handleRemoveLocalFile();
+      } else {
+        toast.error("Failed to update profile. Please try again.");
+      }
+    } catch (error) {
+      console.log("UPDATE PROFILE ERROR", error);
     }
   };
 
@@ -134,7 +224,11 @@ const ManageProfileForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Jhon" {...field} />
+                    <Input
+                      placeholder="Jhon"
+                      {...field}
+                      disabled={isUploadFileLoading || isUpdateProfileLoading}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -148,7 +242,11 @@ const ManageProfileForm = () => {
                 <FormItem>
                   <FormLabel>Professional Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Frontend Developer" {...field} />
+                    <Input
+                      placeholder="Frontend Developer"
+                      {...field}
+                      disabled={isUploadFileLoading || isUpdateProfileLoading}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -168,6 +266,7 @@ const ManageProfileForm = () => {
                         variant="link"
                         type="button"
                         onClick={handleRemoveLocalFile}
+                        disabled={isUploadFileLoading || isUpdateProfileLoading}
                       >
                         Remove
                       </Button>
@@ -244,7 +343,7 @@ const ManageProfileForm = () => {
                         className="hidden"
                         onChange={handleImageUpload}
                         accept=".png,.jpg,.jpeg"
-                        // {...field}
+                        disabled={isUploadFileLoading || isUpdateProfileLoading}
                       />
                     </div>
                   </FormControl>
@@ -264,6 +363,7 @@ const ManageProfileForm = () => {
                       placeholder="Tell us a little bit about yourself"
                       className="min-h-[64px]"
                       {...field}
+                      disabled={isUploadFileLoading || isUpdateProfileLoading}
                     />
                   </FormControl>
                   <FormMessage />
@@ -282,6 +382,7 @@ const ManageProfileForm = () => {
                       <Switch
                         checked={field.value}
                         onCheckedChange={field.onChange}
+                        disabled={isUploadFileLoading || isUpdateProfileLoading}
                       />
                     </FormControl>
                   </div>
@@ -290,8 +391,14 @@ const ManageProfileForm = () => {
             />
           </div>
           <div className="w-fit ml-auto py-4 px-4 sm:px-6">
-            <Button type="submit" disabled={isUploadFileLoading}>
+            <Button
+              type="submit"
+              disabled={isUploadFileLoading || isUpdateProfileLoading}
+            >
               Save
+              {(isUploadFileLoading || isUpdateProfileLoading) && (
+                <Loader size={16} className="animate-spin ml-2" />
+              )}
             </Button>
           </div>
         </form>

@@ -21,14 +21,18 @@ const useUserByEmail = () => {
     clerk_email: email,
 
     // user info from database
+    id: userFromDb?._id,
+    name: userFromDb?.name,
+    bio: userFromDb?.bio,
     email: userFromDb?.email,
     username: userFromDb?.username,
     isClaimedUsername: userFromDb?.is_claimed_username,
     role: userFromDb?.role,
     open_to_work: userFromDb?.open_to_work,
+    professional_title: userFromDb?.professional_title,
     skills: userFromDb?.skills,
     socials: userFromDb?.socials,
-    img: userFromDb?.img
+    img: userFromDb?.img,
   };
 };
 
