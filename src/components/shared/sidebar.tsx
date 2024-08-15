@@ -48,7 +48,7 @@ const Sidebar = () => {
       {/* lgoo */}
       <Link
         href="/dashboard/overview"
-        className="flex items-center gap-1 py-4 px-8 w-full border-b border-b-border hover:bg-secondary hover:transition-all duration-300"
+        className="flex items-center gap-1 h-14 px-8 w-full border-b border-b-border hover:bg-secondary hover:transition-all duration-300"
       >
         <Image
           src="/logo-zinc.png"

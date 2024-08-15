@@ -81,7 +81,7 @@ const ManageProfileForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(hanldeSubmit)} className="p-1">
-          <div className="w-full grid xl:grid-cols-2 gap-4 bg-white p-4 sm:p-6 rounded-xl border border-border shadow-sm">
+          <div className="w-full grid xl:grid-cols-2 gap-4 bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm">
             {/* name field */}
             <FormField
               control={form.control}

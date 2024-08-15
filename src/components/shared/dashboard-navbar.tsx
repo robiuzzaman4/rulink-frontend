@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
   const exactPathname = pathname && pathname?.split("/")?.[2];
 
   return (
-    <nav className="w-full fixed top-0 bg-background border-b border-b-border z-20 py-[18px]">
+    <nav className="w-full fixed top-0 bg-background border-b border-b-border z-20 h-14 flex items-center">
       <div className="px-4 lg:px-6">
         <Breadcrumb>
           <BreadcrumbList>
