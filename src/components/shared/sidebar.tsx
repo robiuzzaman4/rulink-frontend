@@ -44,7 +44,7 @@ const links = {
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="fixed z-30 hidden h-screen w-full shrink-0 lg:sticky bg-secondary/50 border-r border-r-border lg:flex flex-col">
+    <div className="fixed inset-y-0 z-30 hidden min-h-screen w-full shrink-0 lg:sticky bg-secondary/50 border-r border-r-border lg:flex flex-col">
       {/* lgoo */}
       <Link
         href="/dashboard/overview"
