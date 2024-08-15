@@ -21,35 +21,58 @@ import { Textarea } from "@/components/ui/textarea";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
+import { useUploadFileMutation } from "@/features/file-upload-slice";
+import useUserByEmail from "@/hooks/useUserByEmail";
 
 const ManageProfileForm = () => {
+  // === get uesr infor from db ===
+  const { img } = useUserByEmail();
+
   // === file sate and functions ===
   const [localImg, setLocalImg] = useState<{
-    file: null | string;
+    url: null | string;
     name: string;
     size: number;
+    file: any;
   }>({
-    file: "",
+    url: "",
     name: "",
     size: 0,
+    file: null,
   });
+
+  // === file upload api mutation hook ===
+  const [uploadFile, { isLoading: isUploadFileLoading }] =
+    useUploadFileMutation();
 
   const handleImageUpload = (event: any) => {
     const file = event?.target?.files[0];
+    const formData = new FormData();
+    formData.append("image", file);
 
-    // File size limit of 3MB (3 * 1024 * 1024 bytes)
-    const MAX_FILE_SIZE = 3 * 1024 * 1024;
+    const MAX_FILE_SIZE = 3 * 1024 * 1024; // 3MB
     if (file) {
       if (file.size > MAX_FILE_SIZE) {
         toast.error("File size exceeds the 3MB limit.");
         return;
       }
       setLocalImg({
-        file: URL.createObjectURL(file),
+        url: URL.createObjectURL(file),
         name: file.name,
         size: file.size,
+        file: formData,
       });
     }
+  };
+
+  // === handle remove local file ===
+  const handleRemoveLocalFile = () => {
+    setLocalImg({
+      url: null,
+      name: "",
+      size: 0,
+      file: null,
+    });
   };
 
   // === initialize form ===
@@ -59,14 +82,28 @@ const ManageProfileForm = () => {
       name: "",
       professional_title: "",
       bio: "",
-      img: "",
+      img: img ? img : "",
       open_to_work: true,
     },
   });
 
   // === hanlde submit form ===
-  const hanldeSubmit = (data: z.infer<typeof ManageProfileSchema>) => {
+  const hanldeSubmit = async (data: z.infer<typeof ManageProfileSchema>) => {
     console.log("data", data);
+
+    // file upload api mutations
+    try {
+      const response: any = await uploadFile({
+        file: localImg.file,
+        apikey: "2810f4715c7d7ba0a57a3cac50297180",
+      });
+      if (response?.data?.success) {
+        toast.success("Profile picture uploaded!");
+      }
+      console.log("response", response);
+    } catch (error) {
+      console.log("FILE UPLOAD ERROR", error);
+    }
   };
 
   return (
@@ -123,13 +160,7 @@ const ManageProfileForm = () => {
                         className="h-0 py-0"
                         variant="link"
                         type="button"
-                        onClick={() => {
-                          setLocalImg({
-                            file: null,
-                            name: "",
-                            size: 0,
-                          });
-                        }}
+                        onClick={handleRemoveLocalFile}
                       >
                         Remove
                       </Button>
@@ -144,8 +175,8 @@ const ManageProfileForm = () => {
                         className="flex items-center gap-4 w-full p-4"
                       >
                         <Avatar>
-                          {localImg?.file ? (
-                            <AvatarImage src={localImg?.file} />
+                          {localImg?.url ? (
+                            <AvatarImage src={localImg?.url} />
                           ) : (
                             <div className="h-full w-full grid place-items-center bg-secondary">
                               <Plus size={16} />
@@ -229,7 +260,9 @@ const ManageProfileForm = () => {
             />
           </div>
           <div className="w-fit ml-auto py-4 px-4 sm:px-6">
-            <Button type="submit">Save</Button>
+            <Button type="submit" disabled={isUploadFileLoading}>
+              Save
+            </Button>
           </div>
         </form>
       </Form>

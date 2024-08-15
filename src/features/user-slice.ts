@@ -35,7 +35,16 @@ const userApi = apiSlice.injectEndpoints({
         method: "POST",
         body: payload,
       }),
-      // invalidatesTags: ["USERS", "SINGLE_USER"] as any,
+    }),
+
+    // === upate user ===
+    updateUser: builder.mutation({
+      query: ({ payload, userId }) => ({
+        url: `/users/${userId}`,
+        method: "PATCH",
+        body: payload,
+      }),
+      invalidatesTags: ["SINGLE_USER"] as any,
     }),
   }),
 });
@@ -45,4 +54,5 @@ export const {
   useGetUserByEmailQuery,
   useCheckUsernameAvailabilityQuery,
   useCreateUserMutation,
+  useUpdateUserMutation,
 } = userApi;

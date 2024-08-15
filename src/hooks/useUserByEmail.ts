@@ -28,6 +28,7 @@ const useUserByEmail = () => {
     open_to_work: userFromDb?.open_to_work,
     skills: userFromDb?.skills,
     socials: userFromDb?.socials,
+    img: userFromDb?.img
   };
 };
 
