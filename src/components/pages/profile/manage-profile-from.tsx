@@ -70,9 +70,9 @@ const ManageProfileForm = () => {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
+    <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-4xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
       {/* header */}
-      <div className="grid gap-2 px-6 py-4">
+      <div className="grid gap-2 px-4 sm:px-6 py-4">
         <IconButton>
           <UserPen size={20} />
         </IconButton>
@@ -81,7 +81,7 @@ const ManageProfileForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(hanldeSubmit)} className="p-1">
-          <div className="w-full space-y-4 bg-white p-6 rounded-xl border border-border shadow-sm">
+          <div className="w-full grid xl:grid-cols-2 gap-4 bg-white p-4 sm:p-6 rounded-xl border border-border shadow-sm">
             {/* name field */}
             <FormField
               control={form.control}
@@ -90,7 +90,21 @@ const ManageProfileForm = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="Ruhan" {...field} />
+                    <Input placeholder="Jhon" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            {/* professional title field */}
+            <FormField
+              control={form.control}
+              name="professional_title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Professional Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Frontend Developer" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -177,20 +191,6 @@ const ManageProfileForm = () => {
                 </FormItem>
               )}
             />
-            {/* professional title field */}
-            <FormField
-              control={form.control}
-              name="professional_title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Professional Title</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Frontend Developer" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             {/* bio filed */}
             <FormField
               control={form.control}
@@ -201,7 +201,7 @@ const ManageProfileForm = () => {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us a little bit about yourself"
-                      className=""
+                      className="min-h-[64px]"
                       {...field}
                     />
                   </FormControl>
@@ -227,10 +227,9 @@ const ManageProfileForm = () => {
                 </FormItem>
               )}
             />
-
-            <div className="w-fit ml-auto">
-              <Button type="submit">Save</Button>
-            </div>
+          </div>
+          <div className="w-fit ml-auto py-4 px-4 sm:px-6">
+            <Button type="submit">Save</Button>
           </div>
         </form>
       </Form>
