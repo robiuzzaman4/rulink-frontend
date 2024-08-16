@@ -9,16 +9,23 @@ import {
   DEVELOPMENT_SKILLS,
   MARKETING_SKILLS,
 } from "@/constants/skills";
+import { useUpdateUserMutation } from "@/features/user-slice";
 import useUserByEmail from "@/hooks/useUserByEmail";
-import { Minus, Plus, Sparkle } from "lucide-react";
+import { Loader, Minus, Plus, Sparkle } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 const ManageSkills = () => {
   // === get user info from db ===
-  const { skills, isLoading } = useUserByEmail();
+  const { id, skills, isLoading } = useUserByEmail();
 
+  // === selected skills ===
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   console.log("selectedSkills", selectedSkills);
+
+  // === update profile api mutation hook ===
+  const [updateProfile, { isLoading: isUpdateProfileLoading }] =
+    useUpdateUserMutation();
 
   // === consistacne skills ===
   useEffect(() => {
@@ -39,6 +46,28 @@ const ManageSkills = () => {
     setSelectedSkills((prevSkills) => prevSkills?.filter((s) => s !== skill));
   };
 
+  // === handle update skills ===
+  const handleUpdateSkills = async () => {
+    // make payload with new img
+    const payload = {
+      skills: selectedSkills,
+    };
+    // update user profile api mutations
+    try {
+      const res: any = await updateProfile({
+        payload,
+        userId: id,
+      });
+      if (res?.data?.success) {
+        toast.success("Skills updated.");
+      } else {
+        toast.error("Failed to update skills. Please try again.");
+      }
+    } catch (error) {
+      console.log("UPDATE SKILLS ERROR", error);
+    }
+  };
+
   return (
     <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
       {/* header */}
@@ -52,6 +81,11 @@ const ManageSkills = () => {
       <div className="w-full p-1">
         <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
           <h5 className="text-lg font-medium font-satoshi">Your Skills</h5>
+          {isLoading && (
+            <>
+              <Loader size={16} className="animate-spin w-fit mx-auto" />
+            </>
+          )}
           {selectedSkills && selectedSkills?.length > 0 && (
             <div className="flex items-center gap-2 flex-wrap">
               {selectedSkills?.map((skill: string, index: number) => (
@@ -79,6 +113,7 @@ const ManageSkills = () => {
               <TabsTrigger value="design">Design</TabsTrigger>
               <TabsTrigger value="marketing">Marketing</TabsTrigger>
             </TabsList>
+            {/* development skills */}
             <TabsContent value="development" className="pt-2">
               <div className="flex items-center gap-2 flex-wrap">
                 {DEVELOPMENT_SKILLS?.map((skill, index) => (
@@ -96,6 +131,8 @@ const ManageSkills = () => {
                 ))}
               </div>
             </TabsContent>
+
+            {/* design skills */}
             <TabsContent value="design" className="pt-2">
               <div className="flex items-center gap-2 flex-wrap">
                 {DESIGN_SKILLS?.map((skill, index) => (
@@ -113,6 +150,8 @@ const ManageSkills = () => {
                 ))}
               </div>
             </TabsContent>
+
+            {/* marketing skills */}
             <TabsContent value="marketing" className="pt-2">
               <div className="flex items-center gap-2 flex-wrap">
                 {MARKETING_SKILLS?.map((skill, index) => (
@@ -135,13 +174,14 @@ const ManageSkills = () => {
       </div>
       <div className="w-fit ml-auto py-4 px-4 sm:px-6">
         <Button
+          onClick={handleUpdateSkills}
           type="button"
-          //   disabled={isUploadFileLoading || isUpdateProfileLoading}
+          disabled={isLoading || isUpdateProfileLoading}
         >
           Save
-          {/* {(isUploadFileLoading || isUpdateProfileLoading) && (
-                <Loader size={16} className="animate-spin ml-2" />
-              )} */}
+          {isUpdateProfileLoading && (
+            <Loader size={16} className="animate-spin ml-2" />
+          )}
         </Button>
       </div>
     </div>

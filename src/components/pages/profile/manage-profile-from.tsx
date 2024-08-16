@@ -137,7 +137,7 @@ const ManageProfileForm = () => {
         apikey: FILE_UPLOAD_API_KEY,
       });
       if (response?.data?.success) {
-        // === make payload with new img ===
+        // make payload with new img 
         const payload = {
           name: data.name,
           professional_title: data.professional_title,
@@ -178,7 +178,7 @@ const ManageProfileForm = () => {
   const handleUpdateProfileWithoutNewImg = async (
     data: z.infer<typeof ManageProfileSchema>
   ) => {
-    // === make payload with new img ===
+    // make payload with new img
     const payload = {
       name: data.name,
       professional_title: data.professional_title,
