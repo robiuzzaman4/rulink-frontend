@@ -1,19 +1,14 @@
 "use client";
 
 import IconButton from "@/components/shared/icon-button";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  DESIGN_SKILLS,
-  DEVELOPMENT_SKILLS,
-  MARKETING_SKILLS,
-} from "@/constants/skills";
 import { useUpdateUserMutation } from "@/features/user-slice";
 import useUserByEmail from "@/hooks/useUserByEmail";
-import { Loader, Minus, Plus, Sparkle } from "lucide-react";
+import { Loader, Sparkle } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
+import SkillPresets from "./skill-presets";
+import YourSkills from "./your-skills";
 
 const ManageSkills = () => {
   // === get user info from db ===
@@ -78,100 +73,16 @@ const ManageSkills = () => {
         <h5 className="text-lg font-medium font-satoshi">Manage Skills</h5>
       </div>
       {/* your skills */}
-      <div className="w-full p-1">
-        <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
-          <h5 className="text-lg font-medium font-satoshi">Your Skills</h5>
-          {isLoading && (
-            <>
-              <Loader size={16} className="animate-spin w-fit mx-auto" />
-            </>
-          )}
-          {selectedSkills && selectedSkills?.length > 0 && (
-            <div className="flex items-center gap-2 flex-wrap">
-              {selectedSkills?.map((skill: string, index: number) => (
-                <Badge
-                  onClick={() => handleRemoveSkill(skill)}
-                  key={index}
-                  variant="outline"
-                  className="text-sm font-normal gap-2 cursor-pointer hover:border-primary"
-                >
-                  <p>{skill}</p>
-                  <Minus size={12} />
-                </Badge>
-              ))}
-            </div>
-          )}
-        </div>
-      </div>
+      <YourSkills
+        isLoading={isLoading}
+        selectedSkills={selectedSkills}
+        handleRemoveSkill={handleRemoveSkill}
+      />
       {/* skill presets */}
-      <div className="w-full px-1 pb-1">
-        <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
-          <h5 className="text-lg font-medium font-satoshi">Skill Presets</h5>
-          <Tabs defaultValue="development" className="w-full">
-            <TabsList>
-              <TabsTrigger value="development">Development</TabsTrigger>
-              <TabsTrigger value="design">Design</TabsTrigger>
-              <TabsTrigger value="marketing">Marketing</TabsTrigger>
-            </TabsList>
-            {/* development skills */}
-            <TabsContent value="development" className="pt-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                {DEVELOPMENT_SKILLS?.map((skill, index) => (
-                  <Badge
-                    onClick={() => handleSelectSkill(skill)}
-                    key={index}
-                    variant={
-                      selectedSkills?.includes(skill) ? "default" : "outline"
-                    }
-                    className="text-sm font-normal gap-2 cursor-pointer hover:border-primary"
-                  >
-                    <p>{skill}</p>
-                    <Plus size={12} />
-                  </Badge>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* design skills */}
-            <TabsContent value="design" className="pt-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                {DESIGN_SKILLS?.map((skill, index) => (
-                  <Badge
-                    onClick={() => handleSelectSkill(skill)}
-                    key={index}
-                    variant={
-                      selectedSkills?.includes(skill) ? "default" : "outline"
-                    }
-                    className="text-sm font-normal gap-2 cursor-pointer hover:border-primary"
-                  >
-                    <p>{skill}</p>
-                    <Plus size={12} />
-                  </Badge>
-                ))}
-              </div>
-            </TabsContent>
-
-            {/* marketing skills */}
-            <TabsContent value="marketing" className="pt-2">
-              <div className="flex items-center gap-2 flex-wrap">
-                {MARKETING_SKILLS?.map((skill, index) => (
-                  <Badge
-                    onClick={() => handleSelectSkill(skill)}
-                    key={index}
-                    variant={
-                      selectedSkills?.includes(skill) ? "default" : "outline"
-                    }
-                    className="text-sm font-normal gap-2 cursor-pointer hover:border-primary"
-                  >
-                    <p>{skill}</p>
-                    <Plus size={12} />
-                  </Badge>
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </div>
+      <SkillPresets
+        selectedSkills={selectedSkills}
+        handleSelectSkill={handleSelectSkill}
+      />
       <div className="w-fit ml-auto py-4 px-4 sm:px-6">
         <Button
           onClick={handleUpdateSkills}
