@@ -1,11 +1,10 @@
+import ManageSocials from "@/components/pages/socials/manage-socials";
 import React from "react";
 
 const SocialsPage = () => {
   return (
-    <div className="py-20 px-4 lg:px-6">
-      <h1 className="text-3xl font-satoshi font-medium">
-        This is Socials page
-      </h1>
+    <div className="w-full min-h-[calc(100vh-56px)] mt-14 px-4 lg:px-6 py-14 grid place-items-center">
+      <ManageSocials />
     </div>
   );
 };
