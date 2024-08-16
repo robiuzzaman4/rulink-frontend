@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import useMeasure from "react-use-measure";
 import confetti from "canvas-confetti";
 import { cn } from "@/lib/utils";
-import { MOTION_SLIDES_TRANSITION, MOTION_SLIDES_VARIANTS } from "@/constants";
+import { MOTION_SLIDES_TRANSITION, MOTION_SLIDES_VARIANTS } from "@/constants/motion";
 import { TransitionPanel } from "@/components/motion-primitives/transition-panel";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import WelcomeCard from "@/components/pages/overview/welcome-card";

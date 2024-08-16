@@ -204,7 +204,7 @@ const ManageProfileForm = () => {
   };
 
   return (
-    <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-4xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
+    <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
       {/* header */}
       <div className="grid gap-2 px-4 sm:px-6 py-4">
         <IconButton>
