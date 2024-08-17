@@ -12,15 +12,22 @@ interface Social {
   url: string;
 }
 interface AvailableSocialsProps {
-  isLoading: boolean;
   addedSocials: Social[];
+  id: string;
 }
 const AvailableSocials = ({
   addedSocials,
-  isLoading,
+  id
 }: AvailableSocialsProps) => {
   // === add socials form modal state ===
   const [open, setOpen] = useState(false);
+  const [singleSocial, setSingleSocial] = useState<{
+    label: string;
+    platform: string;
+  }>({
+    label: "",
+    platform: "",
+  });
 
   // === check is social is already added or not ===
   const isSocialAdded = (platform: string) => {
@@ -58,7 +65,13 @@ const AvailableSocials = ({
                   </div>
                   <Button
                     size="sm"
-                    onClick={() => setOpen(true)}
+                    onClick={() => {
+                      setOpen(true);
+                      setSingleSocial({
+                        label: item?.label,
+                        platform: item?.platform,
+                      });
+                    }}
                     disabled={isSocialAdded(item?.platform)}
                   >
                     Add
@@ -71,7 +84,13 @@ const AvailableSocials = ({
       </div>
 
       {/* add socials modal */}
-      <AddSocialModal open={open} setOpen={setOpen} />
+      <AddSocialModal
+        open={open}
+        setOpen={setOpen}
+        addedSocials={addedSocials}
+        singleSocial={singleSocial}
+        id={id}
+      />
     </>
   );
 };

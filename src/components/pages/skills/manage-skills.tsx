@@ -42,7 +42,7 @@ const ManageSkills = () => {
 
   // === handle update skills ===
   const handleUpdateSkills = async () => {
-    // make payload with new img
+    // make payload
     const payload = {
       skills: selectedSkills,
     };

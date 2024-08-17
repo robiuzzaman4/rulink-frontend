@@ -10,7 +10,7 @@ export const AVAILABLE_SOCIALS = [
     icon: "/icons/instagram.svg",
   },
   {
-    platform: "likedin",
+    platform: "linkedin",
     label: "LinkedIn",
     icon: "/icons/linkedin.svg",
   },

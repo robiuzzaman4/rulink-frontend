@@ -7,20 +7,19 @@ import AvailableSocials from "@/components/pages/socials/available-socials";
 import YourSocials from "@/components/pages/socials/your-socials";
 import useUserByEmail from "@/hooks/useUserByEmail";
 
+interface Social {
+  label: string;
+  platform: string;
+  url: string;
+}
 const ManageSocials = () => {
   // === get user info from db ===
   const { id, socials, isLoading } = useUserByEmail();
 
   // === added socials ===
-  const [addedSocials, setAddedSocials] = useState<
-    {
-      label: string;
-      platform: string;
-      url: string;
-    }[]
-  >([]);
+  const [addedSocials, setAddedSocials] = useState<Social[]>([]);
 
-  console.log("addedSocials", addedSocials);
+  // console.log("addedSocials", addedSocials);
 
   // === consistance socials ===
   useEffect(() => {
@@ -41,7 +40,7 @@ const ManageSocials = () => {
       {/* your socials */}
       <YourSocials isLoading={isLoading} addedSocials={addedSocials} />
       {/* available socials */}
-      <AvailableSocials isLoading={isLoading} addedSocials={addedSocials} />
+      <AvailableSocials addedSocials={addedSocials} id={id} />
     </div>
   );
 };
