@@ -33,6 +33,7 @@ const useUserByEmail = () => {
     skills: userFromDb?.skills,
     socials: userFromDb?.socials,
     img: userFromDb?.img,
+    resume_url: userFromDb?.resume_url,
   };
 };
 

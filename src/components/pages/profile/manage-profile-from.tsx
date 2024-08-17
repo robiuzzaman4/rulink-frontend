@@ -27,7 +27,7 @@ import { useUpdateUserMutation } from "@/features/user-slice";
 
 const ManageProfileForm = () => {
   // === get uesr infor from db ===
-  const { img, id, name, bio, professional_title, open_to_work } =
+  const { img, id, name, bio, professional_title, open_to_work, resume_url } =
     useUserByEmail();
 
   // === file upload api key ===
@@ -94,6 +94,7 @@ const ManageProfileForm = () => {
       bio: bio ? bio : "",
       img: img ? img?.url : "",
       open_to_work: open_to_work ? open_to_work : true,
+      resume_url: resume_url ? resume_url : "",
     },
   });
 
@@ -107,10 +108,20 @@ const ManageProfileForm = () => {
         bio: bio,
         img: img?.url,
         open_to_work: open_to_work,
+        resume_url: resume_url,
       });
     }
     console.log("render");
-  }, [name, professional_title, bio, img?.url, open_to_work, id, reset]);
+  }, [
+    name,
+    professional_title,
+    bio,
+    img?.url,
+    open_to_work,
+    resume_url,
+    id,
+    reset,
+  ]);
 
   // === hanlde submit form ===
   const hanldeSubmit = async (data: z.infer<typeof ManageProfileSchema>) => {
@@ -137,7 +148,7 @@ const ManageProfileForm = () => {
         apikey: FILE_UPLOAD_API_KEY,
       });
       if (response?.data?.success) {
-        // make payload with new img 
+        // make payload with new img
         const payload = {
           name: data.name,
           professional_title: data.professional_title,
@@ -148,6 +159,7 @@ const ManageProfileForm = () => {
             size: localImg.size,
           },
           open_to_work: data.open_to_work,
+          resume_url: data.resume_url,
         };
 
         // update user profile api mutations
@@ -178,12 +190,13 @@ const ManageProfileForm = () => {
   const handleUpdateProfileWithoutNewImg = async (
     data: z.infer<typeof ManageProfileSchema>
   ) => {
-    // make payload with new img
+    // make payload without new img
     const payload = {
       name: data.name,
       professional_title: data.professional_title,
       bio: data.bio,
       open_to_work: data.open_to_work,
+      resume_url: data.resume_url,
     };
 
     // update user profile api mutations
@@ -361,7 +374,7 @@ const ManageProfileForm = () => {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us a little bit about yourself"
-                      className="min-h-[64px]"
+                      className="min-h-[100px] md:min-h-[80px] lg:min-h-[64px]"
                       {...field}
                       disabled={isUploadFileLoading || isUpdateProfileLoading}
                     />
@@ -386,6 +399,24 @@ const ManageProfileForm = () => {
                       />
                     </FormControl>
                   </div>
+                </FormItem>
+              )}
+            />
+            {/* resume url field */}
+            <FormField
+              control={form.control}
+              name="resume_url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Resume Drive Link</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="https://www.drive.google.com"
+                      {...field}
+                      disabled={isUploadFileLoading || isUpdateProfileLoading}
+                    />
+                  </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

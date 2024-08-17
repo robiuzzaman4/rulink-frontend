@@ -7,4 +7,5 @@ export const ManageProfileSchema = z.object({
   bio: z.string().max(120, "Bio can be highest 120 characters").optional(),
   img: z.string().optional(),
   open_to_work: z.boolean().optional(),
+  resume_url: z.string().optional(),
 });

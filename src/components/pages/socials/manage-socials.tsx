@@ -18,7 +18,8 @@ const ManageSocials = () => {
       </div>
       {/* your skills */}
       <div className="w-full p-1">
-        <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
+        <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm grid md:grid-cols-2 gap-4">
+          <h5 className="text-lg font-medium font-satoshi">Socials</h5>
           <h5 className="text-lg font-medium font-satoshi">Socials</h5>
         </div>
       </div>

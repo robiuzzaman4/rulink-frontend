@@ -37,7 +37,7 @@ const GeneratedUrl = () => {
           onClick={handleCopy}
           variant="outline"
           size="icon"
-          className="shrink-0 text-rulink-primary hover:text-rulink-primary"
+          className="shrink-0"
         >
           {copied ? <Check size={16} /> : <Copy size={16} />}
         </Button>
