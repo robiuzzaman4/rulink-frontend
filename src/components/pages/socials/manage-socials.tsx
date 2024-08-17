@@ -1,12 +1,34 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Earth } from "lucide-react";
 import IconButton from "@/components/shared/icon-button";
-import { Button } from "@/components/ui/button";
 import AvailableSocials from "@/components/pages/socials/available-socials";
+import YourSocials from "@/components/pages/socials/your-socials";
+import useUserByEmail from "@/hooks/useUserByEmail";
 
 const ManageSocials = () => {
+  // === get user info from db ===
+  const { id, socials, isLoading } = useUserByEmail();
+
+  // === added socials ===
+  const [addedSocials, setAddedSocials] = useState<
+    {
+      label: string;
+      platform: string;
+      url: string;
+    }[]
+  >([]);
+
+  console.log("addedSocials", addedSocials);
+
+  // === consistance socials ===
+  useEffect(() => {
+    if (!isLoading && socials) {
+      setAddedSocials(socials);
+    }
+  }, [isLoading, socials]);
+
   return (
     <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
       {/* header */}
@@ -16,22 +38,10 @@ const ManageSocials = () => {
         </IconButton>
         <h5 className="text-lg font-medium font-satoshi">Manage Socials</h5>
       </div>
+      {/* your socials */}
+      <YourSocials isLoading={isLoading} addedSocials={addedSocials} />
       {/* available socials */}
-      <AvailableSocials/>
-      
-
-      {/* <div className="w-fit ml-auto py-4 px-4 sm:px-6">
-        <Button
-          //   onClick={handleUpdateSkills}
-          type="button"
-          //   disabled={isLoading || isUpdateProfileLoading}
-        >
-          Save
-          {isUpdateProfileLoading && (
-            <Loader size={16} className="animate-spin ml-2" />
-          )}
-        </Button>
-      </div> */}
+      <AvailableSocials isLoading={isLoading} addedSocials={addedSocials} />
     </div>
   );
 };

@@ -16,13 +16,12 @@ const ManageSkills = () => {
 
   // === selected skills ===
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
-  console.log("selectedSkills", selectedSkills);
 
   // === update profile api mutation hook ===
   const [updateProfile, { isLoading: isUpdateProfileLoading }] =
     useUpdateUserMutation();
 
-  // === consistacne skills ===
+  // === consistance skills ===
   useEffect(() => {
     if (!isLoading && skills) {
       setSelectedSkills(skills);
