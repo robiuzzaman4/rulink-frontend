@@ -272,7 +272,7 @@ const ManageProfileForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <span className="w-full flex items-center justify-between gap-4">
-                    <FormLabel>Profile Picture</FormLabel>
+                    <FormLabel className="lg:mt-1 lg:mb-1.5">Profile Picture</FormLabel>
                     {localImg?.file && (
                       <Button
                         className="h-0 py-0"
@@ -286,12 +286,12 @@ const ManageProfileForm = () => {
                     )}
                   </span>
                   <FormControl>
-                    <div className="relative flex cursor-pointer items-center gap-4 rounded-md border border-dashed border-border focus-visible:outline-muted-foreground">
+                    <div className="relative flex cursor-pointer items-center gap-4 rounded-md border border-input focus-visible:outline-muted-foreground min-h-[70px]">
                       <div
                         onClick={() =>
                           document.getElementById("image-upload")?.click()
                         }
-                        className="flex items-center gap-4 w-full p-4"
+                        className="flex items-center gap-4 w-full px-4"
                       >
                         <Avatar>
                           {img?.url && !localImg?.url && (
@@ -374,7 +374,7 @@ const ManageProfileForm = () => {
                   <FormControl>
                     <Textarea
                       placeholder="Tell us a little bit about yourself"
-                      className="min-h-[100px] md:min-h-[80px] lg:min-h-[64px]"
+                      className="min-h-[100px] md:min-h-[80px] lg:min-h-[70px]"
                       {...field}
                       disabled={isUploadFileLoading || isUpdateProfileLoading}
                     />
