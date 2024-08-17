@@ -1,10 +1,10 @@
 "use client";
 
+import React from "react";
+import { Earth } from "lucide-react";
 import IconButton from "@/components/shared/icon-button";
 import { Button } from "@/components/ui/button";
-
-import { Earth } from "lucide-react";
-import React from "react";
+import AvailableSocials from "@/components/pages/socials/available-socials";
 
 const ManageSocials = () => {
   return (
@@ -16,26 +16,22 @@ const ManageSocials = () => {
         </IconButton>
         <h5 className="text-lg font-medium font-satoshi">Manage Socials</h5>
       </div>
-      {/* your skills */}
-      <div className="w-full p-1">
-        <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm grid md:grid-cols-2 gap-4">
-          <h5 className="text-lg font-medium font-satoshi">Socials</h5>
-          <h5 className="text-lg font-medium font-satoshi">Socials</h5>
-        </div>
-      </div>
+      {/* available socials */}
+      <AvailableSocials/>
+      
 
-      <div className="w-fit ml-auto py-4 px-4 sm:px-6">
+      {/* <div className="w-fit ml-auto py-4 px-4 sm:px-6">
         <Button
           //   onClick={handleUpdateSkills}
           type="button"
           //   disabled={isLoading || isUpdateProfileLoading}
         >
           Save
-          {/* {isUpdateProfileLoading && (
+          {isUpdateProfileLoading && (
             <Loader size={16} className="animate-spin ml-2" />
-          )} */}
+          )}
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };
