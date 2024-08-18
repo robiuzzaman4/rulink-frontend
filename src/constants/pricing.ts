@@ -1,7 +1,7 @@
-export const pricing = [
+export const PRICING_PLANS = [
   {
     id: "1",
-    name: "Hobby",
+    plan: "Hobby",
     price: "FREE",
     description: "Get first your personal website",
     features: [
@@ -15,9 +15,9 @@ export const pricing = [
   },
   {
     id: "2",
-    name: "Business",
+    plan: "Business",
     price: "CUSTOM",
-    description: "Let us know your requirements",
+    description: "Let me know your requirements",
     features: [
       "All features from hobby plans",
       "Your custom requirements",

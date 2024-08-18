@@ -1,6 +1,6 @@
 "use client";
 
-import { navlinks } from "@/constants/navlinks";
+import { NAVLINKS } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
 import { MoveRight } from "lucide-react";
@@ -35,7 +35,7 @@ const Sidebar = () => {
             Overview
           </h5>
           <div className="grid">
-            {navlinks.overview.map(({ label, href, icon }) => {
+            {NAVLINKS.overview.map(({ label, href, icon }) => {
               const isActive = pathname === href;
               return (
                 <Link
@@ -60,7 +60,7 @@ const Sidebar = () => {
         <div className="grid gap-2 px-6">
           <h5 className="text-xs font-medium text-muted-foreground">Manage</h5>
           <div className="grid">
-            {navlinks.manage.map(({ label, href, icon }) => {
+            {NAVLINKS.manage.map(({ label, href, icon }) => {
               const isActive = pathname === href;
               return (
                 <Link

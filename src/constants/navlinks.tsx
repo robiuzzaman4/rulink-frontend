@@ -1,5 +1,5 @@
 import { Box, Earth, Sparkle, UserPen } from "lucide-react";
-export const navlinks = {
+export const NAVLINKS = {
   overview: [
     {
       label: "Overview",

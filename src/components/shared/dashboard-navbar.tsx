@@ -19,7 +19,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { navlinks } from "@/constants/navlinks";
+import { NAVLINKS } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
 
@@ -77,7 +77,7 @@ const DashboardNavbar = () => {
                 Overview
               </h5>
               <div className="grid">
-                {navlinks.overview.map(({ label, href, icon }) => {
+                {NAVLINKS.overview.map(({ label, href, icon }) => {
                   const isActive = pathname === href;
                   return (
                     <Link
@@ -105,7 +105,7 @@ const DashboardNavbar = () => {
                 Manage
               </h5>
               <div className="grid">
-                {navlinks.manage.map(({ label, href, icon }) => {
+                {NAVLINKS.manage.map(({ label, href, icon }) => {
                   const isActive = pathname === href;
                   return (
                     <Link

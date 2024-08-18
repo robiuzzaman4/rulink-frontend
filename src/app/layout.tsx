@@ -5,7 +5,11 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import StoreProvider from "@/provider/store-provider";
 import { Toaster } from "sonner";
-import { CheckCircledIcon, CrossCircledIcon } from "@radix-ui/react-icons";
+import {
+  CheckCircledIcon,
+  CrossCircledIcon,
+  InfoCircledIcon,
+} from "@radix-ui/react-icons";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -63,8 +67,11 @@ export default function RootLayout({
             <Toaster
               position="top-center"
               icons={{
-                success: <CheckCircledIcon className="text-rulink-primary h-5 w-5" />,
+                success: (
+                  <CheckCircledIcon className="text-rulink-primary h-5 w-5" />
+                ),
                 error: <CrossCircledIcon className="text-rose-600 h-5 w-5" />,
+                info: <InfoCircledIcon className="text-orange-600 h-5 w-5" />,
               }}
               className="text-sm font-sans"
             />
