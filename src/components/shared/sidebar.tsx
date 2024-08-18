@@ -1,45 +1,13 @@
 "use client";
 
+import { navlinks } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
 import { UserButton } from "@clerk/nextjs";
-import {
-  Box,
-  Earth,
-  MoveRight,
-  Sparkle,
-  UserPen,
-} from "lucide-react";
+import { MoveRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-
-const links = {
-  overview: [
-    {
-      label: "Overview",
-      href: "/dashboard/overview",
-      icon: <Box size={16} />,
-    },
-  ],
-  manage: [
-    {
-      label: "Profile",
-      href: "/dashboard/profile",
-      icon: <UserPen size={16} />,
-    },
-    {
-      label: "Skills",
-      href: "/dashboard/skills",
-      icon: <Sparkle size={16} />,
-    },
-    {
-      label: "Socials",
-      href: "/dashboard/socials",
-      icon: <Earth size={16} />,
-    },
-  ],
-};
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -67,7 +35,7 @@ const Sidebar = () => {
             Overview
           </h5>
           <div className="grid">
-            {links.overview.map(({ label, href, icon }) => {
+            {navlinks.overview.map(({ label, href, icon }) => {
               const isActive = pathname === href;
               return (
                 <Link
@@ -92,7 +60,7 @@ const Sidebar = () => {
         <div className="grid gap-2 px-6">
           <h5 className="text-xs font-medium text-muted-foreground">Manage</h5>
           <div className="grid">
-            {links.manage.map(({ label, href, icon }) => {
+            {navlinks.manage.map(({ label, href, icon }) => {
               const isActive = pathname === href;
               return (
                 <Link
