@@ -69,36 +69,35 @@ const AddSocialModal = ({
       return toast.error("You can only add up to four social accounts.");
     }
 
-    if (addedSocials?.length > 0) {
-      // make payload
-      const payload = {
-        socials: [
-          ...addedSocials,
-          {
-            label: singleSocial.label,
-            platform: singleSocial.platform,
-            url: data.url,
-          },
-        ],
-      };
-      // update user profile api mutations
-      try {
-        const res: any = await updateProfile({
-          payload,
-          userId: id,
-        });
-        if (res?.data?.success) {
-          toast.success("Socials updated.");
-          setOpen(false);
-        } else {
-          toast.error("Failed to update socials. Please try again.");
-          setOpen(false);
-        }
-      } catch (error) {
-        console.log("UPDATE SOCIALS ERROR", error);
+    // make payload
+    const payload = {
+      socials: [
+        ...addedSocials,
+        {
+          label: singleSocial.label,
+          platform: singleSocial.platform,
+          url: data.url,
+        },
+      ],
+    };
+    // update user profile api mutations
+    try {
+      const res: any = await updateProfile({
+        payload,
+        userId: id,
+      });
+      if (res?.data?.success) {
+        toast.success("Socials updated.");
+        setOpen(false);
+      } else {
+        toast.error("Failed to update socials. Please try again.");
         setOpen(false);
       }
+    } catch (error) {
+      console.log("UPDATE SOCIALS ERROR", error);
+      setOpen(false);
     }
+
   };
 
   return (
