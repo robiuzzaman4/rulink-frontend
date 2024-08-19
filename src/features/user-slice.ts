@@ -20,6 +20,15 @@ const userApi = apiSlice.injectEndpoints({
       providesTags: ["SINGLE_USER"] as any,
     }),
 
+    // === get user by username ===
+    getUserByUsername: builder.query({
+      query: ({ username }) => ({
+        url: `/users/${username}`,
+        method: "GET",
+      }),
+      providesTags: ["SINGLE_USER"] as any,
+    }),
+
     // === check available username ===
     checkUsernameAvailability: builder.query({
       query: ({ username }) => ({
@@ -52,6 +61,7 @@ const userApi = apiSlice.injectEndpoints({
 export const {
   useGetAllUsersQuery,
   useGetUserByEmailQuery,
+  useGetUserByUsernameQuery,
   useCheckUsernameAvailabilityQuery,
   useCreateUserMutation,
   useUpdateUserMutation,
