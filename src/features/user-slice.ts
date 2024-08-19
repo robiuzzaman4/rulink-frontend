@@ -23,7 +23,7 @@ const userApi = apiSlice.injectEndpoints({
     // === get user by username ===
     getUserByUsername: builder.query({
       query: ({ username }) => ({
-        url: `/users/${username}`,
+        url: `/users/username/${username}`,
         method: "GET",
       }),
       providesTags: ["SINGLE_USER"] as any,
