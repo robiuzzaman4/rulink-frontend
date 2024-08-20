@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "lottie.host",
+        hostname: "i.ibb.co",
       },
       {
         hostname: "images.pexels.com",

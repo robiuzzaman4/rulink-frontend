@@ -26,3 +26,17 @@ export const MOTION_SLIDES_TRANSITION = {
   x: { type: "spring", stiffness: 300, damping: 30 },
   opacity: { duration: 0.2 },
 };
+
+export const FADE_UP_ANIMATION_VARIANTS = {
+  hidden: { opacity: 0, y: 20 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+};
+
+export const MOTION_BLUR_IN = {
+  hidden: { filter: "blur(10px)", opacity: 0 },
+  visible: { filter: "blur(0px)", opacity: 1 },
+};

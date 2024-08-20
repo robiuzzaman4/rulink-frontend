@@ -11,17 +11,15 @@ interface UserNavbarProps {
 
 const UserNavbar = ({ user }: UserNavbarProps) => {
   return (
-    <nav className="w-full bg-background rounded-xl p-4 flex items-center justify-between gap-2 border border-border shadow sticky top-0">
+    <nav className="w-full bg-background rounded-xl p-4 flex items-center justify-between gap-2 border border-border shadow sticky top-4">
       <Avatar className="h-8 w-8">
         <AvatarImage src={user?.img?.url} alt={`${user?.username}'s picture`} />
-        <AvatarFallback className="uppercase">
-          {user?.username?.slice(0, 2)}
-        </AvatarFallback>
+        <AvatarFallback className="uppercase text-xs">N/A</AvatarFallback>
       </Avatar>
 
-      <h2 className="text-2xl font-medium">Hi! Good Moring</h2>
+      <h2 className="text-2xl font-medium hidden sm:block">Hi! Good Moring</h2>
 
-      <Button size="sm">Contact Me</Button>
+      <Button>Contact Me</Button>
     </nav>
   );
 };
