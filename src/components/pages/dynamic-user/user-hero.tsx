@@ -4,9 +4,8 @@ import { TUser } from "@/types";
 import { ArrowUpRight, Copy } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { MOTION_BLUR_IN } from "@/constants/motion";
 import SectionTitle from "./section-title";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
 
 interface UserHeroProps {
   user: TUser;
@@ -38,15 +37,14 @@ const UserHero = ({ user }: UserHeroProps) => {
         {/* left section */}
         <div className="flex flex-col items-start gap-4 sm:col-span-2 order-2 sm:order-1">
           <span className="grid gap-2">
-            <motion.h1
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 1 }}
-              variants={MOTION_BLUR_IN}
+            <TextEffect
+              per="word"
+              as="h3"
+              preset="blur"
               className="text-3xl font-bold"
             >
-              {user?.name}
-            </motion.h1>
+              {user?.name as string}
+            </TextEffect>
             <p className="text-sm font-normal text-muted-foreground">
               {user?.bio}
             </p>
