@@ -20,7 +20,7 @@ const UserHero = ({ user }: UserHeroProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-8 p-4 sm:p-8">
+    <div className="flex flex-col gap-8 p-2 sm:p-6">
       {/* professional_title & open_to_work */}
       <div className="flex items-center justify-between gap-2">
         <SectionTitle title={user?.professional_title as string} />
@@ -33,9 +33,9 @@ const UserHero = ({ user }: UserHeroProps) => {
       </div>
 
       {/* name, bio, img */}
-      <div className="grid sm:grid-cols-3 gap-4 place-items-center">
+      <div className="grid sm:grid-cols-3 gap-4">
         {/* left section */}
-        <div className="flex flex-col items-start gap-4 sm:col-span-2 order-2 sm:order-1">
+        <div className="flex flex-col items-start justify-center gap-4 sm:col-span-2 order-2 sm:order-1">
           <span className="grid gap-2">
             <TextEffect
               per="word"
