@@ -5,6 +5,9 @@ import { useGetUserByUsernameQuery } from "@/features/user-slice";
 import { TUser } from "@/types";
 import Link from "next/link";
 import React from "react";
+import UserNavbar from "@/components/pages/dynamic-user/user-navbar";
+import Wrapper from "@/components/pages/dynamic-user/wrapper";
+import UserHero from "@/components/pages/dynamic-user/user-hero";
 
 interface DynamicUserProps {
   username: string;
@@ -46,9 +49,15 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
   }
 
   return (
-    <div>
-      <h1 className="text-3xl font-medium">{user?.name}</h1>
-    </div>
+    <section className="w-full max-w-xl mx-auto px-4 py-4 relative font-satoshi grid gap-4">
+      {/* navbar */}
+      <UserNavbar user={user} />
+      {/* wrapper */}
+      <Wrapper>
+        {/* hero section */}
+        <UserHero user={user} />
+      </Wrapper>
+    </section>
   );
 };
 
