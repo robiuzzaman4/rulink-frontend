@@ -9,7 +9,7 @@ import { toast } from "sonner";
 const GeneratedUrl = () => {
   // === username ===
   const { username } = useUserByEmail();
-  const generatedUrl = `https://rulink/${username}.vercel.app`;
+  const generatedUrl = `https://rulink.vercel.app/${username}`;
 
   // === copy to clipboard state and function ===
   const [copied, setCopied] = useState(false);
