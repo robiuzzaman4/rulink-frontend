@@ -41,15 +41,15 @@ const UserHero = ({ user }: UserHeroProps) => {
               per="word"
               as="h3"
               preset="blur"
-              className="text-3xl font-bold"
+              className="text-3xl font-bold text-center sm:text-start"
             >
               {user?.name as string}
             </TextEffect>
-            <p className="text-sm font-normal text-muted-foreground">
+            <p className="text-sm text-center sm:text-start font-normal text-muted-foreground">
               {user?.bio}
             </p>
           </span>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center sm:justify-start w-full gap-4">
             {user?.resume_url && (
               <Button asChild>
                 <Link href={user?.resume_url as string} target="_blank">
