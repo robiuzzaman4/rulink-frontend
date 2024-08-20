@@ -13,7 +13,7 @@ interface UserNavbarProps {
 const UserNavbar = ({ user }: UserNavbarProps) => {
   const greeting = getGreeting();
   return (
-    <nav className="w-full bg-background rounded-xl p-4 flex items-center justify-between gap-2 border border-border shadow sticky top-4">
+    <nav className="z-50 w-full bg-background rounded-xl p-4 flex items-center justify-between gap-2 border border-border shadow sticky top-4">
       <Avatar className="h-8 w-8">
         <AvatarImage src={user?.img?.url} alt={`${user?.username}'s picture`} />
         <AvatarFallback className="uppercase text-xs">N/A</AvatarFallback>

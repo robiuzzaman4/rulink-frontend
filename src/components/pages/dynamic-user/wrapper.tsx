@@ -11,7 +11,7 @@ const Wrapper = ({ children }: { children: ReactNode }) => {
       animate="show"
       viewport={{ once: true }}
       variants={FADE_UP_ANIMATION_VARIANTS}
-      className="w-full bg-background rounded-xl p-4 border border-border shadow"
+      className="w-full bg-background rounded-xl border border-border shadow mt-4"
     >
       {children}
     </motion.div>

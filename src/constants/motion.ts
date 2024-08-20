@@ -40,3 +40,18 @@ export const MOTION_BLUR_IN = {
   hidden: { filter: "blur(10px)", opacity: 0 },
   visible: { filter: "blur(0px)", opacity: 1 },
 };
+
+export const MOTION_PULL_UP_CONTAINER = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+export const MOTION_PULL_UP_ITEM = {
+  hidden: { y: 20, opacity: 0 },
+  show: { y: 0, opacity: 1 },
+};

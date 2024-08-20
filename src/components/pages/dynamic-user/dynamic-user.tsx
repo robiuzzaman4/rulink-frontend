@@ -8,6 +8,7 @@ import React from "react";
 import UserNavbar from "@/components/pages/dynamic-user/user-navbar";
 import Wrapper from "@/components/pages/dynamic-user/wrapper";
 import UserHero from "@/components/pages/dynamic-user/user-hero";
+import UserSkills from "@/components/pages/dynamic-user/user-skills";
 
 interface DynamicUserProps {
   username: string;
@@ -49,13 +50,17 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
   }
 
   return (
-    <section className="w-full max-w-xl mx-auto px-4 py-4 relative font-satoshi grid gap-4">
+    <section className="w-full max-w-xl mx-auto relative font-satoshi p-4">
       {/* navbar */}
       <UserNavbar user={user} />
       {/* wrapper */}
       <Wrapper>
         {/* hero section */}
         <UserHero user={user} />
+        {/* skills section */}
+        {user?.skills && user?.skills?.length > 0 && (
+          <UserSkills skills={user?.skills as string[]} />
+        )}
       </Wrapper>
     </section>
   );

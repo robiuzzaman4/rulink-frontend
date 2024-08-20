@@ -60,6 +60,9 @@ export default function RootLayout({
     <ClerkProvider>
       <StoreProvider>
         <html lang="en">
+          <head>
+            <link rel="logo icon" href="/logo-zinc.png" type="image/png" />
+          </head>
           <body
             className={`${satoshi.variable} ${plafair.variable} ${inter.variable} font-sans`}
           >
