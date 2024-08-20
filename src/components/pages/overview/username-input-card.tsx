@@ -42,15 +42,15 @@ const UsernameInputCard = ({
         <div className="flex items-center">
           <Input
             type="text"
-            placeholder="rulink/"
-            className="rounded-r-none disabled:cursor-default disabled:opacity-100 border-r-0 w-[68px]"
+            placeholder="rulink.vercel.app/"
+            className="rounded-r-none disabled:cursor-default disabled:opacity-100 border-r-0 w-36"
             disabled
           />
           <div className="w-full z-20 relative">
             <Input
               type="text"
               placeholder="username"
-              className="rounded-none w-full z-20"
+              className="rounded-l-none w-full z-20"
               onChange={(e) => setUsername(e.target.value)}
             />
             {isUsernameLoading && (
@@ -65,12 +65,6 @@ const UsernameInputCard = ({
               </div>
             )}
           </div>
-          <Input
-            type="text"
-            placeholder=".vercel.app"
-            className="rounded-l-none disabled:cursor-default disabled:opacity-100 border-l-0 w-[100px]"
-            disabled
-          />
         </div>
         {/* messages */}
         {isUsernameLoading && (
