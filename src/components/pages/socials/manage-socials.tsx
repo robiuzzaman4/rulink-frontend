@@ -19,8 +19,6 @@ const ManageSocials = () => {
   // === added socials ===
   const [addedSocials, setAddedSocials] = useState<Social[]>([]);
 
-  // console.log("addedSocials", addedSocials);
-
   // === consistance socials ===
   useEffect(() => {
     if (!isLoading && socials) {

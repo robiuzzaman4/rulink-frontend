@@ -111,7 +111,6 @@ const ManageProfileForm = () => {
         resume_url: resume_url,
       });
     }
-    console.log("render");
   }, [
     name,
     professional_title,
