@@ -1,6 +1,7 @@
 "use client";
 
 import { useGetUserByEmailQuery } from "@/features/user-slice";
+import { TUser } from "@/types";
 import { useUser } from "@clerk/nextjs";
 
 const useUserByEmail = () => {
@@ -10,7 +11,7 @@ const useUserByEmail = () => {
 
   // === get user by email api hook ===
   const { data, isLoading, refetch } = useGetUserByEmailQuery({ email });
-  const userFromDb = data?.data;
+  const userFromDb: TUser = data?.data;
 
   return {
     // api loading and refetch
@@ -34,6 +35,7 @@ const useUserByEmail = () => {
     socials: userFromDb?.socials,
     img: userFromDb?.img,
     resume_url: userFromDb?.resume_url,
+    projects: userFromDb?.projects,
   };
 };
 

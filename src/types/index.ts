@@ -30,8 +30,17 @@ type TImg = {
   size: number;
 };
 
+// === project types ===
+export type TProject = {
+  title: string;
+  description: string;
+  thumbnail: TImg;
+  live_url?: string;
+};
+
 // === user types ===
 export type TUser = {
+  _id: string;
   name?: string;
   email: string;
   username: string;
@@ -44,4 +53,5 @@ export type TUser = {
   skills?: string[];
   is_claimed_username: boolean;
   resume_url?: string;
+  projects?: TProject[];
 };

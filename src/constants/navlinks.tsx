@@ -1,4 +1,4 @@
-import { Box, Earth, Sparkle, UserPen } from "lucide-react";
+import { Box, Earth, FolderClosed, Sparkle, UserPen } from "lucide-react";
 export const NAVLINKS = {
   overview: [
     {
@@ -17,6 +17,11 @@ export const NAVLINKS = {
       label: "Skills",
       href: "/dashboard/skills",
       icon: <Sparkle size={16} />,
+    },
+    {
+      label: "Projects",
+      href: "/dashboard/projects",
+      icon: <FolderClosed size={16} />,
     },
     {
       label: "Socials",
