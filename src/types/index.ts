@@ -34,7 +34,7 @@ type TImg = {
 export type TProject = {
   title: string;
   description: string;
-  thumbnail: TImg;
+  thumbnail_url: string;
   live_url?: string;
 };
 

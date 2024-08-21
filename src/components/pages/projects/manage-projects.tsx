@@ -8,6 +8,7 @@ import { FolderClosed } from "lucide-react";
 import React from "react";
 import YourProjects from "@/components/pages/projects/your-projects";
 import AddNewProjectForm from "@/components/pages/projects/add-new-project-form";
+import { TProject } from "@/types";
 
 const ManageProjects = () => {
   // === get user info from db ===
@@ -29,7 +30,8 @@ const ManageProjects = () => {
         <h5 className="text-lg font-medium font-satoshi">Manage Projects</h5>
       </div>
       {/* your projects */}
-      <YourProjects isLoading={isLoading} />
+      <YourProjects isLoading={isLoading} projects={projects as TProject[]} />
+
       {/* add new project */}
       <AddNewProjectForm />
     </div>
