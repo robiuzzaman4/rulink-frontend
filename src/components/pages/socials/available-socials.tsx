@@ -39,7 +39,7 @@ const AvailableSocials = ({
 
   return (
     <>
-      <div className="w-full p-1">
+      <div className="w-full px-1 pb-1">
         <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
           <h5 className="text-lg font-medium font-satoshi">
             Choose from bellow

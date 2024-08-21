@@ -11,33 +11,33 @@ import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import React from "react";
 
-interface RemoveSocialAlertProps {
+interface RemoveProjectAlertProps {
   open: boolean;
   setOpen: (open: boolean) => void;
-  handleRemoveSocial: () => void;
+  handleRemoveProject: () => void;
   isUpdateProfileLoading: boolean;
 }
 
-const RemoveSocialAlert = ({
+const RemoveProjectAlert = ({
   open,
   setOpen,
-  handleRemoveSocial,
+  handleRemoveProject,
   isUpdateProfileLoading,
-}: RemoveSocialAlertProps) => {
+}: RemoveProjectAlertProps) => {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you absolutely sure to remove this social account?
+            Are you absolutely sure to remove this project?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            This social account data will permanently delete from our servers.
+            This project data will permanently delete from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <Button onClick={handleRemoveSocial}>
+          <Button onClick={handleRemoveProject}>
             Yes Remove
             {isUpdateProfileLoading && (
               <Loader size={16} className="animate-spin ml-2" />
@@ -49,4 +49,4 @@ const RemoveSocialAlert = ({
   );
 };
 
-export default RemoveSocialAlert;
+export default RemoveProjectAlert;

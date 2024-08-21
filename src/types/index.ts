@@ -32,6 +32,7 @@ type TImg = {
 
 // === project types ===
 export type TProject = {
+  _id: string;
   title: string;
   description: string;
   thumbnail_url: string;

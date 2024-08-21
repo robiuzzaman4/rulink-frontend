@@ -48,7 +48,7 @@ const YourSocials = ({ isLoading, addedSocials }: YourSocialsProps) => {
         userId: id,
       });
       if (res?.data?.success) {
-        toast.success("Removed social.");
+        toast.success("Social account removed.");
         setOpen(false);
       } else {
         toast.error("Failed to remove socials. Please try again.");
@@ -62,7 +62,7 @@ const YourSocials = ({ isLoading, addedSocials }: YourSocialsProps) => {
 
   return (
     <>
-      <div className="w-full p-1">
+      <div className="w-full px-1 pb-1">
         <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
           <h5 className="text-lg font-medium font-satoshi">
             Your Social Accounts

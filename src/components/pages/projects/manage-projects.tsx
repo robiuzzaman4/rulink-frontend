@@ -1,25 +1,12 @@
 "use client";
 
 import IconButton from "@/components/shared/icon-button";
-import { Button } from "@/components/ui/button";
-import { useUpdateUserMutation } from "@/features/user-slice";
-import useUserByEmail from "@/hooks/useUserByEmail";
 import { FolderClosed } from "lucide-react";
 import React from "react";
 import YourProjects from "@/components/pages/projects/your-projects";
 import AddNewProjectForm from "@/components/pages/projects/add-new-project-form";
-import { TProject } from "@/types";
 
 const ManageProjects = () => {
-  // === get user info from db ===
-  const { id, projects, isLoading } = useUserByEmail();
-
-  // === update profile api mutation hook ===
-  const [updateProfile, { isLoading: isUpdateProfileLoading }] =
-    useUpdateUserMutation();
-
-  // console.log("Projects", projects);
-
   return (
     <div className="w-full sm:max-w-sm md:max-w-md lg:max-w-2xl xl:max-w-5xl mx-auto bg-secondary/50 rounded-2xl border border-border shadow-lg">
       {/* header */}
@@ -30,8 +17,7 @@ const ManageProjects = () => {
         <h5 className="text-lg font-medium font-satoshi">Manage Projects</h5>
       </div>
       {/* your projects */}
-      <YourProjects isLoading={isLoading} projects={projects as TProject[]} />
-
+      <YourProjects />
       {/* add new project */}
       <AddNewProjectForm />
     </div>
