@@ -4,7 +4,7 @@ import { TUser } from "@/types";
 import { ArrowUpRight, Copy } from "lucide-react";
 import Link from "next/link";
 import React, { useState } from "react";
-import SectionTitle from "./section-title";
+import UserSectionTitle from "@/components/pages/dynamic-user/user-section-title";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { motion } from "framer-motion";
 import { MOTION_SCALE_UP } from "@/constants/motion";
@@ -25,7 +25,7 @@ const UserHero = ({ user }: UserHeroProps) => {
     <div className="flex flex-col gap-8 p-2 sm:p-6">
       {/* professional_title & open_to_work */}
       <div className="flex items-center justify-between gap-2">
-        <SectionTitle title={user?.professional_title as string} />
+        <UserSectionTitle title={user?.professional_title as string} />
         <div className="flex items-center gap-2 text-emerald-500 bg-emerald-50 px-1.5 py-1.5 sm:px-3 rounded-full">
           <div className="h-2 w-2 rounded-full bg-emerald-500 shrink-0" />
           <p className="text-xs font-medium uppercase hidden sm:block">

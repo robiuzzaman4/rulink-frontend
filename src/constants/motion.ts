@@ -27,7 +27,7 @@ export const MOTION_SLIDES_TRANSITION = {
   opacity: { duration: 0.2 },
 };
 
-export const FADE_UP_ANIMATION_VARIANTS = {
+export const MOTION_LAYOUT_FADE_UP = {
   hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,

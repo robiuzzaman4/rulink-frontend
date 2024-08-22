@@ -1,5 +1,5 @@
 import React from "react";
-import SectionTitle from "@/components/pages/dynamic-user/section-title";
+import UserSectionTitle from "@/components/pages/dynamic-user/user-section-title";
 import { motion } from "framer-motion";
 import {
   MOTION_PULL_UP_CONTAINER,
@@ -14,7 +14,7 @@ const UserSkills = ({ skills }: UserSkillsProps) => {
   return (
     <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <div className="w-full flex items-center justify-between gap-2">
-        <SectionTitle title="Skills" />
+        <UserSectionTitle title="Skills" />
       </div>
       <motion.div
         variants={MOTION_PULL_UP_CONTAINER}

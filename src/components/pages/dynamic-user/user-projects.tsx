@@ -1,15 +1,10 @@
 import React from "react";
-import SectionTitle from "@/components/pages/dynamic-user/section-title";
+import UserSectionTitle from "@/components/pages/dynamic-user/user-section-title";
 import { TProject } from "@/types";
 import Image from "next/image";
-import { getIconByPlatform } from "@/utils/getIconByPlatform";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  MOTION_PULL_UP_CONTAINER,
-  MOTION_PULL_UP_ITEM,
-  MOTION_SCALE_UP,
-} from "@/constants/motion";
+import { MOTION_SCALE_UP } from "@/constants/motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
@@ -20,7 +15,7 @@ interface UserSocialsProps {
 const UserProjects = ({ projects }: UserSocialsProps) => {
   return (
     <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
-      <SectionTitle title="Projects" />
+      <UserSectionTitle title="Projects" />
 
       <div className="grid sm:grid-cols-2 gap-2">
         {projects?.map((item, index) => {

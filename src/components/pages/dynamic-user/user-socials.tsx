@@ -1,5 +1,5 @@
 import React from "react";
-import SectionTitle from "@/components/pages/dynamic-user/section-title";
+import UserSectionTitle from "@/components/pages/dynamic-user/user-section-title";
 import { TSocial, TSocialPlatform } from "@/types";
 import Image from "next/image";
 import { getIconByPlatform } from "@/utils/getIconByPlatform";
@@ -18,7 +18,7 @@ const UserSocials = ({ socials }: UserSocialsProps) => {
   return (
     <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <div className="w-full flex items-center justify-between gap-2">
-        <SectionTitle title="Socials" />
+        <UserSectionTitle title="Socials" />
 
         <div className="flex items-center gap-2">
           {socials?.map((item, index) => {

@@ -6,7 +6,7 @@ import { TProject, TSocial, TUser } from "@/types";
 import Link from "next/link";
 import React from "react";
 import UserNavbar from "@/components/pages/dynamic-user/user-navbar";
-import Wrapper from "@/components/pages/dynamic-user/wrapper";
+import UserWrapper from "@/components/pages/dynamic-user/user-wrapper";
 import UserHero from "@/components/pages/dynamic-user/user-hero";
 import UserSkills from "@/components/pages/dynamic-user/user-skills";
 import UserSocials from "@/components/pages/dynamic-user/user-socials";
@@ -56,7 +56,7 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
       {/* navbar */}
       <UserNavbar user={user} />
       {/* wrapper */}
-      <Wrapper>
+      <UserWrapper>
         {/* hero section */}
         <UserHero user={user} />
         {/* skills section */}
@@ -71,7 +71,7 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
         {user?.socials && user?.socials?.length > 0 && (
           <UserSocials socials={user?.socials as TSocial[]} />
         )}
-      </Wrapper>
+      </UserWrapper>
     </section>
   );
 };
