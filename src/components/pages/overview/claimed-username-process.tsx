@@ -14,14 +14,23 @@ const ClaimedUsernameProcess = () => {
 
   // === set modal state ===
   useEffect(() => {
-    if (
-      !isLoading &&
-      (isClaimedUsername === false || isClaimedUsername === undefined)
-    ) {
-      setOpen(true);
-    } else if (isClaimedUsername === true) {
+    if (!isLoading) {
+      if (isClaimedUsername === false || isClaimedUsername === undefined) {
+        setOpen(true);
+      } else if (isClaimedUsername === true) {
+        setOpen(false);
+      }
+    } else {
       setOpen(false);
     }
+    // if (
+    //   (!isLoading && isClaimedUsername === false) ||
+    //   isClaimedUsername === undefined
+    // ) {
+    //   setOpen(true);
+    // } else if (isClaimedUsername === true) {
+    //   setOpen(false);
+    // }
   }, [isLoading, isClaimedUsername]);
 
   // === prevent rendering if user is exist and claimed username ===
