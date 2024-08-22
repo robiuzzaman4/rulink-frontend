@@ -10,12 +10,15 @@ const useUserByEmail = () => {
   const email = user && user?.emailAddresses?.[0].emailAddress;
 
   // === get user by email api hook ===
-  const { data, isLoading, refetch } = useGetUserByEmailQuery({ email });
+  const { data, isLoading, refetch, isFetching } = useGetUserByEmailQuery({
+    email,
+  });
   const userFromDb: TUser = data?.data;
 
   return {
     // api loading and refetch
     isLoading,
+    isFetching,
     refetch,
 
     // email from clerk

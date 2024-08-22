@@ -1,12 +1,12 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import WelcomeModal from "@/components/pages/overview/welcome-modal";
-import { Loader } from "lucide-react";
 import useUserByEmail from "@/hooks/useUserByEmail";
 
 const ClaimedUsernameProcess = () => {
   // === user info from database ===
-  const { clerk_email, isClaimedUsername, isLoading, refetch } =
+  const { clerk_email, isClaimedUsername, isLoading, isFetching, refetch } =
     useUserByEmail();
 
   // === welcome modal state ===
@@ -14,37 +14,19 @@ const ClaimedUsernameProcess = () => {
 
   // === set modal state ===
   useEffect(() => {
-    if (!isLoading) {
-      if (isClaimedUsername === false || isClaimedUsername === undefined) {
-        setOpen(true);
-      } else if (isClaimedUsername === true) {
-        setOpen(false);
-      }
-    } else {
+    if (
+      (!isLoading || !isFetching) &&
+      (isClaimedUsername === false || isClaimedUsername === undefined)
+    ) {
+      setOpen(true);
+    } else if (isClaimedUsername === true) {
       setOpen(false);
     }
-    // if (
-    //   (!isLoading && isClaimedUsername === false) ||
-    //   isClaimedUsername === undefined
-    // ) {
-    //   setOpen(true);
-    // } else if (isClaimedUsername === true) {
-    //   setOpen(false);
-    // }
-  }, [isLoading, isClaimedUsername]);
+  }, [isLoading, isFetching, isClaimedUsername]);
 
   // === prevent rendering if user is exist and claimed username ===
   if (isClaimedUsername === true) {
     return null;
-  }
-
-  // === handling loading state ===
-  if (isLoading) {
-    return (
-      <div className="text-xl font-medium text-center w-full h-[calc(100vh-160px)] grid place-items-center text-foreground">
-        <Loader size={24} className="animate-spin" />
-      </div>
-    );
   }
 
   return (
