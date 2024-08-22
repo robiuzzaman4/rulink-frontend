@@ -73,8 +73,10 @@ export default function RootLayout({
                 success: (
                   <CheckCircledIcon className="text-rulink-primary h-5 w-5" />
                 ),
-                error: <CrossCircledIcon className="text-rose-600 h-5 w-5" />,
-                info: <InfoCircledIcon className="text-orange-600 h-5 w-5" />,
+                error: (
+                  <CrossCircledIcon className="text-rulink-danger h-5 w-5" />
+                ),
+                info: <InfoCircledIcon className="text-rulink-info h-5 w-5" />,
               }}
               className="text-sm font-sans"
             />
