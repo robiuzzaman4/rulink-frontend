@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        "3xl": "1880px",
+      },
       fontFamily: {
         sans: ["var(--font-inter)"],
         satoshi: ["var(--font-satoshi)"],

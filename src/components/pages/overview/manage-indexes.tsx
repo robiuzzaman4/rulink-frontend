@@ -7,7 +7,7 @@ import React from "react";
 const ManageIndexes = () => {
   return (
     <div className="px-4 lg:px-6 mt-6">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-6">
         {NAVLINKS.manage.map((item, index) => (
           <Link
             href={item.href}
