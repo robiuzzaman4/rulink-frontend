@@ -6,6 +6,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import SectionTitle from "./section-title";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { motion } from "framer-motion";
+import { MOTION_SCALE_UP } from "@/constants/motion";
 
 interface UserHeroProps {
   user: TUser;
@@ -66,7 +68,10 @@ const UserHero = ({ user }: UserHeroProps) => {
         </div>
 
         {/* right section */}
-        <div className="h-40 w-40 grid place-items-center rounded-full mx-auto order-1 sm:order-2 p-2">
+        <motion.div
+          variants={MOTION_SCALE_UP}
+          className="h-40 w-40 grid place-items-center rounded-full mx-auto order-1 sm:order-2 p-2"
+        >
           <Avatar className="h-full w-full">
             <AvatarImage
               src={user?.img?.url}
@@ -76,7 +81,7 @@ const UserHero = ({ user }: UserHeroProps) => {
               N/A
             </AvatarFallback>
           </Avatar>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

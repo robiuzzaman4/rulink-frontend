@@ -20,19 +20,19 @@ const UserSocials = ({ socials }: UserSocialsProps) => {
       <div className="w-full flex items-center justify-between gap-2">
         <SectionTitle title="Socials" />
 
-        <motion.div
-          variants={MOTION_PULL_UP_CONTAINER}
-          initial="hidden"
-          animate="show"
-          className="flex items-center gap-2"
-        >
+        <div className="flex items-center gap-2">
           {socials?.map((item, index) => {
             // generate icon src
             const { src, alt } = getIconByPlatform(
               item?.platform as TSocialPlatform
             );
             return (
-              <motion.div key={index} variants={MOTION_PULL_UP_ITEM}>
+              <motion.div
+                key={index}
+                variants={MOTION_PULL_UP_ITEM}
+                initial="hidden"
+                whileInView="show"
+              >
                 <Link
                   href={item?.url}
                   className="h-9 w-9 rounded-full grid place-items-center bg-background border border-border shadow-sm"
@@ -49,7 +49,7 @@ const UserSocials = ({ socials }: UserSocialsProps) => {
               </motion.div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </div>
   );

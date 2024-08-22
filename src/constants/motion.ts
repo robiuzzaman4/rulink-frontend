@@ -46,7 +46,7 @@ export const MOTION_PULL_UP_CONTAINER = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
+      staggerChildren: 0.05,
     },
   },
 };
@@ -54,4 +54,18 @@ export const MOTION_PULL_UP_CONTAINER = {
 export const MOTION_PULL_UP_ITEM = {
   hidden: { y: 20, opacity: 0 },
   show: { y: 0, opacity: 1 },
+};
+
+export const MOTION_SCALE_UP = {
+  hidden: {
+    opacity: 0,
+    scale: 0.5,
+  },
+  show: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };

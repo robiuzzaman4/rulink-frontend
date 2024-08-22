@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useGetUserByUsernameQuery } from "@/features/user-slice";
-import { TSocial, TUser } from "@/types";
+import { TProject, TSocial, TUser } from "@/types";
 import Link from "next/link";
 import React from "react";
 import UserNavbar from "@/components/pages/dynamic-user/user-navbar";
@@ -10,6 +10,7 @@ import Wrapper from "@/components/pages/dynamic-user/wrapper";
 import UserHero from "@/components/pages/dynamic-user/user-hero";
 import UserSkills from "@/components/pages/dynamic-user/user-skills";
 import UserSocials from "@/components/pages/dynamic-user/user-socials";
+import UserProjects from "@/components/pages/dynamic-user//user-projects";
 
 interface DynamicUserProps {
   username: string;
@@ -61,6 +62,10 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
         {/* skills section */}
         {user?.skills && user?.skills?.length > 0 && (
           <UserSkills skills={user?.skills as string[]} />
+        )}
+        {/* projects section */}
+        {user?.projects && user?.projects?.length > 0 && (
+          <UserProjects projects={user?.projects as TProject[]} />
         )}
         {/* socials section */}
         {user?.socials && user?.socials?.length > 0 && (
