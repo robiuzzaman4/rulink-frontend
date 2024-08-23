@@ -10,6 +10,7 @@ import {
   CrossCircledIcon,
   InfoCircledIcon,
 } from "@radix-ui/react-icons";
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -46,10 +47,57 @@ const satoshi = Satoshi({
   display: "swap",
 });
 
-// export const metadata: Metadata = {
-//   title: "Rulink",
-//   description: "Build your own site in minutes.",
-// };
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  metadataBase: new URL(siteConfig.url),
+  description: siteConfig.description,
+  keywords: [
+    "Next.js",
+    "React",
+    "Tailwind CSS",
+    "Server Components",
+    "Radix UI",
+  ],
+  authors: [
+    {
+      name: "Md. Robi-uz-zaman Ruhan",
+      url: "https://github.com/robiuzzaman4",
+    },
+  ],
+  creator: "@robiuzzaman4",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+    creator: "@robiuzzaman4",
+  },
+  icons: {
+    icon: "/logo-zinc.png",
+    // shortcut: "/favicon-16x16.png",
+    // apple: "/apple-touch-icon.png",
+  },
+  manifest: `${siteConfig.url}/site.webmanifest`,
+};
 
 export default function RootLayout({
   children,
