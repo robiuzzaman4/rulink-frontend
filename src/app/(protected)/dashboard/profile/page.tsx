@@ -1,11 +1,10 @@
 import ManageProfileForm from "@/components/pages/profile/manage-profile-from";
+import { Metadata } from "next";
 import React from "react";
 
-export const metadata = {
-  title: "Rulink - Manage Profile",
-  openGraph: {
-    title: "Rulink - Manage Profile",
-  },
+export const metadata: Metadata = {
+  title: "Manage Profile",
+  description: "Manage your profile",
 };
 
 const ProfilePage = () => {

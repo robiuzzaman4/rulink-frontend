@@ -1,11 +1,10 @@
 import ManageSkills from "@/components/pages/skills/manage-skills";
+import { Metadata } from "next";
 import React from "react";
 
-export const metadata = {
-  title: "Rulink - Manage Skills",
-  openGraph: {
-    title: "Rulink - Manage Skills",
-  },
+export const metadata: Metadata = {
+  title: "Manage Skills",
+  description: "Manage your skills",
 };
 
 const SkillsPage = () => {

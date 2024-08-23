@@ -1,11 +1,10 @@
 import ManageSocials from "@/components/pages/socials/manage-socials";
+import { Metadata } from "next";
 import React from "react";
 
-export const metadata = {
-  title: "Rulink - Manage Socials",
-  openGraph: {
-    title: "Rulink - Manage Socials",
-  },
+export const metadata: Metadata = {
+  title: "Manage Socials",
+  description: "Manage your socials accounts",
 };
 
 const SocialsPage = () => {

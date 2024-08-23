@@ -1,11 +1,10 @@
 import ManageProjects from "@/components/pages/projects/manage-projects";
+import { Metadata } from "next";
 import React from "react";
 
-export const metadata = {
-  title: "Rulink - Manage Projects",
-  openGraph: {
-    title: "Rulink - Manage Projects",
-  },
+export const metadata: Metadata = {
+  title: "Manage Projects",
+  description: "Manage your projects",
 };
 
 const ProjectsPage = () => {
