@@ -1,6 +1,12 @@
 import PricingCard from "@/components/pages/pricing/pricing-card";
 import { PRICING_PLANS } from "@/constants/pricing";
+import { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Pricing",
+  description: "Simple & transparent pricing. Start for free.",
+};
 
 const PricingPage = () => {
   return (
