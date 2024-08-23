@@ -46,10 +46,10 @@ const satoshi = Satoshi({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Rulink",
-  description: "Build your own site in minutes.",
-};
+// export const metadata: Metadata = {
+//   title: "Rulink",
+//   description: "Build your own site in minutes.",
+// };
 
 export default function RootLayout({
   children,
