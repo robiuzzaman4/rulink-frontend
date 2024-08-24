@@ -25,7 +25,7 @@ const GeneratedUrl = () => {
     return null;
   }
   return (
-    <div className="w-full px-4 lg:px-6 pb-6 flex flex-col gap-1 sm:gap-2">
+    <div className="w-full  flex flex-col gap-1 sm:gap-2">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-medium font-satoshi">
         Your Website Url
       </h2>

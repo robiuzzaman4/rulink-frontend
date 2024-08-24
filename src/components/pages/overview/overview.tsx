@@ -14,21 +14,19 @@ const Overview = () => {
   // === handling loading state ===
   if (isLoading || isFetching) {
     return (
-      <div className="text-xl font-medium text-center w-full h-screen grid place-items-center text-foreground">
+      <div className="text-xl font-medium text-center w-full h-[calc(100vh-168px)] grid place-items-center text-foreground">
         <Loader size={24} className="animate-spin" />
       </div>
     );
   }
 
   return (
-    <div className="py-20">
+    <div className="grid gap-6">
       <GeneratedUrl />
       <ManageIndexes />
 
       {/* claim user name process */}
-      <div className="px-4 lg:px-6">
-        <ClaimedUsernameProcess />
-      </div>
+      <ClaimedUsernameProcess />
     </div>
   );
 };

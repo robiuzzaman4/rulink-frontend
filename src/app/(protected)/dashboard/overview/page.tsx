@@ -8,7 +8,11 @@ export const metadata: Metadata = {
 };
 
 const OverviewPage = () => {
-  return <Overview />;
+  return (
+    <div className="w-full min-h-[calc(100vh-56px)] mt-14 px-4 lg:px-6 py-14">
+      <Overview />
+    </div>
+  );
 };
 
 export default OverviewPage;
