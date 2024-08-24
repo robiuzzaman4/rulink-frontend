@@ -51,6 +51,30 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
     );
   }
 
+  // === handling empty user state ===
+  if (
+    !user?.name ||
+    !user?.professional_title ||
+    !user?.bio ||
+    !user?.resume_url ||
+    !user?.email ||
+    !user?.img
+  ) {
+    return (
+      <div className="h-screen w-full bg-background grid place-items-center z-50">
+        <div className="flex flex-col gap-2 items-center">
+          <h2 className="text-3xl font-medium text-center font-satoshi">
+            Your profile is not completed!
+          </h2>
+          <Button asChild variant="link">
+            <Link href="/dashboard/overview" className="underline">
+              Please update your profile.
+            </Link>
+          </Button>
+        </div>
+      </div>
+    );
+  }
   return (
     <section className="w-full max-w-xl mx-auto relative font-satoshi p-4">
       {/* navbar */}
