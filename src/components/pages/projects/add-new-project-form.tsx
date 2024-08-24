@@ -107,6 +107,12 @@ const AddNewProjectForm = () => {
   const hanldeUpdateProfile = async (
     data: z.infer<typeof CreateProjectSchema>
   ) => {
+    // create project validataion
+    if (projectsFromDb && projectsFromDb?.length >= 2) {
+      toast.error("You can only add up to two projects.");
+      return;
+    }
+
     // file upload api mutations
     try {
       const response: any = await uploadFile({
@@ -153,7 +159,10 @@ const AddNewProjectForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(hanldeUpdateProfile)} className="w-full px-1 pb-1">
+      <form
+        onSubmit={form.handleSubmit(hanldeUpdateProfile)}
+        className="w-full px-1 pb-1"
+      >
         <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
           <h5 className="text-lg font-medium font-satoshi">Add New Project</h5>
           <div className="w-full grid xl:grid-cols-2 gap-4">
