@@ -1,3 +1,4 @@
+import IconButton from "@/components/shared/icon-button";
 import { Button } from "@/components/ui/button";
 import { NAVLINKS } from "@/constants/navlinks";
 import { ChevronRight } from "lucide-react";
@@ -16,7 +17,9 @@ const ManageIndexes = () => {
           >
             <div className="h-40 flex items-center justify-center border-y border-y-border mt-6">
               <div className="px-6 border-x h-full w-full grid place-items-center mx-6 bg-background">
-                {item.label}
+                <IconButton>
+                  <>{item?.icon}</>
+                </IconButton>
               </div>
             </div>
             <div className="hover:bg-secondary w-full h-12 rounded-b-lg flex items-center justify-center ">
