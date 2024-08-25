@@ -1,4 +1,11 @@
-import { Box, Earth, FolderClosed, Sparkle, UserPen } from "lucide-react";
+import {
+  Box,
+  BriefcaseBusiness,
+  Earth,
+  FolderClosed,
+  Sparkle,
+  UserPen,
+} from "lucide-react";
 export const NAVLINKS = {
   overview: [
     {
@@ -22,6 +29,11 @@ export const NAVLINKS = {
       label: "Projects",
       href: "/dashboard/projects",
       icon: <FolderClosed size={16} />,
+    },
+    {
+      label: "Experiences",
+      href: "/dashboard/experiences",
+      icon: <BriefcaseBusiness size={16} />,
     },
     {
       label: "Socials",
