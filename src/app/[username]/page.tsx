@@ -29,20 +29,20 @@ export async function generateMetadata({
       description: userData?.professional_title,
       type: "profile",
       url: `https://rulink.vercel.app/${userData?.username}`,
-      images: [
-        {
-          url: siteConfig.ogImage,
-          width: 1200,
-          height: 630,
-          alt: siteConfig.name,
-        },
-      ],
+      // images: [
+      //   {
+      //     url: siteConfig.ogImage,
+      //     width: 1200,
+      //     height: 630,
+      //     alt: siteConfig.name,
+      //   },
+      // ],
     },
     twitter: {
       card: "summary_large_image",
       title: userData?.name || "User profile",
       description: userData?.professional_title || "",
-      images: [siteConfig.ogImage],
+      // images: [siteConfig.ogImage],
       creator: "@robiuzzaman4",
     },
   };
