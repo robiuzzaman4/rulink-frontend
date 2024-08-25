@@ -11,6 +11,7 @@ import UserHero from "@/components/pages/dynamic-user/user-hero";
 import UserSkills from "@/components/pages/dynamic-user/user-skills";
 import UserSocials from "@/components/pages/dynamic-user/user-socials";
 import UserProjects from "@/components/pages/dynamic-user//user-projects";
+import { Loader } from "lucide-react";
 
 interface DynamicUserProps {
   username: string;
@@ -46,7 +47,7 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
   if (isLoading || isFetching) {
     return (
       <div className="h-screen w-full bg-background grid place-items-center z-50">
-        Loading...
+        <Loader size={24} className="animate-spin" />
       </div>
     );
   }
