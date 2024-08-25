@@ -26,7 +26,7 @@ export default async function Image({
         style={{
           fontSize: 48,
           background:
-            "radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(113, 113, 122, 1) 100%)",
+            "radial-gradient(circle at top, rgba(255, 255, 255, 1) 0%, rgba(113, 113, 122, 1) 100%)",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -34,20 +34,22 @@ export default async function Image({
           justifyContent: "center",
         }}
       >
-        <div tw="h-full w-full flex flex-col items-center justify-center gap-4">
-          <img
-            src={userData?.img?.url}
-            alt={alt}
-            tw="h-[100px] w-[100px] rounded-full object-cover"
-          />
-          <span tw="flex flex-col items-center gap-2">
-            <h3 tw="text-5xl text-center text-[#09090b] font-medium">
-              {userData?.name}
-            </h3>
-            <h5 tw="text-4xl text-center text-[#27272A] font-medium">
-              {userData?.username}
-            </h5>
-          </span>
+        <div tw="flex">
+          <div tw="h-full w-full flex flex-col items-center justify-center gap-4">
+            <img
+              src={userData?.img?.url}
+              alt={alt}
+              tw="h-[100px] w-[100px] rounded-full object-cover"
+            />
+            <span tw="flex flex-col items-center gap-2">
+              <h3 tw="text-5xl text-center text-[#09090b] font-medium">
+                {userData?.name}
+              </h3>
+              <h5 tw="text-4xl text-center text-[#27272A] font-medium">
+                @{userData?.username}
+              </h5>
+            </span>
+          </div>
         </div>
       </div>
     ),

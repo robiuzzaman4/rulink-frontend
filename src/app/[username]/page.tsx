@@ -22,11 +22,13 @@ export async function generateMetadata({
   }
 
   return {
-    title: userData?.name || "User profile",
-    description: userData?.professional_title,
+    title:
+      `${userData?.name} - ${userData?.professional_title}` || "User profile",
+    description: userData?.bio || "",
     openGraph: {
-      title: userData?.name || "User profile",
-      description: userData?.professional_title,
+      title:
+        `${userData?.name} - ${userData?.professional_title}` || "User profile",
+      description: userData?.bio || "",
       type: "profile",
       url: `https://rulink.vercel.app/${userData?.username}`,
       // images: [
@@ -40,8 +42,9 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: userData?.name || "User profile",
-      description: userData?.professional_title || "",
+      title:
+        `${userData?.name} - ${userData?.professional_title}` || "User profile",
+      description: userData?.bio || "",
       // images: [siteConfig.ogImage],
       creator: "@robiuzzaman4",
     },
