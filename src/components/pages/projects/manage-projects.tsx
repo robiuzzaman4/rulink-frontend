@@ -14,7 +14,7 @@ const ManageProjects = () => {
         <IconButton>
           <FolderClosed size={20} />
         </IconButton>
-        <h5 className="text-lg font-medium font-satoshi">Manage Projects</h5>
+        <h5 className="text-lg font-medium font-satoshi">Manage Projects (max: 2)</h5>
       </div>
       {/* your projects */}
       <YourProjects />

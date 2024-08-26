@@ -41,6 +41,7 @@ export type TProject = {
 
 // === experience types ===
 export type TExperience = {
+  _id: string;
   company: string;
   position: string;
   start_date: string;

@@ -37,7 +37,10 @@ const RemoveSocialAlert = ({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <Button onClick={handleRemoveSocial}>
+          <Button
+            onClick={handleRemoveSocial}
+            disabled={isUpdateProfileLoading}
+          >
             Yes Remove
             {isUpdateProfileLoading && (
               <Loader size={16} className="animate-spin ml-2" />

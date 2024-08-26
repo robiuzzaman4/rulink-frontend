@@ -11,34 +11,34 @@ import { Button } from "@/components/ui/button";
 import { Loader } from "lucide-react";
 import React from "react";
 
-interface RemoveProjectAlertProps {
+interface RemoveExperienceAlertProps {
   open: boolean;
   setOpen: (open: boolean) => void;
-  handleRemoveProject: () => void;
+  handleRemoveExperience: () => void;
   isUpdateProfileLoading: boolean;
 }
 
-const RemoveProjectAlert = ({
+const RemoveExperienceAlert = ({
   open,
   setOpen,
-  handleRemoveProject,
+  handleRemoveExperience,
   isUpdateProfileLoading,
-}: RemoveProjectAlertProps) => {
+}: RemoveExperienceAlertProps) => {
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you absolutely sure to remove this project?
+            Are you absolutely sure to remove this experience?
           </AlertDialogTitle>
           <AlertDialogDescription>
-            This project data will permanently delete from our servers.
+            This experience data will permanently delete from our servers.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <Button
-            onClick={handleRemoveProject}
+            onClick={handleRemoveExperience}
             disabled={isUpdateProfileLoading}
           >
             Yes Remove
@@ -52,4 +52,4 @@ const RemoveProjectAlert = ({
   );
 };
 
-export default RemoveProjectAlert;
+export default RemoveExperienceAlert;

@@ -72,7 +72,7 @@ const YourProjects = () => {
                       alt="Project thumbnail"
                       height={480}
                       width={480}
-                      className="h-20 w-20 rounded-md object-cover shrink-0"
+                      className="h-20 w-32 rounded-md object-cover shrink-0"
                     />
                     {/* delete project button */}
                     <Button
@@ -87,7 +87,7 @@ const YourProjects = () => {
                     </Button>
                   </div>
                   <span>
-                    <h5 className="text-lg font-medium font-satoshi">
+                    <h5 className="text-base sm:text-lg font-medium font-satoshi">
                       {project?.title}
                     </h5>
                     <p className="text-sm font-normal text-muted-foreground">

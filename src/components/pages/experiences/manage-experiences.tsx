@@ -14,7 +14,7 @@ const ManageExperiences = () => {
         <IconButton>
           <BriefcaseBusiness size={20} />
         </IconButton>
-        <h5 className="text-lg font-medium font-satoshi">Manage Experiences</h5>
+        <h5 className="text-lg font-medium font-satoshi">Manage Experiences (max: 3)</h5>
       </div>
       {/* your experiences */}
       <YourExperiences />

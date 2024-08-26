@@ -83,7 +83,7 @@ const AddNewExperiencForm = () => {
     }
 
     // create experience validataion
-    if (experiences && experiences?.length >= 6) {
+    if (experiences && experiences?.length >= 3) {
       toast.error("You can only add up to three experiences.");
       form.reset({
         company: "",
@@ -100,7 +100,7 @@ const AddNewExperiencForm = () => {
     const endDate = data?.end_date
       ? format(data.end_date, "MMMM do, yyyy")
       : isChecked
-      ? "CURRENT"
+      ? "PRESENT"
       : "";
 
     const payload = {
