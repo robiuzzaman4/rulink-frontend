@@ -24,7 +24,7 @@ export default async function Image({
     (
       <div
         style={{
-          fontSize: "48px",
+          fontSize: "80px",
           backgroundColor: "white",
           width: "100%",
           height: "100%",
@@ -40,7 +40,7 @@ export default async function Image({
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "between",
               gap: "32px",
             }}
           >
@@ -56,7 +56,6 @@ export default async function Image({
             />
             <h3
               style={{
-                fontSize: "5rem",
                 textAlign: "center",
                 color: "#09090b",
                 fontWeight: "500",
