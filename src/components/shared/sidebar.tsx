@@ -2,8 +2,7 @@
 
 import { NAVLINKS } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
-import { MoveRight } from "lucide-react";
+import UserButton from "@/components/shared/user-button";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -83,15 +82,7 @@ const Sidebar = () => {
       </div>
 
       {/* user button */}
-      <div className="w-full px-6 pb-4 flex items-center justify-between h-fit mt-auto">
-        <span className="flex items-center gap-2">
-          <p className="text-sm text-muted-foreground">
-            Click to see your user account
-          </p>
-          <MoveRight size={14} className="text-sm text-muted-foreground" />
-        </span>
-        <UserButton />
-      </div>
+      <UserButton />
     </div>
   );
 };

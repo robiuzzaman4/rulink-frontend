@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, MoveRight } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/drawer";
 import { NAVLINKS } from "@/constants/navlinks";
 import { cn } from "@/lib/utils";
-import { UserButton } from "@clerk/nextjs";
+import UserButton from "@/components/shared/user-button";
 
 const DashboardNavbar = () => {
   const pathname = usePathname();
@@ -129,15 +129,7 @@ const DashboardNavbar = () => {
           </div>
 
           {/* user button */}
-          <div className="w-full px-6 pb-4 flex items-center justify-between h-fit mt-auto">
-            <span className="flex items-center gap-2">
-              <p className="text-sm text-muted-foreground">
-                Click to see your user account
-              </p>
-              <MoveRight size={14} className="text-sm text-muted-foreground" />
-            </span>
-            <UserButton />
-          </div>
+          <UserButton />
         </DrawerContent>
       </Drawer>
     </>
