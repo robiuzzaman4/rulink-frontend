@@ -39,6 +39,16 @@ export type TProject = {
   live_url?: string;
 };
 
+// === experience types ===
+export type TExperience = {
+  company: string;
+  position: string;
+  start_date: string;
+  end_date: string;
+  location_type: "ONSITE" | "REMOTE" | "HYBRID";
+  job_type: "FULL_TIME" | "PART_TIME" | "INTERNSHIP" | "CONTRACTUAL";
+};
+
 // === user types ===
 export type TUser = {
   _id: string;
@@ -55,4 +65,5 @@ export type TUser = {
   is_claimed_username: boolean;
   resume_url?: string;
   projects?: TProject[];
+  experiences?: TExperience[];
 };
