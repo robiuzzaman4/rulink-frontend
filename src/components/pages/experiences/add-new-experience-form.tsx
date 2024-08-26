@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { CreateProjectSchema } from "@/schemas";
+import { CreateExperienceSchema } from "@/schemas";
 import {
   Form,
   FormControl,
@@ -22,6 +22,22 @@ import { toast } from "sonner";
 import { FILE_UPLOAD_API_KEY } from "@/constants/apikey";
 import useUserByEmail from "@/hooks/useUserByEmail";
 import { TProject } from "@/types";
+import { cn } from "@/lib/utils";
+import { format } from "date-fns";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const AddNewExperiencForm = () => {
   // === get uesr infor from db ===
@@ -32,13 +48,15 @@ const AddNewExperiencForm = () => {
     useUpdateUserMutation();
 
   // === initialize form ===
-  const form = useForm<z.infer<typeof CreateProjectSchema>>({
-    resolver: zodResolver(CreateProjectSchema),
+  const form = useForm<z.infer<typeof CreateExperienceSchema>>({
+    resolver: zodResolver(CreateExperienceSchema),
     defaultValues: {
-      title: "",
-      description: "",
-      thumbnail_url: "",
-      live_url: "",
+      company: "",
+      position: "",
+      start_date: undefined,
+      end_date: undefined,
+      location_type: undefined,
+      job_type: undefined,
     },
   });
 
@@ -47,14 +65,13 @@ const AddNewExperiencForm = () => {
 
   // === hanlde update profile ===
   const hanldeUpdateProfile = async (
-    data: z.infer<typeof CreateProjectSchema>
+    data: z.infer<typeof CreateExperienceSchema>
   ) => {
     // create project validataion
     if (projectsFromDb && projectsFromDb?.length >= 2) {
       toast.error("You can only add up to two projects.");
       return;
     }
-
   };
 
   return (
@@ -64,18 +81,20 @@ const AddNewExperiencForm = () => {
         className="w-full px-1 pb-1"
       >
         <div className="w-full bg-background p-4 sm:p-6 rounded-xl border border-border shadow-sm flex flex-col gap-4">
-          <h5 className="text-lg font-medium font-satoshi">Add New Project</h5>
+          <h5 className="text-lg font-medium font-satoshi">
+            Add New Experience
+          </h5>
           <div className="w-full grid xl:grid-cols-2 gap-4">
-            {/* title field */}
+            {/* company field */}
             <FormField
               control={form.control}
-              name="title"
+              name="company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Title</FormLabel>
+                  <FormLabel>Company Name</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="Food Delivery Website"
+                      placeholder="Microsoft Corporation"
                       {...field}
                       disabled={isUpdateProfileLoading}
                     />
@@ -85,16 +104,16 @@ const AddNewExperiencForm = () => {
               )}
             />
 
-            {/* live url field */}
+            {/* postion field */}
             <FormField
               control={form.control}
-              name="live_url"
+              name="position"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Live Link</FormLabel>
+                  <FormLabel>Position</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="https://www.google.com"
+                      placeholder="Software Engineer"
                       {...field}
                       disabled={isUpdateProfileLoading}
                     />
@@ -104,35 +123,146 @@ const AddNewExperiencForm = () => {
               )}
             />
 
-            {/* description filed */}
+            {/* start date field */}
             <FormField
               control={form.control}
-              name="description"
+              name="start_date"
               render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      placeholder="Write a short description of the project"
-                      className="min-h-[100px] md:min-h-[80px] lg:min-h-[70px]"
-                      {...field}
-                      disabled={isUpdateProfileLoading}
-                    />
-                  </FormControl>
+                <FormItem className="flex flex-col">
+                  <FormLabel>Start Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
+            {/* end date field */}
+            <FormField
+              control={form.control}
+              name="end_date"
+              render={({ field }) => (
+                <FormItem className="flex flex-col">
+                  <FormLabel>End Date</FormLabel>
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <FormControl>
+                        <Button
+                          variant={"outline"}
+                          className={cn(
+                            "w-full pl-3 text-left font-normal",
+                            !field.value && "text-muted-foreground"
+                          )}
+                        >
+                          {field.value ? (
+                            format(field.value, "PPP")
+                          ) : (
+                            <span>Pick a date</span>
+                          )}
+                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                      </FormControl>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={field.value}
+                        onSelect={field.onChange}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* job type field */}
+            <FormField
+              control={form.control}
+              name="job_type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Job Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select job type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="FULL_TIME">Full Time</SelectItem>
+                      <SelectItem value="PART_TIME">Part Time</SelectItem>
+                      <SelectItem value="INTERNSHIP">Internship</SelectItem>
+                      <SelectItem value="CONTRACTUAL">Contractual</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* location type field */}
+            <FormField
+              control={form.control}
+              name="location_type"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Location Type</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select location type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="ONSITE">Onsite</SelectItem>
+                      <SelectItem value="REMOTE">Remote</SelectItem>
+                      <SelectItem value="HYBRID">Hybrid</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
         </div>
         <div className="w-fit ml-auto py-4 px-4 sm:px-6">
-          <Button
-            type="submit"
-            disabled={isUpdateProfileLoading}
-          >
+          <Button type="submit" disabled={isUpdateProfileLoading}>
             Save
-            {(isUpdateProfileLoading) && (
+            {isUpdateProfileLoading && (
               <Loader size={16} className="animate-spin ml-2" />
             )}
           </Button>

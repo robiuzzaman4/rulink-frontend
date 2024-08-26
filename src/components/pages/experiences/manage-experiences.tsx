@@ -4,6 +4,7 @@ import React from "react";
 import IconButton from "@/components/shared/icon-button";
 import { BriefcaseBusiness } from "lucide-react";
 import YourExperiences from "@/components/pages/experiences/your-experiences";
+import AddNewExperiencForm from "@/components/pages/experiences/add-new-experience-form";
 
 const ManageExperiences = () => {
   return (
@@ -17,6 +18,8 @@ const ManageExperiences = () => {
       </div>
       {/* your experiences */}
       <YourExperiences />
+      {/* add new experience form */}
+      <AddNewExperiencForm />
     </div>
   );
 };
