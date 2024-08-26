@@ -24,8 +24,8 @@ export default async function Image({
     (
       <div
         style={{
-          fontSize: 48,
-          background: "white",
+          fontSize: "48px",
+          backgroundColor: "white",
           width: "100%",
           height: "100%",
           display: "flex",
@@ -33,15 +33,35 @@ export default async function Image({
           justifyContent: "center",
         }}
       >
-        <div tw="flex">
-          <div tw="flex items-center justify-center gap-4">
+        <div style={{ display: "flex", width: "100%" }}>
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "32px",
+            }}
+          >
             <img
               src={userData?.img?.url}
               alt={alt}
-              tw="h-[100px] w-[100px] rounded-full object-cover"
+              style={{
+                height: "200px",
+                width: "200px",
+                borderRadius: "50%",
+                objectFit: "cover",
+              }}
             />
-            <div tw="h-[100px] w-px bg-[#09090b]"></div>
-            <h3 tw="text-5xl text-center text-[#09090b] font-medium">
+            <h3
+              style={{
+                fontSize: "5rem",
+                textAlign: "center",
+                color: "#09090b",
+                fontWeight: "500",
+              }}
+            >
               {userData?.name}
             </h3>
           </div>
