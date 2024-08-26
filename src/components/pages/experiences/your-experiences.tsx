@@ -4,7 +4,10 @@ import { Loader } from "lucide-react";
 
 const YourExperiences = () => {
   // === get user info from db ===
-  const { isLoading } = useUserByEmail();
+  const { isLoading, experiences } = useUserByEmail();
+
+  console.log("experiences", experiences);
+  
 
   return (
     <>

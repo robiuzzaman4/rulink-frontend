@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -13,15 +13,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Loader, Plus } from "lucide-react";
-import { Textarea } from "@/components/ui/textarea";
-import { useUploadFileMutation } from "@/features/file-upload-slice";
+import { Loader } from "lucide-react";
 import { useUpdateUserMutation } from "@/features/user-slice";
 import { toast } from "sonner";
-import { FILE_UPLOAD_API_KEY } from "@/constants/apikey";
 import useUserByEmail from "@/hooks/useUserByEmail";
-import { TProject } from "@/types";
+import { TExperience } from "@/types";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { CalendarIcon } from "@radix-ui/react-icons";
@@ -38,10 +34,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const AddNewExperiencForm = () => {
+  // === currently working checkbox state and function ===
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckedChange = (checked: boolean) => {
+    setIsChecked(checked);
+  };
+
   // === get uesr infor from db ===
-  const { id, projects: projectsFromDb } = useUserByEmail();
+  const { id, experiences } = useUserByEmail();
 
   // === update profile api mutation hook ===
   const [updateProfile, { isLoading: isUpdateProfileLoading }] =
@@ -60,17 +63,84 @@ const AddNewExperiencForm = () => {
     },
   });
 
-  // === reset form values to get default values from the state ===
-  const { reset, getValues } = form;
-
   // === hanlde update profile ===
   const hanldeUpdateProfile = async (
     data: z.infer<typeof CreateExperienceSchema>
   ) => {
-    // create project validataion
-    if (projectsFromDb && projectsFromDb?.length >= 2) {
-      toast.error("You can only add up to two projects.");
+    // make end_date and checkbox validation
+    if (data?.end_date === undefined && !isChecked) {
+      toast.error("Please provide an End date or checked 'Currently working'");
+      form.reset({
+        company: "",
+        position: "",
+        start_date: undefined,
+        end_date: undefined,
+        location_type: undefined,
+        job_type: undefined,
+      });
+      setIsChecked(false);
       return;
+    }
+
+    // create experience validataion
+    if (experiences && experiences?.length >= 6) {
+      toast.error("You can only add up to three experiences.");
+      form.reset({
+        company: "",
+        position: "",
+        start_date: undefined,
+        end_date: undefined,
+        location_type: undefined,
+        job_type: undefined,
+      });
+      setIsChecked(false);
+      return;
+    }
+
+    const endDate = data?.end_date
+      ? format(data.end_date, "MMMM do, yyyy")
+      : isChecked
+      ? "CURRENT"
+      : "";
+
+    const payload = {
+      experiences: [
+        ...(experiences as TExperience[]),
+        {
+          company: data?.company,
+          position: data?.position,
+          start_date: format(data?.start_date, "MMMM do, yyyy"),
+          end_date: endDate,
+          location_type: data?.location_type,
+          job_type: data?.job_type,
+        },
+      ],
+    };
+
+    // update user profile api mutations
+    try {
+      const res: any = await updateProfile({
+        payload,
+        userId: id,
+      });
+      if (res?.data?.success) {
+        toast.success("Experience Added.");
+        form.reset({
+          company: "",
+          position: "",
+          start_date: undefined,
+          end_date: undefined,
+          location_type: undefined,
+          job_type: undefined,
+        });
+        setIsChecked(false);
+      } else {
+        toast.error("Failed to add experience. Please try again.");
+        setIsChecked(false);
+      }
+    } catch (error) {
+      console.log("UPDATE EXPERIENCES ERROR", error);
+      setIsChecked(false);
     }
   };
 
@@ -139,6 +209,7 @@ const AddNewExperiencForm = () => {
                             "w-full pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground"
                           )}
+                          disabled={isUpdateProfileLoading}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -169,7 +240,22 @@ const AddNewExperiencForm = () => {
               name="end_date"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>End Date</FormLabel>
+                  <div className="flex gap-2 justify-between">
+                    <FormLabel>End Date</FormLabel>
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="currently_working"
+                        checked={isChecked}
+                        onCheckedChange={handleCheckedChange}
+                      />
+                      <label
+                        htmlFor="currently_working"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                      >
+                        Currently working
+                      </label>
+                    </div>
+                  </div>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -179,6 +265,7 @@ const AddNewExperiencForm = () => {
                             "w-full pl-3 text-left font-normal",
                             !field.value && "text-muted-foreground"
                           )}
+                          disabled={isChecked || isUpdateProfileLoading}
                         >
                           {field.value ? (
                             format(field.value, "PPP")
@@ -211,8 +298,9 @@ const AddNewExperiencForm = () => {
                 <FormItem>
                   <FormLabel>Job Type</FormLabel>
                   <Select
+                    disabled={isUpdateProfileLoading}
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    defaultValue={field.value || ""}
                   >
                     <FormControl>
                       <SelectTrigger>
@@ -239,8 +327,9 @@ const AddNewExperiencForm = () => {
                 <FormItem>
                   <FormLabel>Location Type</FormLabel>
                   <Select
+                    disabled={isUpdateProfileLoading}
                     onValueChange={field.onChange}
-                    defaultValue={field.value}
+                    defaultValue={field.value || ""}
                   >
                     <FormControl>
                       <SelectTrigger>

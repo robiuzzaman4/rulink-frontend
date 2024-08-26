@@ -29,9 +29,7 @@ export const CreateExperienceSchema = z.object({
   start_date: z.date({
     message: "Start date is required",
   }),
-  end_date: z.date({
-    message: "End date is required",
-  }),
+  end_date: z.date().optional(),
   location_type: z.enum(["ONSITE", "REMOTE", "HYBRID"], {
     required_error:
       "Location type must be one of 'ONSITE', 'REMOTE', or 'HYBRID'",

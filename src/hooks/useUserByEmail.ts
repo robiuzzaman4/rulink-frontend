@@ -39,6 +39,7 @@ const useUserByEmail = () => {
     img: userFromDb?.img,
     resume_url: userFromDb?.resume_url,
     projects: userFromDb?.projects,
+    experiences: userFromDb?.experiences,
   };
 };
 
