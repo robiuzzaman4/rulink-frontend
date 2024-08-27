@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Rulink - Build your personal website in minutes",
+  name: "Rulink",
   url: "https://rulink.vercel.app/",
   ogImage: "https://i.ibb.co/nmPJVPm/food-delivary-website.png",
   description:
