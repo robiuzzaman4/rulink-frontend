@@ -103,7 +103,7 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
           <UserSocials socials={user?.socials as TSocial[]} />
         )}
         {/* footer section */}
-        <UserFooter />
+        <UserFooter username={user?.username} />
       </UserWrapper>
     </section>
   );
