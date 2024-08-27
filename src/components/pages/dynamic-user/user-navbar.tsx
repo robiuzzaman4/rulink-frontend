@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { TUser } from "@/types";
 import { getGreeting } from "@/utils/getGreeting";
+import Link from "next/link";
 import React from "react";
 
 interface UserNavbarProps {
@@ -21,7 +22,9 @@ const UserNavbar = ({ user }: UserNavbarProps) => {
 
       <h2 className="text-2xl font-medium hidden sm:block">{greeting}</h2>
 
-      <Button>Contact Me</Button>
+      <Button asChild>
+        <Link href={`mailto:${user?.email}`}>Contact Me</Link>
+      </Button>
     </nav>
   );
 };

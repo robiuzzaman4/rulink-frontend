@@ -106,7 +106,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <StoreProvider>
-        <html lang="en">
+        <html lang="en" className="scroll-smooth">
           <head>
             <link rel="logo icon" href="/logo-zinc.png" type="image/png" />
           </head>
