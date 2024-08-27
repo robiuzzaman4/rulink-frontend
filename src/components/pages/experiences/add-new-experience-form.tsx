@@ -98,7 +98,7 @@ const AddNewExperiencForm = () => {
     }
 
     const endDate = data?.end_date
-      ? format(data.end_date, "MMMM do, yyyy")
+      ? format(data.end_date, "MMMM yyyy")
       : isChecked
       ? "PRESENT"
       : "";
@@ -109,7 +109,7 @@ const AddNewExperiencForm = () => {
         {
           company: data?.company,
           position: data?.position,
-          start_date: format(data?.start_date, "MMMM do, yyyy"),
+          start_date: format(data?.start_date, "MMMM yyyy"),
           end_date: endDate,
           location_type: data?.location_type,
           job_type: data?.job_type,

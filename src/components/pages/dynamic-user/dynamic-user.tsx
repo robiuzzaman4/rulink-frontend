@@ -33,7 +33,7 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
       <div className="h-screen w-full bg-background grid place-items-center z-50">
         <div className="flex flex-col gap-2 items-center">
           <h2 className="text-3xl font-medium text-center font-satoshi">
-            {ERROR_MESSAGE}!
+            {ERROR_MESSAGE}
           </h2>
           <Button asChild variant="link">
             <Link href="/">Back to home</Link>
