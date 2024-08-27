@@ -49,8 +49,8 @@ export default async function Image({
             src={userData?.img?.url}
             alt={alt}
             style={{
-              height: 100,
-              width: 100,
+              height: 120,
+              width: 120,
               borderRadius: "50%",
               objectFit: "cover",
             }}
