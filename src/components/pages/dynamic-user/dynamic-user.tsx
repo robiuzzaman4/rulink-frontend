@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useGetUserByUsernameQuery } from "@/features/user-slice";
-import { TProject, TSocial, TUser } from "@/types";
+import { TExperience, TProject, TSocial, TUser } from "@/types";
 import Link from "next/link";
 import React from "react";
 import UserNavbar from "@/components/pages/dynamic-user/user-navbar";
@@ -10,7 +10,8 @@ import UserWrapper from "@/components/pages/dynamic-user/user-wrapper";
 import UserHero from "@/components/pages/dynamic-user/user-hero";
 import UserSkills from "@/components/pages/dynamic-user/user-skills";
 import UserSocials from "@/components/pages/dynamic-user/user-socials";
-import UserProjects from "@/components/pages/dynamic-user//user-projects";
+import UserProjects from "@/components/pages/dynamic-user/user-projects";
+import UserExperiences from "@/components/pages/dynamic-user/user-experiences";
 import { Loader } from "lucide-react";
 
 interface DynamicUserProps {
@@ -87,6 +88,10 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
         {/* skills section */}
         {user?.skills && user?.skills?.length > 0 && (
           <UserSkills skills={user?.skills as string[]} />
+        )}
+        {/* experiences section */}
+        {user?.experiences && user?.experiences?.length > 0 && (
+          <UserExperiences experiences={user?.experiences as TExperience[]} />
         )}
         {/* projects section */}
         {user?.projects && user?.projects?.length > 0 && (

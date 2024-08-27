@@ -36,7 +36,7 @@ const UserProjects = ({ projects }: UserSocialsProps) => {
                 className="h-40 w-full rounded-lg object-cover"
               />
               <div className="flex flex-col items-start gap-1">
-                <h4 className="text-lg font-medium truncate">{item?.title}</h4>
+                <h4 className="text-xl font-medium truncate">{item?.title}</h4>
                 <p className="text-sm font-normal text-muted-foreground line-clamp-3 sm:line-clamp-2">
                   {item?.description}
                 </p>
@@ -75,7 +75,7 @@ const UserProjects = ({ projects }: UserSocialsProps) => {
                 className="h-full w-32 rounded-lg object-cover"
               />
               <div className="flex flex-col items-start gap-1">
-                <h4 className="text-lg font-medium truncate">{item?.title}</h4>
+                <h4 className="text-xl font-medium truncate">{item?.title}</h4>
                 <p className="text-sm font-normal text-muted-foreground line-clamp-3 sm:line-clamp-2">
                   {item?.description}
                 </p>
