@@ -72,7 +72,7 @@ const UserProjects = ({ projects }: UserSocialsProps) => {
                 alt="project thumbnail"
                 width={720}
                 height={720}
-                className="h-full w-32 rounded-lg object-cover"
+                className="h-full w-36 aspect-video rounded-lg object-cover"
               />
               <div className="flex flex-col items-start gap-1">
                 <h4 className="text-xl font-medium truncate">{item?.title}</h4>

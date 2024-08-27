@@ -6,7 +6,6 @@ import { getIconByPlatform } from "@/utils/getIconByPlatform";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  MOTION_PULL_UP_CONTAINER,
   MOTION_PULL_UP_ITEM,
 } from "@/constants/motion";
 

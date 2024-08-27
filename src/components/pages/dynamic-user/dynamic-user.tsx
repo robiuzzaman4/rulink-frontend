@@ -12,6 +12,7 @@ import UserSkills from "@/components/pages/dynamic-user/user-skills";
 import UserSocials from "@/components/pages/dynamic-user/user-socials";
 import UserProjects from "@/components/pages/dynamic-user/user-projects";
 import UserExperiences from "@/components/pages/dynamic-user/user-experiences";
+import UserFooter from "@/components/pages/dynamic-user/user-footer";
 import { Loader } from "lucide-react";
 
 interface DynamicUserProps {
@@ -101,6 +102,8 @@ const DynamicUser = ({ username }: DynamicUserProps) => {
         {user?.socials && user?.socials?.length > 0 && (
           <UserSocials socials={user?.socials as TSocial[]} />
         )}
+        {/* footer section */}
+        <UserFooter />
       </UserWrapper>
     </section>
   );
