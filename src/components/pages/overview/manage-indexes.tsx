@@ -12,7 +12,7 @@ const ManageIndexes = () => {
         <Link
           href={item.href}
           key={index}
-          className="border border-border rounded-lg bg-secondary/50 shadow-lg w-full"
+          className="border border-border rounded-xl bg-secondary/50 shadow-lg w-full"
         >
           <div className="h-40 flex items-center justify-center border-y border-y-border mt-6">
             <div className="px-6 border-x h-full w-full grid place-items-center mx-6 bg-background">

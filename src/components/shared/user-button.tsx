@@ -39,10 +39,10 @@ const UserButton = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="w-full px-6 pb-4 h-fit mt-auto">
+        <div className="w-fit mx-6 mb-4 h-fit mt-auto">
           <Button
             variant="outline"
-            className="flex items-center justify-start w-fit gap-2 h-10 px-2 rounded-full"
+            className="flex items-center justify-start w-fit gap-2 h-10 px-2 rounded-full shadow-md"
           >
             <Avatar className="h-6 w-6 cursor-pointer">
               <AvatarImage src={img?.url} alt={`${username}'s picture`} />
@@ -54,7 +54,7 @@ const UserButton = () => {
           </Button>
         </div>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="ml-6 min-w-48 w-auto">
+      <DropdownMenuContent align="start" className="min-w-48 w-auto rounded-xl">
         <DropdownMenuLabel className="px-2">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <div className="grid gap-2 pt-2 pb-2 px-2">
