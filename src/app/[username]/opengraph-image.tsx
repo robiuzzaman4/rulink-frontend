@@ -22,53 +22,11 @@ export default async function Image({
 
   return new ImageResponse(
     (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          textAlign: "center",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-          backgroundColor: "white",
-          backgroundImage:
-            "radial-gradient(circle at 25px 25px, lightgray 2%, transparent 0%), radial-gradient(circle at 75px 75px, lightgray 2%, transparent 0%)",
-          backgroundSize: "100px 100px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <img
-            src={userData?.img?.url}
-            alt={alt}
-            style={{
-              height: 120,
-              width: 120,
-              borderRadius: "50%",
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 50,
-            fontStyle: "normal",
-            color: "black",
-            marginTop: 30,
-            lineHeight: 1.8,
-            whiteSpace: "pre-wrap",
-          }}
-        >
-          <b>{userData?.name}</b>
-        </div>
+      <div tw="h-full w-full bg-white flex flex-col items-center justify-center gap-4">
+        <h1 className="text-4xl text-center text-zinc-950">{userData?.name}</h1>
+        <h3 className="text-xl text-center text-zinc-800">
+          {userData?.professional_title}
+        </h3>
       </div>
     ),
     {
