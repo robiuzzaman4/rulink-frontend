@@ -68,8 +68,8 @@ const Hero = () => {
               src="/rulink_banner.png"
               alt="rulink banner"
               className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] md:h-[400px] md:w-[400px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl shadow-2xl"
-              height={1080}
-              width={1080}
+              height={2048}
+              width={2048}
               quality={80}
             />
           </div>
