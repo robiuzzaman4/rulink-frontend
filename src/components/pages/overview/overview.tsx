@@ -12,7 +12,7 @@ const Overview = () => {
   const { isLoading, isFetching } = useUserByEmail();
 
   // === handling loading state ===
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return (
       <div className="text-xl font-medium text-center w-full h-[calc(100vh-168px)] grid place-items-center text-foreground">
         <Loader size={24} className="animate-spin" />
