@@ -14,7 +14,7 @@ const WelcomeCard = ({ handleNextSlide }: WelcomeCardProps) => {
         <div className="h-40 flex items-center justify-center border-y border-y-border mt-6">
           <div className="px-4 sm:px-6 border-x h-full w-full flex flex-col items-center justify-center gap-6 mx-6 bg-background">
             <h1 className="text-base text-muted-foreground text-center font-medium font-satoshi">
-              {`"Thank your for siging up. Let's get started together."`}
+              {`"Thank your for signing up. Let's get started together."`}
             </h1>
 
             <div className="flex items-center gap-2">

@@ -27,7 +27,7 @@ const PROCESS_STEPS = [
 
 const Steps = () => {
   return (
-    <div className="bg-grainy py-24 border-y border-y-border w-full grid gap-24">
+    <div className="bg-grainy py-24 border-t border-t-border w-full grid gap-24">
       {PROCESS_STEPS.map((step) => (
         <Container key={step?.step_number} className="w-full grid gap-8">
           <span className="flex flex-col gap-4 max-w-md md:max-w-lg lg:max-w-full mx-auto lg:mx-0 w-full">
@@ -51,7 +51,7 @@ const Steps = () => {
               src={step?.image_url}
               alt={step?.image_alt}
               height={1080}
-              width={1080}
+              width={1920}
               className="w-full max-w-4xl mx-auto h-full max-h-[600px] object-cover border-4 border-rulink-primary rounded-xl"
             />
           </motion.div>

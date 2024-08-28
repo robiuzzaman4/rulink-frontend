@@ -74,7 +74,7 @@ const Hero = () => {
             />
           </div>
           <Link
-            href="https://rulink.vercel.app/robi"
+            href="https://rulink.vercel.app/me/robi"
             target="_blank"
             className="text-xs text-muted-foreground mt-1 hover:underline"
           >

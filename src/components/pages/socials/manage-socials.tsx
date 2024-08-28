@@ -33,7 +33,9 @@ const ManageSocials = () => {
         <IconButton>
           <Earth size={20} />
         </IconButton>
-        <h5 className="text-lg font-medium font-satoshi">Manage Socials</h5>
+        <h5 className="text-lg font-medium font-satoshi">
+          Manage Socials (max: 4)
+        </h5>
       </div>
       {/* your socials */}
       <YourSocials isLoading={isLoading} addedSocials={addedSocials} />

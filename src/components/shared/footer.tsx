@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-background w-full py-12">
+    <div className="bg-background w-full py-12 border-t border-t-border">
       <Container className="flex flex-col md:flex-row md:justify-between items-center gap-4 text-muted-foreground text-sm">
         <span className="flex flex-col sm:flex-row gap-1 sm:gap-2">
           <p className="text-center">All right reserved @rulink.</p>

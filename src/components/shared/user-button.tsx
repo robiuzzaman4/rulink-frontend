@@ -50,7 +50,7 @@ const UserButton = () => {
                 {username?.slice(0, 2)}
               </AvatarFallback>
             </Avatar>
-            <p className="text-sm font-medium">{name}</p>
+            {name && <p className="text-sm font-medium">{name}</p>}
           </Button>
         </div>
       </DropdownMenuTrigger>

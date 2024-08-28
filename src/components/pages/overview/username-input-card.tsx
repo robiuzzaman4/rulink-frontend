@@ -42,8 +42,8 @@ const UsernameInputCard = ({
         <div className="flex items-center">
           <Input
             type="text"
-            placeholder="rulink.vercel.app/"
-            className="rounded-r-none disabled:cursor-default disabled:opacity-100 border-r-0 w-36"
+            placeholder="rulink.vercel.app/me/"
+            className="rounded-r-none disabled:cursor-default disabled:opacity-100 border-r-0 w-[165px]"
             disabled
           />
           <div className="w-full z-20 relative">
@@ -60,27 +60,29 @@ const UsernameInputCard = ({
               />
             )}
             {!isUsernameLoading && username !== "" && isAvailableUsername && (
-              <div className="absolute top-2.5 right-1 h-4 w-4 grid place-items-center border border-green-500 bg-green-50 rounded-full">
-                <Check size={10} className="text-green-500" />
+              <div className="absolute top-2.5 right-1 h-4 w-4 grid place-items-center border border-rulink-primary bg-rulink-primary/5 rounded-full">
+                <Check size={10} className="text-rulink-primary" />
               </div>
             )}
           </div>
         </div>
         {/* messages */}
         {isUsernameLoading && (
-          <p className="text-xs text-muted-foreground">Checking username...</p>
+          <p className="text-xs text-muted-foreground -mt-2.5">Checking username...</p>
         )}
         {username !== "" &&
           !isUsernameLoading &&
           isAvailableUsername &&
           isAvailableUsername !== null && (
-            <p className="text-xs text-green-500">Username is available</p>
+            <p className="text-xs text-rulink-primary -mt-2.5">Username is available</p>
           )}
         {username !== "" &&
           !isUsernameLoading &&
           !isAvailableUsername &&
           isAvailableUsername !== null && (
-            <p className="text-xs text-red-500">Username is already taken</p>
+            <p className="text-xs text-rulink-danger -mt-2.5">
+              Username is already taken
+            </p>
           )}
       </div>
       {/* bottom section */}
@@ -102,9 +104,6 @@ const UsernameInputCard = ({
             <>Complete</>
           )}
         </Button>
-        {/* <Button size="lg" onClick={temp} className="w-full">
-          Complete
-        </Button> */}
       </div>
     </div>
   );
