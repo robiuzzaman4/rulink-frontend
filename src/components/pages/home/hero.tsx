@@ -45,6 +45,7 @@ const Hero = () => {
               className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl shadow-2xl"
               height={1080}
               width={1080}
+              quality={80}
             />
           </div>
           <Link
@@ -52,7 +53,7 @@ const Hero = () => {
             target="_blank"
             className="text-xs text-muted-foreground mt-1 hover:underline"
           >
-            Demo
+            See Demo
           </Link>
         </div>
       </Container>

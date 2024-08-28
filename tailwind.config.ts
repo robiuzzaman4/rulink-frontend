@@ -20,6 +20,7 @@ const config = {
     extend: {
       backgroundImage: {
         pattern: "url('/pattern.svg')",
+        grainy: "url('/grainy.png')",
       },
       boxShadow: {
         // rulink: "0px 4px 10px 1px rgba(46, 29, 171, 0.08)",
@@ -36,7 +37,7 @@ const config = {
       },
       colors: {
         // rulink colors
-        "rulink-primary": "#059669",
+        "rulink-primary": "#0d9488",
         "rulink-danger": "#e11d48",
         "rulink-info": "#ea580c",
         border: "hsl(var(--border))",

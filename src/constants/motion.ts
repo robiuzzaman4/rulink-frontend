@@ -36,6 +36,15 @@ export const MOTION_LAYOUT_FADE_UP = {
   },
 };
 
+export const MOTION_LAYOUT_SLIDE_UP = {
+  hidden: { opacity: 0, y: 100 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 300, damping: 30 },
+  },
+};
+
 export const MOTION_BLUR_IN = {
   hidden: { filter: "blur(10px)", opacity: 0 },
   visible: { filter: "blur(0px)", opacity: 1 },
