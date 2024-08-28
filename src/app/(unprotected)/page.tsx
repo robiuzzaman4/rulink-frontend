@@ -1,12 +1,12 @@
 import React from "react";
 import Hero from "@/components/pages/home/hero";
-import StepOne from "@/components/pages/home/step-one";
+import Steps from "@/components/pages/home/steps";
 
 const HomePage = () => {
   return (
     <div className="w-full">
       <Hero />
-      <StepOne />
+      <Steps />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Hero = () => {
     <div className="min-h-screen w-full grid place-items-center pt-24 pb-16 relative overflow-hidden bg-pattern">
       <Container className="grid lg:grid-cols-2 gap-8 md:gap-16 py-16 sm:py-8 md:py-4">
         {/* left side */}
-        <div className="w-full max-w-sm md:max-w-md lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col justify-center gap-4 md:gap-8">
+        <div className="w-full max-w-md md:max-w-lg lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col justify-center gap-4 md:gap-8">
           <h1 className="font-satoshi text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-bold">
             Build your personal website in minutes.
           </h1>
@@ -37,12 +37,12 @@ const Hero = () => {
           </div>
         </div>
         {/* right side */}
-        <div className="grid place-items-center w-full max-w-sm md:max-w-md lg:max-w-full mx-auto h-full relative">
+        <div className="grid place-items-center w-full max-w-md md:max-w-lg lg:max-w-full mx-auto h-full relative">
           <div className="bg-transparent">
             <Image
               src="/rulink_banner.png"
               alt="rulink banner"
-              className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl shadow-2xl"
+              className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] md:h-[400px] md:w-[400px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl shadow-2xl"
               height={1080}
               width={1080}
               quality={80}
