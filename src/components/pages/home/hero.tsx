@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { TextEffect } from "@/components/motion-primitives/text-effect";
 import { motion } from "framer-motion";
-import { MOTION_SCALE_UP } from "@/constants/motion";
+import { MOTION_LAYOUT_FADE_UP, MOTION_SCALE_UP } from "@/constants/motion";
 
 const Hero = () => {
   return (
@@ -24,7 +24,12 @@ const Hero = () => {
           >
             Build your personal website in minutes.
           </TextEffect>
-          <span className="grid gap-1">
+          <motion.span
+            initial="hidden"
+            animate="show"
+            variants={MOTION_LAYOUT_FADE_UP}
+            className="grid gap-1"
+          >
             <p className="font-satoshi text-center lg:text-start font-medium text-lg md:text-xl">
               Streamline your digital identity.
             </p>
@@ -33,8 +38,13 @@ const Hero = () => {
               brand, content, and projects—all within a sleek, user-friendly
               interface.
             </p>
-          </span>
-          <div className="w-full grid lg:grid-cols-2 gap-4 lg:gap-8">
+          </motion.span>
+          <motion.div
+            initial="hidden"
+            animate="show"
+            variants={MOTION_LAYOUT_FADE_UP}
+            className="w-full grid lg:grid-cols-2 gap-4 lg:gap-8"
+          >
             <ShineButton />
             <Button
               variant="secondary"
@@ -44,7 +54,7 @@ const Hero = () => {
             >
               <Link href="/pricing">See Pricing</Link>
             </Button>
-          </div>
+          </motion.div>
         </div>
         {/* right side */}
         <motion.div

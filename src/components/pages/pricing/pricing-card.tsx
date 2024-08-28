@@ -1,8 +1,10 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { MOTION_LAYOUT_SLIDE_UP } from "@/constants/motion";
 import { cn } from "@/lib/utils";
 import { TPricing } from "@/types";
+import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -19,7 +21,10 @@ const PricingCard = ({ pricing }: PricingCardProps) => {
   };
 
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      variants={MOTION_LAYOUT_SLIDE_UP}
       className={cn(
         "bg-background rounded-2xl border border-border shadow-lg py-6 flex flex-col gap-4 lg:gap-6",
         {
@@ -30,7 +35,7 @@ const PricingCard = ({ pricing }: PricingCardProps) => {
       <div className="px-4 lg:px-6 flex flex-col gap-4">
         {/* header section */}
         <span className="grid gap-2">
-          <h1 className="text-center text-3xl font-medium font-serif">
+          <h1 className="text-center text-3xl font-bold font-satoshi">
             {pricing?.plan}
           </h1>
           <p className="text-center text-sm text-muted-foreground">
@@ -80,7 +85,7 @@ const PricingCard = ({ pricing }: PricingCardProps) => {
           </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

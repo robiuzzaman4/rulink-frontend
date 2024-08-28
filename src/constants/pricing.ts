@@ -5,7 +5,7 @@ export const PRICING_PLANS = [
     price: "FREE",
     description: "Get first your personal website",
     features: [
-      "Claime your username",
+      "Claim your username",
       "Generate your profile",
       "4 linked social accounts",
       "3 experience cards",

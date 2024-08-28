@@ -13,7 +13,7 @@ const PricingPage = () => {
     <div className="mt-[68px] py-16 flex flex-col gap-16 px-4 lg:px-6">
       {/* pricing header */}
       <div className="w-fit mx-auto flex flex-col items-center justify-center gap-4">
-        <h2 className="text-3xl md:text-4xl text-center font-medium font-serif">
+        <h2 className="text-3xl md:text-4xl text-center font-bold font-satoshi text-rulink-primary">
           Pricing
         </h2>
         <p className="text-sm font-medium text-muted-foreground text-center">
