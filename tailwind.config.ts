@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        pattern: "url('/pattern.svg')",
+      },
       boxShadow: {
         // rulink: "0px 4px 10px 1px rgba(46, 29, 171, 0.08)",
         rulink:

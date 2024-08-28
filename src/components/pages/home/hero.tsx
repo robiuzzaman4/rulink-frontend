@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const Hero = () => {
   return (
-    <div className="min-h-screen w-full grid place-items-center pt-24 pb-16">
+    <div className="min-h-screen w-full grid place-items-center pt-24 pb-16 relative overflow-hidden bg-pattern">
       <Container className="grid lg:grid-cols-2 gap-8 md:gap-16 py-16 sm:py-8 md:py-4">
         {/* left side */}
         <div className="w-full max-w-sm md:max-w-md lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col justify-center gap-4 md:gap-8">
@@ -27,7 +27,7 @@ const Hero = () => {
           <div className="w-full grid lg:grid-cols-2 gap-4 lg:gap-8">
             <ShineButton />
             <Button
-              variant="ghost"
+              variant="secondary"
               asChild
               size="lg"
               className="hover:underline transition-all duration-300"
@@ -38,11 +38,11 @@ const Hero = () => {
         </div>
         {/* right side */}
         <div className="grid place-items-center w-full max-w-sm md:max-w-md lg:max-w-full mx-auto h-full relative">
-          <div className="">
+          <div className="bg-transparent">
             <Image
               src="/rulink_banner.png"
               alt="rulink banner"
-              className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl p-1"
+              className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl shadow-2xl"
               height={1080}
               width={1080}
             />
@@ -56,6 +56,10 @@ const Hero = () => {
           </Link>
         </div>
       </Container>
+
+      {/* gradients */}
+      {/* <div className="absolute top-10 left-10 h-64 w-80 lg:w-96  rotate-45 rounded-xl bg-gradient-to-tr from-rose-500 to-indigo-800 filter blur-3xl opacity-20"></div> */}
+      {/* <div className="absolute -bottom-4 -right-4 h-64 w-80 lg:w-96  rotate-45 rounded-xl bg-gradient-to-r from-rose-500 to-indigo-800 filter blur-3xl opacity-20"></div> */}
     </div>
   );
 };
