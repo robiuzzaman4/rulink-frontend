@@ -15,7 +15,7 @@ interface UserSocialsProps {
 
 const UserSocials = ({ socials }: UserSocialsProps) => {
   return (
-    <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <div className="w-full flex items-center justify-between gap-2">
         <UserSectionTitle title="Socials" />
 
@@ -34,7 +34,7 @@ const UserSocials = ({ socials }: UserSocialsProps) => {
               >
                 <Link
                   href={item?.url}
-                  className="h-9 w-9 rounded-full grid place-items-center bg-background border border-border shadow-sm"
+                  className="h-9 w-9 rounded-full grid place-items-center bg-background border border-border shadow-rulink"
                   target="_blank"
                 >
                   <Image

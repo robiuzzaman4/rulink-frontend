@@ -14,7 +14,7 @@ interface UserSocialsProps {
 
 const UserProjects = ({ projects }: UserSocialsProps) => {
   return (
-    <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <UserSectionTitle title="Projects" />
 
       {/* mobile cards */}
@@ -26,7 +26,7 @@ const UserProjects = ({ projects }: UserSocialsProps) => {
               initial="hidden"
               whileInView="show"
               variants={MOTION_SCALE_UP}
-              className="bg-background p-4 rounded-xl shadow hover:shadow-lg flex flex-col gap-4"
+              className="bg-background p-4 rounded-xl shadow-rulink border border-border flex flex-col gap-4"
             >
               <Image
                 src={item?.thumbnail_url}
@@ -65,7 +65,7 @@ const UserProjects = ({ projects }: UserSocialsProps) => {
               initial="hidden"
               whileInView="show"
               variants={MOTION_SCALE_UP}
-              className="bg-background p-4 rounded-xl shadow hover:shadow-lg flex justify-between w-full gap-4"
+              className="bg-background p-4 rounded-xl shadow-rulink border border-border flex justify-between w-full gap-4"
             >
               <Image
                 src={item?.thumbnail_url}

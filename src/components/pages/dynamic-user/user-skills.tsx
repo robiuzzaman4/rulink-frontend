@@ -12,7 +12,7 @@ interface UserSkillsProps {
 
 const UserSkills = ({ skills }: UserSkillsProps) => {
   return (
-    <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <div className="w-full flex items-center justify-between gap-2">
         <UserSectionTitle title="Skills" />
       </div>
@@ -26,7 +26,7 @@ const UserSkills = ({ skills }: UserSkillsProps) => {
           <motion.div
             variants={MOTION_PULL_UP_ITEM}
             key={index}
-            className="px-2 py-1 rounded-md bg-background border border-border text-sm font-medium text-muted-foreground shadow-sm"
+            className="px-2 py-1 rounded-md bg-background border border-border text-sm font-medium text-muted-foreground shadow-rulink"
           >
             {skill}
           </motion.div>

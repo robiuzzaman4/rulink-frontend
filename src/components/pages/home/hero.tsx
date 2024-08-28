@@ -38,13 +38,22 @@ const Hero = () => {
         </div>
         {/* right side */}
         <div className="grid place-items-center w-full max-w-sm md:max-w-md lg:max-w-full mx-auto h-full relative">
-          <Image
-            src="/rulink-banner.png"
-            alt="rulink banner"
-            className="h-full w-full bg-cover rounded-3xl"
-            height={1080}
-            width={1080}
-          />
+          <div className="">
+            <Image
+              src="/rulink_banner.png"
+              alt="rulink banner"
+              className="h-[300px] w-[300px] sm:h-[380px] sm:w-[380px] lg:h-[420px] lg:w-[420px] aspect-square rounded-xl p-1"
+              height={1080}
+              width={1080}
+            />
+          </div>
+          <Link
+            href="https://rulink.vercel.app/robi"
+            target="_blank"
+            className="text-xs text-muted-foreground mt-1 hover:underline"
+          >
+            Demo
+          </Link>
         </div>
       </Container>
     </div>

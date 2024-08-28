@@ -18,6 +18,11 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        // rulink: "0px 4px 10px 1px rgba(46, 29, 171, 0.08)",
+        rulink:
+          "0px 1.2px 1.2px rgba(10, 10, 10, 0.06), 0px 5px 10px rgba(10, 10, 10, 0.04)",
+      },
       screens: {
         "3xl": "1880px",
       },

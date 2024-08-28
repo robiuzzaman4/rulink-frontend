@@ -14,7 +14,7 @@ interface UserSocialsProps {
 
 const UserExperiences = ({ experiences }: UserSocialsProps) => {
   return (
-    <div className="bg-secondary rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
       <UserSectionTitle title="Experiences" />
 
       <div className="grid gap-2">
@@ -24,7 +24,7 @@ const UserExperiences = ({ experiences }: UserSocialsProps) => {
             initial="hidden"
             whileInView="show"
             variants={MOTION_SCALE_UP}
-            className="bg-background p-4 rounded-xl shadow hover:shadow-lg grid gap-2"
+            className="bg-background p-4 rounded-xl shadow-rulink grid gap-2 border border-border"
           >
             <IconButton>
               <BriefcaseBusiness size={16} />
