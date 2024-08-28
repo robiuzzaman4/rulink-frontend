@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
 import Container from "@/components/shared/container";
 import ShineButton from "@/components/pages/home/shine-button";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { TextEffect } from "@/components/motion-primitives/text-effect";
+import { motion } from "framer-motion";
+import { MOTION_SCALE_UP } from "@/constants/motion";
 
 const Hero = () => {
   return (
@@ -11,9 +16,14 @@ const Hero = () => {
       <Container className="grid lg:grid-cols-2 gap-8 md:gap-16 py-16 sm:py-8 md:py-4">
         {/* left side */}
         <div className="w-full max-w-md md:max-w-lg lg:max-w-full mx-auto lg:mx-0 h-full flex flex-col justify-center gap-4 md:gap-8">
-          <h1 className="font-satoshi text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-bold">
+          <TextEffect
+            per="word"
+            as="h3"
+            preset="blur"
+            className="font-satoshi text-center lg:text-start text-4xl md:text-5xl lg:text-6xl font-bold"
+          >
             Build your personal website in minutes.
-          </h1>
+          </TextEffect>
           <span className="grid gap-1">
             <p className="font-satoshi text-center lg:text-start font-medium text-lg md:text-xl">
               Streamline your digital identity.
@@ -37,7 +47,12 @@ const Hero = () => {
           </div>
         </div>
         {/* right side */}
-        <div className="grid place-items-center w-full max-w-md md:max-w-lg lg:max-w-full mx-auto h-full relative">
+        <motion.div
+          initial="hidden"
+          animate="show"
+          variants={MOTION_SCALE_UP}
+          className="grid place-items-center w-full max-w-md md:max-w-lg lg:max-w-full mx-auto h-full relative"
+        >
           <div className="bg-transparent">
             <Image
               src="/rulink_banner.png"
@@ -55,7 +70,7 @@ const Hero = () => {
           >
             See Demo
           </Link>
-        </div>
+        </motion.div>
       </Container>
 
       {/* gradients */}
