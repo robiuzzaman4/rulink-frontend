@@ -77,6 +77,13 @@ const AddNewProjectForm = () => {
       size: 0,
       file: null,
     });
+    // Reset the file input value
+    const fileInput = document.getElementById(
+      "image-upload"
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = "";
+    }
   };
 
   // === initialize form ===
@@ -142,7 +149,12 @@ const AddNewProjectForm = () => {
           if (res?.data?.success) {
             toast.success("Project Added.");
             handleRemoveLocalFile();
-            form.reset();
+            form.reset({
+              title: "",
+              description: "",
+              live_url: "",
+              thumbnail_url: "",
+            });
           } else {
             toast.error("Failed to add project. Please try again.");
           }
@@ -154,6 +166,7 @@ const AddNewProjectForm = () => {
       }
     } catch (error) {
       console.log("FILE UPLOAD ERROR", error);
+      toast.error("Failed to upload profile picture.");
     }
   };
 
