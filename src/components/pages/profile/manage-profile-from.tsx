@@ -83,6 +83,13 @@ const ManageProfileForm = () => {
       size: 0,
       file: null,
     });
+    // Reset the file input value
+    const fileInput = document.getElementById(
+      "image-upload"
+    ) as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = "";
+    }
   };
 
   // === initialize form ===
@@ -182,6 +189,7 @@ const ManageProfileForm = () => {
       }
     } catch (error) {
       console.log("FILE UPLOAD ERROR", error);
+      toast.error("Failed to upload profile picture.");
     }
   };
 
@@ -271,7 +279,9 @@ const ManageProfileForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <span className="w-full flex items-center justify-between gap-4">
-                    <FormLabel className="lg:mt-1 lg:mb-1.5">Profile Picture</FormLabel>
+                    <FormLabel className="lg:mt-1 lg:mb-1.5">
+                      Profile Picture
+                    </FormLabel>
                     {localImg?.file && (
                       <Button
                         className="h-0 py-0"
