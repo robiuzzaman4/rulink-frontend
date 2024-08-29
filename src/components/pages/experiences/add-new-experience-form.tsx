@@ -18,15 +18,6 @@ import { useUpdateUserMutation } from "@/features/user-slice";
 import { toast } from "sonner";
 import useUserByEmail from "@/hooks/useUserByEmail";
 import { TExperience } from "@/types";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -35,6 +26,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getYearsInReverse } from "@/utils/getYearsInReverse";
+import { MONTHS } from "@/constants/months";
+
+export const YEARS = getYearsInReverse();
 
 const AddNewExperiencForm = () => {
   // === currently working checkbox state and function ===
@@ -56,8 +51,10 @@ const AddNewExperiencForm = () => {
     defaultValues: {
       company: "",
       position: "",
-      start_date: undefined,
-      end_date: undefined,
+      start_month: "",
+      start_year: "",
+      end_month: "",
+      end_year: "",
       location_type: undefined,
       job_type: undefined,
     },
@@ -68,13 +65,15 @@ const AddNewExperiencForm = () => {
     data: z.infer<typeof CreateExperienceSchema>
   ) => {
     // make end_date and checkbox validation
-    if (data?.end_date === undefined && !isChecked) {
+    if (data?.end_month === "" && data?.end_year === "" && !isChecked) {
       toast.error("Please provide an End date or checked 'Currently working'");
       form.reset({
         company: "",
         position: "",
-        start_date: undefined,
-        end_date: undefined,
+        start_month: "",
+        start_year: "",
+        end_month: "",
+        end_year: "",
         location_type: undefined,
         job_type: undefined,
       });
@@ -88,8 +87,10 @@ const AddNewExperiencForm = () => {
       form.reset({
         company: "",
         position: "",
-        start_date: undefined,
-        end_date: undefined,
+        start_month: "",
+        start_year: "",
+        end_month: "",
+        end_year: "",
         location_type: undefined,
         job_type: undefined,
       });
@@ -97,11 +98,13 @@ const AddNewExperiencForm = () => {
       return;
     }
 
-    const endDate = data?.end_date
-      ? format(data.end_date, "MMMM yyyy")
-      : isChecked
-      ? "PRESENT"
-      : "";
+    const startDate = `${data?.start_month} ${data?.start_year}`;
+    const endDate =
+      data?.end_month && data?.end_year && !isChecked
+        ? `${data?.end_month} ${data?.end_year}`
+        : isChecked
+        ? "PRESENT"
+        : "";
 
     const payload = {
       experiences: [
@@ -109,7 +112,7 @@ const AddNewExperiencForm = () => {
         {
           company: data?.company,
           position: data?.position,
-          start_date: format(data?.start_date, "MMMM yyyy"),
+          start_date: startDate,
           end_date: endDate,
           location_type: data?.location_type,
           job_type: data?.job_type,
@@ -128,8 +131,10 @@ const AddNewExperiencForm = () => {
         form.reset({
           company: "",
           position: "",
-          start_date: undefined,
-          end_date: undefined,
+          start_month: "",
+          start_year: "",
+          end_month: "",
+          end_year: "",
           location_type: undefined,
           job_type: undefined,
         });
@@ -193,103 +198,6 @@ const AddNewExperiencForm = () => {
               )}
             />
 
-            {/* start date field */}
-            <FormField
-              control={form.control}
-              name="start_date"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <FormLabel>Start Date</FormLabel>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-full pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                          disabled={isUpdateProfileLoading}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* end date field */}
-            <FormField
-              control={form.control}
-              name="end_date"
-              render={({ field }) => (
-                <FormItem className="flex flex-col">
-                  <div className="flex gap-2 justify-between">
-                    <FormLabel>End Date</FormLabel>
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="currently_working"
-                        checked={isChecked}
-                        onCheckedChange={handleCheckedChange}
-                      />
-                      <label
-                        htmlFor="currently_working"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                      >
-                        Currently working
-                      </label>
-                    </div>
-                  </div>
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <FormControl>
-                        <Button
-                          variant={"outline"}
-                          className={cn(
-                            "w-full pl-3 text-left font-normal",
-                            !field.value && "text-muted-foreground"
-                          )}
-                          disabled={isChecked || isUpdateProfileLoading}
-                        >
-                          {field.value ? (
-                            format(field.value, "PPP")
-                          ) : (
-                            <span>Pick a date</span>
-                          )}
-                          <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                      </FormControl>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0" align="start">
-                      <Calendar
-                        mode="single"
-                        selected={field.value}
-                        onSelect={field.onChange}
-                        initialFocus
-                      />
-                    </PopoverContent>
-                  </Popover>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             {/* job type field */}
             <FormField
               control={form.control}
@@ -346,6 +254,140 @@ const AddNewExperiencForm = () => {
                 </FormItem>
               )}
             />
+
+            {/* start month  and year field */}
+            <div className="w-full grid lg:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="start_month"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Start Month</FormLabel>
+                    <Select
+                      disabled={isUpdateProfileLoading}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select start month" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {MONTHS?.map((month, index) => (
+                          <SelectItem key={index} value={month}>
+                            {month}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="start_year"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Start Year</FormLabel>
+                    <Select
+                      disabled={isUpdateProfileLoading}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select start year" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {YEARS?.map((year, index) => (
+                          <SelectItem key={index} value={year}>
+                            {year}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            {/* end month  and year field */}
+            <div className="w-full grid lg:grid-cols-2 gap-4">
+              <FormField
+                control={form.control}
+                name="end_month"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>End Month</FormLabel>
+                    <Select
+                      disabled={isUpdateProfileLoading || isChecked}
+                      onValueChange={field.onChange}
+                      defaultValue={field.value || ""}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select end month" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {MONTHS?.map((month, index) => (
+                          <SelectItem key={index} value={month}>
+                            {month}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <div className="flex flex-col gap-4">
+                <FormField
+                  control={form.control}
+                  name="end_year"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>End Year</FormLabel>
+                      <Select
+                        disabled={isUpdateProfileLoading || isChecked}
+                        onValueChange={field.onChange}
+                        defaultValue={field.value || ""}
+                      >
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select end year" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {YEARS?.map((year, index) => (
+                            <SelectItem key={index} value={year}>
+                              {year}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <div className="flex items-center justify-end space-x-2">
+                  <Checkbox
+                    id="currently_working"
+                    checked={isChecked}
+                    onCheckedChange={handleCheckedChange}
+                  />
+                  <label
+                    htmlFor="currently_working"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    Currently working there
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="w-fit ml-auto py-4 px-4 sm:px-6">
