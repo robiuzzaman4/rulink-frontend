@@ -12,7 +12,7 @@ interface UserSkillsProps {
 
 const UserSkills = ({ skills }: UserSkillsProps) => {
   return (
-    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md px-2 py-4 sm:px-6 sm:py-6 flex flex-col gap-4">
       <div className="w-full flex items-center justify-between gap-2">
         <UserSectionTitle title="Skills" />
       </div>

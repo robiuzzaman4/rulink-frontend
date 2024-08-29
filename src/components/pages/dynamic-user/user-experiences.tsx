@@ -14,7 +14,7 @@ interface UserSocialsProps {
 
 const UserExperiences = ({ experiences }: UserSocialsProps) => {
   return (
-    <div className="bg-secondary/60 rounded-md p-4 sm:p-6 flex flex-col gap-4">
+    <div className="bg-secondary/60 rounded-md px-2 py-4 sm:px-6 sm:py-6 flex flex-col gap-4">
       <UserSectionTitle title="Experiences" />
 
       <div className="grid gap-2">
@@ -30,18 +30,18 @@ const UserExperiences = ({ experiences }: UserSocialsProps) => {
               <BriefcaseBusiness size={16} />
             </IconButton>
             <span>
-              <h4 className="text-xl font-medium truncate">
-                Position: {item?.position}
+              <h4 className="text-base sm:text-xl font-medium truncate">
+                {item?.position}
               </h4>
-              <p className="text-base font-normal text-muted-foreground">
-                Company: {item?.company} {" - "}{" "}
+              <p className="text-sm sm:text-base font-normal text-muted-foreground">
+                {item?.company} {" - "}{" "}
                 {getCapitalizeWord(item?.job_type)}
               </p>
-              <p className="text-sm font-normal text-muted-foreground">
-                Duration: {item?.start_date} {" - "}{" "}
+              <p className="text-sm sm:text-base font-normal text-muted-foreground">
+                {item?.start_date} {" - "}{" "}
                 {getCapitalizeWord(item?.end_date)}
               </p>
-              <p className="text-sm font-normal text-muted-foreground">
+              <p className="text-sm sm:text-base font-normal text-muted-foreground">
                 Location Type: {getCapitalizeWord(item?.location_type)}
               </p>
             </span>

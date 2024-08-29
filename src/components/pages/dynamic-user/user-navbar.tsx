@@ -22,7 +22,7 @@ const UserNavbar = ({ user }: UserNavbarProps) => {
 
       <h2 className="text-2xl font-medium hidden sm:block">{greeting}</h2>
 
-      <Button asChild>
+      <Button asChild size="sm">
         <Link href={`mailto:${user?.email}`}>Contact Me</Link>
       </Button>
     </nav>

@@ -22,7 +22,7 @@ const UserHero = ({ user }: UserHeroProps) => {
   };
 
   return (
-    <div className="flex flex-col gap-8 p-2 sm:p-6">
+    <div className="flex flex-col gap-8 px-2 py-4 sm:px-6 sm:py-6">
       {/* professional_title & open_to_work */}
       <div className="flex items-center justify-between gap-2">
         <UserSectionTitle title={user?.professional_title as string} />
@@ -53,14 +53,14 @@ const UserHero = ({ user }: UserHeroProps) => {
           </span>
           <div className="flex items-center justify-center sm:justify-start w-full gap-4">
             {user?.resume_url && (
-              <Button asChild>
+              <Button asChild size="sm">
                 <Link href={user?.resume_url as string} target="_blank">
                   View Resume
                   <ArrowUpRight className="ml-2" size={16} />
                 </Link>
               </Button>
             )}
-            <Button variant="outline" onClick={handleCopy}>
+            <Button variant="outline" onClick={handleCopy} size="sm">
               {copied ? "Copied" : "Copy Email"}
               <Copy className="ml-2" size={14} />
             </Button>
