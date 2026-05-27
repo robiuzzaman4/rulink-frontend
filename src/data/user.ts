@@ -11,6 +11,7 @@ export const USER = {
   x: "robiuzzaman4",
   whatsapp: "+8801794125984",
   telegram: "+8801794125984",
+  discord: "robiuzzaman4",
   website: "https://www.robiuzzaman.pro.bd",
   image: "https://vercel.com/api/www/avatar?u=robiuzzaman4",
 };

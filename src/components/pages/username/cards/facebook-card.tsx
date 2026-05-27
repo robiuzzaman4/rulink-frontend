@@ -11,7 +11,7 @@ export function FacebookCard({ username }: FacebookCardProps) {
     <Link
       href={url}
       target="_blank"
-      className="bg-blue-900/10 border border-blue-900/10 rounded-3xl p-6 flex flex-col gap-2 hover:cursor-pointer hover:bg-neutral-200 shadow-xs"
+      className="bg-blue-900/10 border border-blue-900/10 rounded-3xl p-6 flex flex-col gap-2 hover:cursor-pointer hover:bg-blue-200 shadow-xs"
     >
       <div className="flex items-start justify-between gap-6">
         <Facebook className="size-9 [&_path:first-of-type]:fill-[#1877F2] [&_path:last-of-type]:fill-white" />

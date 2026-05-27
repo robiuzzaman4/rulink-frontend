@@ -1,13 +1,16 @@
 import Image from "next/image";
+import { BskyCard } from "@/components/pages/username/cards/bsky-card";
+import { DiscordCard } from "@/components/pages/username/cards/discord-card";
 import { FacebookCard } from "@/components/pages/username/cards/facebook-card";
 import { InstagramCard } from "@/components/pages/username/cards/instagram-card";
 import { LinkedinCard } from "@/components/pages/username/cards/linkedin-card";
+import { RedditCard } from "@/components/pages/username/cards/reddit-card";
+import { TelegramCard } from "@/components/pages/username/cards/telegram-card";
+import { TiktokCard } from "@/components/pages/username/cards/tiktok-card";
+import { WhatsappCard } from "@/components/pages/username/cards/whatsapp-card";
+import { XCard } from "@/components/pages/username/cards/x-card";
+import { YouTubeCard } from "@/components/pages/username/cards/youtube-card";
 import { USER } from "@/data/user";
-import { BskyCard } from "./cards/bsky-card";
-import { RedditCard } from "./cards/reddit-card";
-import { TiktokCard } from "./cards/tiktok-card";
-import { XCard } from "./cards/x-card";
-import { YouTubeCard } from "./cards/youtub-card";
 
 export default function UserNamePage({ username }: { username: string }) {
   console.log("username", username);
@@ -44,6 +47,9 @@ export default function UserNamePage({ username }: { username: string }) {
           <RedditCard username={USER.x} />
           <TiktokCard username={USER.tiktok} />
           <YouTubeCard username={USER.youtube} />
+          <WhatsappCard username={USER.whatsapp} />
+          <TelegramCard username={USER.telegram} />
+          <DiscordCard username={USER.discord} />
         </div>
       </div>
     </div>
