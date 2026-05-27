@@ -1,0 +1,14 @@
+export const USER = {
+  username: "robiuzzaman4",
+  name: "Md. Robiuzzaman Ruhan",
+  bio: "FullStack Developer | Competitive Programmer | Cloud & Data Science Enthusiast",
+  github: "robiuzzaman4",
+  facebook: "robiuzzaman4",
+  instagram: "robiuzzaman4",
+  linkedin: "robiuzzaman4",
+  x: "robiuzzaman4",
+  whatsapp: "+8801794125984",
+  telegram: "+8801794125984",
+  website: "https://www.robiuzzaman.pro.bd",
+  image: "https://vercel.com/api/www/avatar?u=robiuzzaman4",
+};
