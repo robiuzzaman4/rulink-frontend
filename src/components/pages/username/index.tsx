@@ -1,7 +1,13 @@
-import { USER } from "@/data/user";
 import Image from "next/image";
-import { LinkedinCard } from "@/components/pages/username/cards/linkedin-card";
 import { FacebookCard } from "@/components/pages/username/cards/facebook-card";
+import { InstagramCard } from "@/components/pages/username/cards/instagram-card";
+import { LinkedinCard } from "@/components/pages/username/cards/linkedin-card";
+import { USER } from "@/data/user";
+import { BskyCard } from "./cards/bsky-card";
+import { RedditCard } from "./cards/reddit-card";
+import { TiktokCard } from "./cards/tiktok-card";
+import { XCard } from "./cards/x-card";
+import { YouTubeCard } from "./cards/youtub-card";
 
 export default function UserNamePage({ username }: { username: string }) {
   console.log("username", username);
@@ -24,10 +30,7 @@ export default function UserNamePage({ username }: { username: string }) {
             <h1 className="text-3xl font-semibold text-ru-heading">
               {USER.name}
             </h1>
-            <p className="text-base text-ru-sub-heading">
-              FullStack Developer | Competitive Programmer | Cloud & Data
-              Science Enthusiast
-            </p>
+            <p className="text-base text-ru-sub-heading">{USER.bio}</p>
           </span>
         </div>
 
@@ -35,9 +38,12 @@ export default function UserNamePage({ username }: { username: string }) {
         <div className="xl:col-span-2 grid md:grid-cols-2 xl:grid-cols-4 gap-6 h-fit">
           <LinkedinCard username={USER.linkedin} />
           <FacebookCard username={USER.facebook} />
-          <div className="bg-neutral-100 ">Hello</div>
-          <div className="bg-neutral-100 ">Hello</div>
-          <div className="bg-neutral-100 ">Hello</div>
+          <InstagramCard username={USER.instagram} />
+          <XCard username={USER.x} />
+          <BskyCard username={USER.x} />
+          <RedditCard username={USER.x} />
+          <TiktokCard username={USER.tiktok} />
+          <YouTubeCard username={USER.youtube} />
         </div>
       </div>
     </div>

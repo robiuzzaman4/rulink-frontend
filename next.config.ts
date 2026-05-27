@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       {
         hostname: "vercel.com",
       },
+      {
+        hostname: "thesvg.org",
+      },
     ],
   },
 };
